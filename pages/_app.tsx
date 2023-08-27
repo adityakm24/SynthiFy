@@ -34,7 +34,6 @@ function MyApp({ Component, pageProps }) {
   return (
     <WagmiConfig config={wagmiConfig}>
       <RainbowKitProvider chains={chains}>
-      <ConnectButton />
         <Component {...pageProps} />
         
       </RainbowKitProvider>
