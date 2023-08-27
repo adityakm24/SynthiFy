@@ -1,3 +1,5 @@
+"use client"
+
 import React from "react";
 import "@rainbow-me/rainbowkit/styles.css";
 import { getDefaultWallets, RainbowKitProvider } from "@rainbow-me/rainbowkit";
@@ -5,6 +7,7 @@ import { configureChains, createConfig, WagmiConfig } from "wagmi";
 import { mainnet, polygon, optimism, arbitrum, base, zora } from "wagmi/chains";
 import { alchemyProvider } from "wagmi/providers/alchemy";
 import { publicProvider } from "wagmi/providers/public";
+import { ConnectButton } from "@rainbow-me/rainbowkit";
 const alchemyApiKey = process.env.ALCHEMY_ID;
 
 const { chains, publicClient } = configureChains(
@@ -17,11 +20,11 @@ const { chains, publicClient } = configureChains(
 
 const { connectors } = getDefaultWallets({
   appName: "SynthiFY",
-  projectId: "YOUR_PROJECT_ID", // Replace with your actual project ID
+  projectId: "cbc2313443443338b20debe33da28adf", // Replace with your actual project ID
   chains,
 });
 
-const wagmiConfig = createClient({
+const wagmiConfig = createConfig({
   autoConnect: true,
   connectors,
   publicClient,
@@ -29,9 +32,11 @@ const wagmiConfig = createClient({
 
 function MyApp({ Component, pageProps }) {
   return (
-    <WagmiConfig client={wagmiConfig}>
+    <WagmiConfig config={wagmiConfig}>
       <RainbowKitProvider chains={chains}>
+      <ConnectButton />
         <Component {...pageProps} />
+        
       </RainbowKitProvider>
     </WagmiConfig>
   );
