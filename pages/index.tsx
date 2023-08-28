@@ -1,15 +1,14 @@
 // pages/index.js
 
 import React from "react";
-import WalletConnect from "../components/WalletConnect";
+import Dashboard from "../components/Dashboard";
 
-const YourNextJsPage = () => {
+const MyApp = () => {
   return (
     <div>
-      {/* Your other page content */}
-      <WalletConnect />
+      <Dashboard />
     </div>
   );
 };
 
-export default YourNextJsPage;
+export default MyApp;
