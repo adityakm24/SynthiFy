@@ -1,7 +1,5 @@
-// pages/index.js
-
 import React from "react";
-import WalletConnect from "../components/WalletConnect"; // Adjust the import path
+import WalletConnect from "../components/WalletConnect"; 
 
 const YourNextJsPage = () => {
   return (
