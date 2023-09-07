@@ -1,8 +1,6 @@
-// components/NNSButton.js
-
 import React, { useState } from "react";
 
-const NNSButton = () => {
+const test = () => {
   const [nnsStats, setNnsStats] = useState(null);
   const [error, setError] = useState(null);
 
@@ -76,4 +74,4 @@ const NNSButton = () => {
   );
 };
 
-export default NNSButton;
+export default test;
