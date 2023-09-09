@@ -10,7 +10,6 @@ const Mint = () => {
   const [selectedPill, setSelectedPill] = useState("");
   const [connectedAddress, setConnectedAddress] = useState(null);
   const [isConnected, setIsConnected] = useState(false);
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const router = useRouter();
 
   useEffect(() => {
@@ -56,87 +55,13 @@ const Mint = () => {
     }
   };
 
-  const toggleModal = () => {
-    setIsModalOpen(!isModalOpen);
-  };
-
-  const copyAddress = () => {
-    if (connectedAddress) {
-      navigator.clipboard
-        .writeText(connectedAddress)
-        .then(() => {
-          alert("Address copied to clipboard");
-        })
-        .catch((error) => {
-          console.error("Error copying address to clipboard:", error);
-        });
-    }
-  };
-
   const handleCalculate = () => {
     // Implement your calculation logic here
   };
 
   return (
     <div>
-      <nav className={styles.navbar}>
-        <h2 className={styles.navbarTitle}>Logo</h2>
-        <Link href="/mint" className={styles.navbarLink}>
-          Mint
-        </Link>
-        {isConnected ? (
-          <div className={styles.dropdownContainer}>
-            <button
-              className={styles.disconnectDropdownButton}
-              onClick={toggleModal}
-            >
-              {connectedAddress ? `${connectedAddress.slice(0, 8)}... ` : ""}
-              {isModalOpen ? (
-                <i className="fa fa-caret-down"></i>
-              ) : (
-                <i className="fa fa-caret-down"></i>
-              )}
-            </button>
-            {isModalOpen && (
-              <div className={styles.modalBackdrop}>
-                <div className={styles.modalContent}>
-                  <i
-                    className={`fa fa-times-circle ${styles.closeIcon}`}
-                    onClick={toggleModal}
-                  ></i>
-                  <div className={styles.modalHeader}>
-                    <h3>{connectedAddress}</h3>
-                  </div>
-                  <div className={styles.modalActions}>
-                    <button className={styles.copyButton} onClick={copyAddress}>
-                      <i className="fa fa-copy"></i> Copy Address
-                    </button>
-                    <button
-                      className={styles.disconnectButton}
-                      onClick={() => {
-                        disconnectWallet();
-                        toggleModal();
-                      }}
-                    >
-                      <i className="fa fa-sign-out"></i> Disconnect Wallet
-                    </button>
-                  </div>
-                </div>
-              </div>
-            )}
-          </div>
-        ) : (
-          <div>
-            <button
-              className={styles.connectButton}
-              type="button"
-              onClick={connectWallet}
-            >
-              Connect Wallet
-            </button>
-          </div>
-        )}
-      </nav>
+
       {isConnected ? (
         <div className={styles.centeredContainer}>
           <div className={styles.subContainer}>
