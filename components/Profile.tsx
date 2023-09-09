@@ -3,12 +3,16 @@ import Link from "next/link";
 import { Principal } from "@dfinity/principal";
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
+import { encodeIcrcAccount } from "@dfinity/ledger";
 
 const Profile = () => {
   const [connectedAddress, setConnectedAddress] = useState(null);
   const [isConnected, setIsConnected] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const[ckBTCAdrress,setckBTCAdress] = useState("")
+  const [principalAddrress,setprincipalAddrress] = useState(null)
   const router = useRouter();
+  const canisterAdddress = Principal.fromText("bkyz2-fmaaa-aaaaa-qaaaq-cai")
 
   useEffect(() => {
     const checkWalletConnection = async () => {
@@ -17,10 +21,13 @@ const Profile = () => {
         setIsConnected(result);
 
         if (result) {
-          const publicKey = await window.ic.infinityWallet.getPrincipal();
-          const address = publicKey.toText();
+          const PrincipalAddress = await window.ic.infinityWallet.getPrincipal();
+          const address = PrincipalAddress.toText();
+          const ckBtc = encodeIcrcAccount({owner:canisterAdddress,subaccount:PrincipalAddress.toUint8Array()})
+          setckBTCAdress(ckBtc)
           setConnectedAddress(address);
-          console.log(`The connected user's public key is:`, publicKey);
+          setprincipalAddrress(PrincipalAddress)
+          console.log(`The connected user's Principal key is:`, PrincipalAddress);
         }
       } catch (e) {
         console.log("Error checking wallet connection:", e);
@@ -134,7 +141,8 @@ const Profile = () => {
                 <div className={styles.modalContainer}>
                   <div className={styles.modalHeader}>
                     <p>Deposit your ckbtc to the below address.</p>
-                    <h3>{connectedAddress}</h3>
+                    <h3>{ckBTCAdrress}</h3>
+
                   </div>
                 </div>
 
