@@ -8,6 +8,9 @@ const Profile = () => {
   const [connectedAddress, setConnectedAddress] = useState(null);
   const [isConnected, setIsConnected] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  
+  const [isModalOpen0, setIsModalOpen0] = useState(false);
+  const [isModalOpen1, setIsModalOpen1] = useState(false);
   const router = useRouter();
 
   useEffect(() => {
@@ -57,6 +60,14 @@ const Profile = () => {
     setIsModalOpen(!isModalOpen);
   };
 
+    const toggleModal1 = () => {
+      setIsModalOpen1(!isModalOpen1);
+  };
+  
+      const toggleModal0 = () => {
+        setIsModalOpen0(!isModalOpen0);
+      };
+
   const copyAddress = () => {
     if (connectedAddress) {
       navigator.clipboard
@@ -92,6 +103,36 @@ const Profile = () => {
                 <i className="fa fa-caret-down"></i>
               )}
             </button>
+            {isModalOpen && (
+              <div className={styles.modalBackdrop}>
+                <div className={styles.modalContent}>
+                  <i
+                    className={`fa fa-times-circle ${styles.closeIcon}`}
+                    onClick={toggleModal}
+                  ></i>
+                  <div className={styles.modalContainer}>
+                  <div className={styles.modalHeader}>
+                    <h3>{connectedAddress}</h3>
+                    </div>
+                    <br></br>
+                  <div className={styles.modalActions}>
+                    <button className={styles.copyButton} onClick={copyAddress}>
+                      <i className="fa fa-copy"></i> Copy Address
+                    </button>
+                    <button
+                      className={styles.disconnectButton}
+                      onClick={() => {
+                        disconnectWallet();
+                        toggleModal();
+                      }}
+                    >
+                      <i className="fa fa-sign-out"></i> Disconnect Wallet
+                      </button>
+                      </div>
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
         ) : (
           <div>
@@ -120,16 +161,16 @@ const Profile = () => {
         >
           {/* Box 1 */}
           <div style={{ padding: "16px" }}>
-            <button className={styles.general} onClick={toggleModal}>
+            <button className={styles.general} onClick={toggleModal0}>
               Deposite CkBTC
             </button>
           </div>
-          {isModalOpen && (
+          {isModalOpen0 && (
             <div className={styles.modalBackdrop}>
               <div className={styles.modalContent}>
                 <i
                   className={`fa fa-times-circle ${styles.closeIcon}`}
-                  onClick={toggleModal}
+                  onClick={toggleModal0}
                 ></i>
                 <div className={styles.modalContainer}>
                   <div className={styles.modalHeader}>
@@ -147,9 +188,36 @@ const Profile = () => {
 
           {/* Box 1 */}
           <div style={{ padding: "16px" }}>
-            <button className={styles.general} onClick={updateBalance}>
-              Update Deposit
+            <button className={styles.general} onClick={toggleModal1}>
+              Deposit BTC
             </button>
+            {isModalOpen1 && (
+              <div className={styles.modalBackdrop}>
+                <div className={styles.modalContent}>
+                  <i
+                    className={`fa fa-times-circle ${styles.closeIcon}`}
+                    onClick={toggleModal1}
+                  ></i>
+                  <div className={styles.modalContainer}>
+                    <div className={styles.modalHeader}>
+                      <h3>Placeholder </h3>
+                      <br></br>
+                      <br></br>
+                    </div>
+
+                    <div className={styles.modalActions}>
+                      <button className={styles.general2}>
+                        Get Deposit Address
+                      </button>
+                      <br></br>
+                      <button className={styles.general2}>
+                        Update Deposit Address
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       ) : (

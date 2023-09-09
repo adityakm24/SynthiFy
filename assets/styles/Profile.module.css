@@ -194,8 +194,9 @@
 }
 
 .general2 {
-      padding: 10px;
+  padding: 10px;
   font-size: 16px;
+  min-width: 300px;
   border: none;
   border-radius: 4px;
   cursor: pointer;
