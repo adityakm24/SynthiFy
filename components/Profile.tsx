@@ -3,18 +3,15 @@ import Link from "next/link";
 import { Principal } from "@dfinity/principal";
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
-import { encodeIcrcAccount } from "@dfinity/ledger";
-import {ckbtcidlFactory} from "../ckbtc.did"
 
 const Profile = () => {
   const [connectedAddress, setConnectedAddress] = useState(null);
   const [isConnected, setIsConnected] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  
   const [isModalOpen0, setIsModalOpen0] = useState(false);
   const [isModalOpen1, setIsModalOpen1] = useState(false);
   const router = useRouter();
-  const canisterAdddressPrincipal = Principal.fromText("bkyz2-fmaaa-aaaaa-qaaaq-cai")
-  const canisterAddressText = "bkyz2-fmaaa-aaaaa-qaaaq-cai"
 
   useEffect(() => {
     const checkWalletConnection = async () => {
@@ -23,13 +20,10 @@ const Profile = () => {
         setIsConnected(result);
 
         if (result) {
-          const PrincipalAddress = await window.ic.infinityWallet.getPrincipal();
-          const address = PrincipalAddress.toText();
-          const ckBtc = encodeIcrcAccount({owner:canisterAdddressPrincipal,subaccount:PrincipalAddress.toUint8Array()})
-          setckBTCAdress(ckBtc)
+          const publicKey = await window.ic.infinityWallet.getPrincipal();
+          const address = publicKey.toText();
           setConnectedAddress(address);
-          console.log(`The connected user's Principal key is:`, PrincipalAddress);
-          await createActor()
+          console.log(`The connected user's public key is:`, publicKey);
         }
       } catch (e) {
         console.log("Error checking wallet connection:", e);
@@ -41,12 +35,7 @@ const Profile = () => {
 
   const connectWallet = async () => {
     try {
-
-      const whitelist = [canisterAddressText];
-
-      const publicKey = await window.ic.infinityWallet.requestConnect({
-        whitelist
-      });
+      const publicKey = await window.ic.infinityWallet.requestConnect();
       router.reload();
       const address = publicKey.toText();
       setConnectedAddress(address);
@@ -55,20 +44,6 @@ const Profile = () => {
       console.log("Error connecting wallet:", e);
     }
   };
-
-  const createActor = async () => {
-    try {
-      const ckbtc = await window.ic.infinityWallet.createActor({
-      canisterId: canisterAddressText,
-      interfaceFactory: ckbtcidlFactory,
-      host:  undefined, 
-    })
-    console.log("ckbtc: ",ckbtc)
-    } catch(e){
-      console.log("Error creating actor:",e)
-    };
-
-  }
 
   const disconnectWallet = async () => {
     try {
@@ -139,7 +114,7 @@ const Profile = () => {
                   <div className={styles.modalHeader}>
                     <h3>{connectedAddress}</h3>
                     </div>
-                    <br></br>
+
                   <div className={styles.modalActions}>
                     <button className={styles.copyButton} onClick={copyAddress}>
                       <i className="fa fa-copy"></i> Copy Address
@@ -200,8 +175,7 @@ const Profile = () => {
                 <div className={styles.modalContainer}>
                   <div className={styles.modalHeader}>
                     <p>Deposit your ckbtc to the below address.</p>
-                    <h3>{ckBTCAdrress}</h3>
-
+                    <h3>{connectedAddress}</h3>
                   </div>
                 </div>
 
