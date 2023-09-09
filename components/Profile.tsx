@@ -10,6 +10,8 @@ const Profile = () => {
   const [connectedAddress, setConnectedAddress] = useState(null);
   const [isConnected, setIsConnected] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalOpen0, setIsModalOpen0] = useState(false);
+  const [isModalOpen1, setIsModalOpen1] = useState(false);
   const router = useRouter();
   const canisterAdddressPrincipal = Principal.fromText("bkyz2-fmaaa-aaaaa-qaaaq-cai")
   const canisterAddressText = "bkyz2-fmaaa-aaaaa-qaaaq-cai"
