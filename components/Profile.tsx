@@ -13,7 +13,27 @@ const Profile = () => {
   console.log(connectedAddress);
   const router = useRouter();
 
+  useEffect(() => {
+    const checkWalletConnection = async () => {
+      try {
+        const result = await window.ic.infinityWallet.isConnected();
+        const userAssets = await window.ic.infinityWallet.getUserAssets();
+        console.log(`User's list of tokens/assets`, assets);
+        setIsConnected(result);
+        setAssets(userAssets); // Set the assets in state
 
+        if (result) {
+          const publicKey = await window.ic.infinityWallet.getPrincipal();
+          const address = publicKey.toText();
+          setConnectedAddress(address);
+        }
+      } catch (e) {
+        console.log("Error checking wallet connection:", e);
+      }
+    };
+
+    checkWalletConnection();
+  }, []);
 
   const toggleModal1 = () => {
     setIsModalOpen1(!isModalOpen1);
