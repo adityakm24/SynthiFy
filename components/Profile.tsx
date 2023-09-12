@@ -60,9 +60,14 @@ const Profile = () => {
       const ckbtc = await window.ic.infinityWallet.createActor({
       canisterId: canisterAddressText,
       interfaceFactory: ckbtcidlFactory,
-      host:  undefined, 
+      host:"http://localhost:4943/", 
     })
-    console.log("ckbtc: ",ckbtc)
+    try{
+    console.log("ckbtc: ",await ckbtc.getBtcDepositAddress())
+    }
+    catch(e){
+      console.log("Canister Error:",e)
+    }
     } catch(e){
       console.log("Error creating actor:",e)
     };
