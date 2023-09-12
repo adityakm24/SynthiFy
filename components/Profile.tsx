@@ -74,6 +74,14 @@ const Profile = () => {
 
   }
 
+  if(connectedAddress!=null){
+    console.log("inside")
+  }
+
+  else{
+    console.log("connected address is null")
+  }
+
   const disconnectWallet = async () => {
     try {
       await window.ic.infinityWallet.disconnect();
