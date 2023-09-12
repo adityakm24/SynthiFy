@@ -8,6 +8,7 @@ const MyApp = () => {
   const [connectedAddress, setConnectedAddress] = useState(null);
   const [isConnected, setIsConnected] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [assets, setAssets] = useState([]); // State to store assets
 
   const [isModalOpen0, setIsModalOpen0] = useState(false);
   const [isModalOpen1, setIsModalOpen1] = useState(false);
@@ -17,7 +18,10 @@ const MyApp = () => {
     const checkWalletConnection = async () => {
       try {
         const result = await window.ic.infinityWallet.isConnected();
+        const userAssets = await window.ic.infinityWallet.getUserAssets();
+        console.log(`User's list of tokens/assets`, userAssets);
         setIsConnected(result);
+        setAssets(userAssets); // Set the assets in state
 
         if (result) {
           const publicKey = await window.ic.infinityWallet.getPrincipal();
@@ -88,8 +92,30 @@ const MyApp = () => {
         </Link>
       </div>
       {isConnected ? (
-        <div className={styles.dropdownContainer}>
-          <button className={styles.connectButton} onClick={toggleModal}>
+        <div className={styles["dropdownContainer"]}>
+          {assets ? (
+            <div className={styles["select-container"]}>
+              <select
+                className={styles["select-element"]}
+                name="assets"
+                id="assets"
+              >
+                {assets.map((asset, index) => (
+                  <option
+                    key={index}
+                    value={asset.name}
+                    className={styles["selectOption"]}
+                  >
+                    {asset.name} {asset.balance}
+                  </option>
+                ))}
+              </select>
+            </div>
+          ) : (
+            <p>No assets owned</p>
+          )}
+
+          <button className={styles["connectButton"]} onClick={toggleModal}>
             {connectedAddress ? `${connectedAddress.slice(0, 8)}... ` : ""}
             {isModalOpen ? (
               <i className="fa fa-caret-down"></i>
@@ -97,35 +123,6 @@ const MyApp = () => {
               <i className="fa fa-caret-down"></i>
             )}
           </button>
-          {isModalOpen && (
-            <div className={styles.modalBackdrop}>
-              <div className={styles.modalContent}>
-                <i
-                  className={`fa fa-times-circle ${styles.closeIcon}`}
-                  onClick={toggleModal}
-                ></i>
-                <div className={styles.modalContainer}>
-                  <div className={styles.modalHeader}>
-                    <h3>{connectedAddress}</h3>
-                  </div>
-                  <div className={styles.modalActions}>
-                    <button className={styles.copyButton} onClick={copyAddress}>
-                      <i className="fa fa-copy"></i> Copy Address
-                    </button>
-                    <button
-                      className={styles.disconnectButton}
-                      onClick={() => {
-                        disconnectWallet();
-                        toggleModal();
-                      }}
-                    >
-                      <i className="fa fa-sign-out"></i> Disconnect Wallet
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          )}
         </div>
       ) : (
         <div>

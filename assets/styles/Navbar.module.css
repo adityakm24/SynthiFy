@@ -181,4 +181,44 @@
   margin-right: 5px;
 }
 
+.dropdownContainer {
+  display: flex; /* Display children inline */
+  align-items: center; /* Vertically center children */
+}
+
+.select-container {
+  flex-grow: 1; /* Allow the select element to grow and take available space */
+  margin-right: 8px; /* Add margin between select and button */
+}
+
+.select-element {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #fff;
+  cursor: pointer;
+}
+
+.connectButton {
+  background-color: #0E76FD;
+  color: #fff;
+  padding: 12px 36px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+.connectButton:hover {
+  background-color: #1a7dfe;
+  color: #fff;
+  padding: 12px 36px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+
 
