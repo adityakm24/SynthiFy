@@ -2,6 +2,12 @@ import styles from "../assets/styles/Profile.module.css";
 import Link from "next/link";
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
+import {encodeIcrcAccount} from "@dfinity/ledger"
+import { Principal } from "@dfinity/principal";
+import { createStore, combineReducers } from 'redux';
+import { persistStore, persistReducer } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
+import {ckbtcidlFactory} from "../ckbtc.did"
 
 const Profile = () => {
   const [connectedAddress, setConnectedAddress] = useState(null);
@@ -10,7 +16,7 @@ const Profile = () => {
   const [isModalOpen0, setIsModalOpen0] = useState(false);
   const [isModalOpen1, setIsModalOpen1] = useState(false);
   const [assets, setAssets] = useState([]); // State to store assets
-  console.log(connectedAddress);
+
   const router = useRouter();
 
   useEffect(() => {
@@ -21,19 +27,26 @@ const Profile = () => {
         console.log(`User's list of tokens/assets`, assets);
         setIsConnected(result);
         setAssets(userAssets); // Set the assets in state
+        console.log("resultValue:",result)
 
         if (result) {
           const publicKey = await window.ic.infinityWallet.getPrincipal();
           const address = publicKey.toText();
           setConnectedAddress(address);
+          console.log(`The connected user's public key is:`, publicKey);
         }
       } catch (e) {
         console.log("Error checking wallet connection:", e);
       }
     };
 
+
+
     checkWalletConnection();
+
   }, []);
+
+
 
   const toggleModal1 = () => {
     setIsModalOpen1(!isModalOpen1);
@@ -42,6 +55,35 @@ const Profile = () => {
   const toggleModal0 = () => {
     setIsModalOpen0(!isModalOpen0);
   };
+
+  const encodeAccount = () =>{
+    if(connectedAddress!=null){
+      const PrincipalAddress = Principal.fromText(connectedAddress)
+    setCkbtcAddres( encodeIcrcAccount({owner:Principal.fromText(canisterAddress),subaccount:PrincipalAddress.toUint8Array()}))
+  
+  }
+  else{
+    console.log(connectedAddress)
+  }
+  }
+
+  const createActor = async () => {
+
+    try{
+    const ckbtcActor = await window.ic.infinityWallet.createActor({
+      canisterId: canisterAddress,
+      interfaceFactory: ckbtcidlFactory,
+      host: "http://localhost:4943/", // set to http://localhost:8000/ to make calls to local DFX replica
+    });
+
+    setckbtcActor(ckbtcActor)
+  }
+  catch(e){
+    console.log("CreatingActorError:",e)
+  }
+  }
+
+ 
 
   const copyAddress = () => {
     if (connectedAddress) {
@@ -55,6 +97,8 @@ const Profile = () => {
         });
     }
   };
+
+
   const updateBalance = () => {
     //add animation for loading balance
   };
@@ -123,7 +167,7 @@ const Profile = () => {
                   <div className={styles.modalContainer}>
                     <div className={styles.modalHeader}>
                       <p>Deposit your ckbtc to the below address.</p>
-                      <h3>{connectedAddress}</h3>
+                      <h3>{ckbtcAddress}</h3>
                     </div>
                   </div>
 
@@ -146,7 +190,7 @@ const Profile = () => {
                   ></i>
                   <div className={styles.modalContainer}>
                     <div className={styles.modalHeader}>
-                      <h3>Placeholder </h3>
+                      <h3>{btcDepositAddress} </h3>
                       <br></br>
                       <br></br>
                     </div>
