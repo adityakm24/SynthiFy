@@ -10,6 +10,7 @@ const Mint = () => {
   const [selectedPill, setSelectedPill] = useState("");
   const [connectedAddress, setConnectedAddress] = useState(null);
   const [isConnected, setIsConnected] = useState(false);
+   const [isModalOpen, setIsModalOpen] = useState(false);
   const router = useRouter();
 
   useEffect(() => {
@@ -55,121 +56,161 @@ const Mint = () => {
     }
   };
 
+    const toggleModal = () => {
+      setIsModalOpen(!isModalOpen);
+    };
+
   const handleCalculate = () => {
     // Implement your calculation logic here
   };
 
-  return (
-    <div>
+return (
+  <div>
+    {isConnected ? (
+      <div className={styles.tableContainer}>
+        <table id="tableList" className={styles.tableList}>
+          <thead>
+            <tr>
+              <th></th>
+              <th>Stablecoin</th>
+              <th>Interest Rate</th>
+              <th>Liquidation Fee</th>
+              <th>Max. LTV</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>CkBTC</td>
+              <td>synUSD</td>
+              <td>1.5%</td>
+              <td>0.5%</td>
+              <td>80%</td>
+              <td>
+                <button className={styles.borrowButton} onClick={toggleModal}>
+                  Borrow
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        {/* Modal */}
+        {isModalOpen && (
+          <div className={styles.modalBackdrop}>
+            <div className={styles.modalContent}>
+              <i
+                className={`fa fa-times-circle ${styles.closeIcon}`}
+                onClick={toggleModal}
+              ></i>
+              <div className={styles.modalContainer}>
+                <h2>Mint Form</h2>
+                <form>
+                  <div className={styles.input1Container}>
+                    <div className={styles.inputGroup}>
+                      <label htmlFor="ckBtc" className={styles.labelWithIcon}>
+                        <div className={styles.iconContainer}>
+                          <Image
+                            src="/icons/ckBTC.png"
+                            alt="ckBtc Icon"
+                            width={30}
+                            height={30}
+                            className={styles.iconImage}
+                          />
+                        </div>
+                        ckBtc
+                      </label>
 
-      {isConnected ? (
-        <div className={styles.centeredContainer}>
-          <div className={styles.subContainer}>
-            <form>
-              <div className={styles.input1Container}>
-                <div className={styles.inputGroup}>
-                  <label htmlFor="ckBtc" className={styles.labelWithIcon}>
-                    <div className={styles.iconContainer}>
-                      <Image
-                        src="/icons/ckBTC.png"
-                        alt="ckBtc Icon"
-                        width={30}
-                        height={30}
-                        className={styles.iconImage}
+                      <input
+                        type="number"
+                        id="ckBtc"
+                        name="ckBtc"
+                        value={ckBtcAmount}
+                        onChange={(e) => setCkBtcAmount(e.target.value)}
+                        placeholder="Amount"
                       />
                     </div>
-                    ckBtc
-                  </label>
-
-                  <input
-                    type="number"
-                    id="ckBtc"
-                    name="ckBtc"
-                    value={ckBtcAmount}
-                    onChange={(e) => setCkBtcAmount(e.target.value)}
-                    placeholder="Amount"
-                  />
-                </div>
-                <div className={styles.gasFee}>
-                  <p>Gas fees</p>
-                </div>
-                <div className={styles.pillGroup}>
-                  <button
-                    className={`${styles.pill} ${
-                      selectedPill === "25%" ? styles.active : ""
-                    }`}
-                    onClick={() => setSelectedPill("25%")}
-                  >
-                    25%
-                  </button>
-                  <button
-                    className={`${styles.pill} ${
-                      selectedPill === "50%" ? styles.active : ""
-                    }`}
-                    onClick={() => setSelectedPill("50%")}
-                  >
-                    50%
-                  </button>
-                  <button
-                    className={`${styles.pill} ${
-                      selectedPill === "75%" ? styles.active : ""
-                    }`}
-                    onClick={() => setSelectedPill("75%")}
-                  >
-                    75%
-                  </button>
-                  <button
-                    className={`${styles.pill} ${
-                      selectedPill === "100%" ? styles.active : ""
-                    }`}
-                    onClick={() => setSelectedPill("100%")}
-                  >
-                    100%
-                  </button>
-                </div>
-              </div>
-              <div className={styles.input2Container}>
-                <label htmlFor="sUsd">
-                  <div className={styles.inputGroup}>
-                    <select
-                      id="sUsd"
-                      name="sUsd"
-                      value={Currency}
-                      onChange={(e) => setCurrency(e.target.value)}
-                    >
-                      <option value="sUSD">sUSD</option>
-                      <option value="sINR">sINR</option>
-                    </select>
-                    <input
-                      type="number"
-                      id="ckBtc"
-                      name="ckBtc"
-                      value={ckBtcAmount}
-                      onChange={(e) => setCkBtcAmount(e.target.value)}
-                      placeholder="Amount"
-                    />
+                    <div className={styles.gasFee}>
+                      <p>Gas fees</p>
+                    </div>
+                    <div className={styles.pillGroup}>
+                      <button
+                        className={`${styles.pill} ${
+                          selectedPill === "25%" ? styles.active : ""
+                        }`}
+                        onClick={() => setSelectedPill("25%")}
+                      >
+                        25%
+                      </button>
+                      <button
+                        className={`${styles.pill} ${
+                          selectedPill === "50%" ? styles.active : ""
+                        }`}
+                        onClick={() => setSelectedPill("50%")}
+                      >
+                        50%
+                      </button>
+                      <button
+                        className={`${styles.pill} ${
+                          selectedPill === "75%" ? styles.active : ""
+                        }`}
+                        onClick={() => setSelectedPill("75%")}
+                      >
+                        75%
+                      </button>
+                      <button
+                        className={`${styles.pill} ${
+                          selectedPill === "100%" ? styles.active : ""
+                        }`}
+                        onClick={() => setSelectedPill("100%")}
+                      >
+                        100%
+                      </button>
+                    </div>
                   </div>
-                </label>
-                <div className={styles.gasFee}>
-                  <p>Gas fees</p>
-                </div>
-              </div>
+                  <div className={styles.input2Container}>
+                    <label htmlFor="sUsd">
+                      <div className={styles.inputGroup}>
+                        <select
+                          id="sUsd"
+                          name="sUsd"
+                          value={Currency}
+                          onChange={(e) => setCurrency(e.target.value)}
+                        >
+                          <option value="sUSD">sUSD</option>
+                          <option value="sINR">sINR</option>
+                        </select>
+                        <input
+                          type="number"
+                          id="ckBtc"
+                          name="ckBtc"
+                          value={ckBtcAmount}
+                          onChange={(e) => setCkBtcAmount(e.target.value)}
+                          placeholder="Amount"
+                        />
+                      </div>
+                    </label>
+                    <div className={styles.gasFee}>
+                      <p>Gas fees</p>
+                    </div>
+                  </div>
 
-              <button
-                type="button"
-                className={styles.Calculate}
-                onClick={handleCalculate}
-              >
-                Calculate
-              </button>
-            </form>
+                  <button
+                    type="button"
+                    className={styles.Calculate}
+                    onClick={handleCalculate}
+                  >
+                    Calculate
+                  </button>
+                </form>
+              </div>
+            </div>
           </div>
-        </div>
-      ) : (
-        <p>Wallet Not Connected</p>
-      )}
-    </div>
-  );
+        )}
+      </div>
+    ) : (
+      <p>Wallet Not Connected</p>
+    )}
+  </div>
+);     
 };
 
 export default Mint;

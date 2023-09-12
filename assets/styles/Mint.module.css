@@ -25,8 +25,10 @@
 .subContainer {
   border: 2px black;
   border-style: solid;
+  border-radius: 20px;
   width: 550px;
   padding: 50px;
+  background-color: white;
 }
 
 .label {
@@ -40,6 +42,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  background-color: rgb(255, 255, 255);
 }
 
 .inputGroup input {
@@ -90,8 +93,8 @@
   width: 100%;
   padding: 10px;
   border-radius: 10px;
-  background-color: black;
-  color: white;
+  background-color: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
   border: 2px solid black;
 }
 
@@ -100,115 +103,49 @@
   width: 100%;
   padding: 10px;
   border-radius: 10px;
-  background-color: rgb(255, 255, 255);
-  color: rgb(0, 0, 0);
+  background-color: rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
   border: 2px solid black;
 }
-
-
-
-/* WalletConnect.css */
 
 .wallet-connect-container {
   text-align: center;
 }
 
-.navbar {
-  background-color: #000000; /* Purple background color */
-  color: #fff; /* White text color */
-  padding: 1rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.navbar-title {
-  margin: 0;
-  font-size: 1.5rem;
-}
 
 .button {
   border-radius: 20px;
 }
 
-
-.connectButton {
-  background-color: #0E76FD; /* Green button color */
-  color: #fff; /* White text color */
-  padding: 12px 36px; /* Increase padding for button */
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 15px;
-}
-
-.connectButton:hover {
-  background-color: #1a7dfe; /* Green button color */
-  color: #fff; /* White text color */
-  padding: 12px 36px; /* Increase padding for button */
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 15px;
-}
-
-
-.disconnectDropdownButton {
-  background-color: #fafafa; /* Green button color */
-  color: #000000; /* White text color */
-  padding: 12px 26px; /* Increase padding for button */
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 15px; /* Increase font size for button */
-}/* Add these styles to your existing CSS */
-
-.connected-address {
-  font-size: 1rem;
-  margin-top: 1rem;
-}
-
-.navbarTitle {
-  font-size: 24px;
-  margin: 0;
-  font-weight: bold;
-}
-
-.navbarLink {
-  color: white;
+.borrowButton {
+  background-color: rgba(255, 255, 255, 0); 
+  color: rgb(255, 255, 255); 
+  border: 2px solid #ffffff;
+  border-radius: 10px;
+  padding: 15px 32px;
+  text-align: center;
   text-decoration: none;
-  font-size: 18px;
-  transition: color 0.3s;
-  float: left;
-}
-
-.navbarLink:hover {
-  color: #0056b3; /* Change the color on hover */
-}
-
-.dropdownContainer {
-  position: relative;
   display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
 }
 
-.connectButton {
-  padding: 0.5rem 1rem;
-
+.borrowButton:hover {
+  transition: 0.2s;
+  background-color: rgb(255, 255, 255); 
+  color: rgb(0, 0, 0); 
+  border: 2px solid #ffffff;
+  border-radius: 10px;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
   cursor: pointer;
-  font-size: 1rem;
-  margin-left: 1rem; /* Move the Connect button to the left */
 }
 
-
-.disconnectDropdownButton {
-  background-color: #0E76FD; /* Green button color */
-  color: #fff; /* White text color */
-  padding: 12px 36px; /* Increase padding for button */
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 15px; /* Increase font size for button */
-}/* Add these styles to your existing CSS */
 .modalBackdrop {
   position: fixed;
   top: 0;
@@ -226,7 +163,7 @@
   background-color: #fff;
   color: black;
   padding: 20px;
-  border-radius: 5px;
+  border-radius: 20px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
 }
 
@@ -255,36 +192,45 @@
   cursor: pointer;
   font-size: 20px;
   color: #6d6d6d;
-  /* Add any other styles you need for the close icon */
+  z-index: 2;
 }
 
-
-.copyButton,
-.disconnectButton {
-  padding: 10px;
-  font-size: 16px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  width: 45%;
-  text-align: center;
+.tableContainer {
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
+  height: 50vh; 
+  padding: 0 50px;
+  
 }
 
-.copyButton {
-  background-color: #3498db;
+.tableList {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.tableList td,
+.tableList th {
+  border: 0px solid #ddd;
+  color: white;
+  padding: 8px;
+}
+
+.tableList tr:nth-child(even) {
+  background-color: #000000;
   color: white;
 }
 
-.disconnectButton {
-  background-color: red;
-  color: white;
+
+
+.tableList th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  color: rgb(148, 148, 148);
 }
 
-.copyButton i,
-.disconnectButton i {
-  margin-right: 5px;
-}
+.tableList td {
 
+  background-color: rgb(31, 77, 141);
+}

@@ -92,7 +92,7 @@ const MyApp = () => {
         </Link>
       </div>
       {isConnected ? (
-        <div className={styles["dropdownContainer"]}>
+        <div className={styles.dropdownContainer}>
           {assets ? (
             <div className={styles["select-container"]}>
               <select
@@ -101,11 +101,7 @@ const MyApp = () => {
                 id="assets"
               >
                 {assets.map((asset, index) => (
-                  <option
-                    key={index}
-                    value={asset.name}
-                    className={styles["selectOption"]}
-                  >
+                  <option key={index} value={asset.name}>
                     {asset.name} {asset.balance}
                   </option>
                 ))}
@@ -115,7 +111,7 @@ const MyApp = () => {
             <p>No assets owned</p>
           )}
 
-          <button className={styles["connectButton"]} onClick={toggleModal}>
+          <button className={styles.connectButton} onClick={toggleModal}>
             {connectedAddress ? `${connectedAddress.slice(0, 8)}... ` : ""}
             {isModalOpen ? (
               <i className="fa fa-caret-down"></i>
@@ -123,6 +119,35 @@ const MyApp = () => {
               <i className="fa fa-caret-down"></i>
             )}
           </button>
+          {isModalOpen && (
+            <div className={styles.modalBackdrop}>
+              <div className={styles.modalContent}>
+                <i
+                  className={`fa fa-times-circle ${styles.closeIcon}`}
+                  onClick={toggleModal}
+                ></i>
+                <div className={styles.modalContainer}>
+                  <div className={styles.modalHeader}>
+                    <h3>{connectedAddress}</h3>
+                  </div>
+                  <div className={styles.modalActions}>
+                    <button className={styles.copyButton} onClick={copyAddress}>
+                      <i className="fa fa-copy"></i> Copy Address
+                    </button>
+                    <button
+                      className={styles.disconnectButton}
+                      onClick={() => {
+                        disconnectWallet();
+                        toggleModal();
+                      }}
+                    >
+                      <i className="fa fa-sign-out"></i> Disconnect Wallet
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
       ) : (
         <div>

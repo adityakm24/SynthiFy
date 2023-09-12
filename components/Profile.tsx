@@ -10,7 +10,7 @@ const Profile = () => {
   const [isModalOpen0, setIsModalOpen0] = useState(false);
   const [isModalOpen1, setIsModalOpen1] = useState(false);
   const [assets, setAssets] = useState([]); // State to store assets
-
+  console.log(connectedAddress);
   const router = useRouter();
 
   useEffect(() => {
@@ -26,7 +26,6 @@ const Profile = () => {
           const publicKey = await window.ic.infinityWallet.getPrincipal();
           const address = publicKey.toText();
           setConnectedAddress(address);
-          console.log(`The connected user's public key is:`, publicKey);
         }
       } catch (e) {
         console.log("Error checking wallet connection:", e);
