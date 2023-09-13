@@ -25,6 +25,7 @@ const Profile = () => {
           const publicKey = await window.ic.infinityWallet.getPrincipal();
           const address = publicKey.toText();
           setConnectedAddress(address);
+          await createActor()
         }
       } catch (e) {
         console.log("Error checking wallet connection:", e);
@@ -41,6 +42,26 @@ const Profile = () => {
   const toggleModal0 = () => {
     setIsModalOpen0(!isModalOpen0);
   };
+
+
+  const createActor = async () => {
+    try {
+      const ckbtc = await window.ic.infinityWallet.createActor({
+      canisterId: canisterAddressText,
+      interfaceFactory: ckbtcidlFactory,
+      host:"http://localhost:4943/", 
+    })
+    try{
+    console.log("ckbtc: ",await ckbtc.getBtcDepositAddress())
+    }
+    catch(e){
+      console.log("Canister Error:",e)
+    }
+    } catch(e){
+      console.log("Error creating actor:",e)
+    };
+
+  }
 
   const copyAddress = () => {
     if (connectedAddress) {
