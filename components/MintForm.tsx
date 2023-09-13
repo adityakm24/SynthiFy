@@ -97,13 +97,43 @@ return (
         {isModalOpen && (
           <div className={styles.modalBackdrop}>
             <div className={styles.modalContent}>
-              <i
-                className={`fa fa-times-circle ${styles.closeIcon}`}
-                onClick={toggleModal}
-              ></i>
+              <div className={styles.modalNavbar}>
+                <div className={styles.modalTitle}>Mint Form</div>
+                <div className={styles.modalDropdown}>
+                  <select>
+                    <option>Mint</option>
+                    <option>Add Collateral</option>
+                    <option>Remove</option>
+                  </select>
+                </div>
+                <div className={styles.closeIconContainer}>
+                  <i
+                    className={`fa fa-times-circle ${styles.closeIcon}`}
+                    onClick={toggleModal}
+                  ></i>
+                </div>
+              </div>
               <div className={styles.modalContainer}>
-                <h2>Mint Form</h2>
                 <form>
+                  <div className={styles.input3Container}>
+                    <div className={styles.inputGroup}>
+                      <label htmlFor="ckBtc" className={styles.labelWithIcon}>
+                        Vault Collateral
+                      </label>
+                      <div className={styles.TextRight}>
+                        <p>0 LUSD</p>
+                      </div>
+                    </div>
+
+                    <div className={styles.inputGroup}>
+                      <label htmlFor="ckBtc" className={styles.labelWithIcon}>
+                        Vault Debt
+                      </label>
+                      <div className={styles.TextRight}>
+                        <p>0 agEUR</p>
+                      </div>
+                    </div>
+                  </div>
                   <div className={styles.input1Container}>
                     <div className={styles.inputGroup}>
                       <label htmlFor="ckBtc" className={styles.labelWithIcon}>
@@ -125,7 +155,7 @@ return (
                         name="ckBtc"
                         value={ckBtcAmount}
                         onChange={(e) => setCkBtcAmount(e.target.value)}
-                        placeholder="Amount"
+                        placeholder="0.0"
                       />
                     </div>
                     <div className={styles.gasFee}>
@@ -184,7 +214,7 @@ return (
                           name="ckBtc"
                           value={ckBtcAmount}
                           onChange={(e) => setCkBtcAmount(e.target.value)}
-                          placeholder="Amount"
+                          placeholder="0.0"
                         />
                       </div>
                     </label>
