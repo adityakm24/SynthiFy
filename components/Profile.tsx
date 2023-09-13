@@ -10,7 +10,6 @@ const Profile = () => {
   const [isModalOpen0, setIsModalOpen0] = useState(false);
   const [isModalOpen1, setIsModalOpen1] = useState(false);
   const [assets, setAssets] = useState([]); // State to store assets
-  console.log(connectedAddress);
   const router = useRouter();
 
   useEffect(() => {
