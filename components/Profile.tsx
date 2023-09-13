@@ -11,6 +11,7 @@ const Profile = () => {
   const [isModalOpen1, setIsModalOpen1] = useState(false);
   const [assets, setAssets] = useState([]); // State to store assets
   const router = useRouter();
+  const canisterAddressText = "bkyz2-fmaaa-aaaaa-qaaaq-cai"
 
   useEffect(() => {
     const checkWalletConnection = async () => {
