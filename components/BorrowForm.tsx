@@ -194,15 +194,68 @@ const Borrow = () => {
       case "Add Collateral":
         return (
           <form>
-            {/* Form fields for Add Collateral option */}
-            {/* ... */}
-          </form>
-        );
-      case "Remove":
-        return (
-          <form>
-            {/* Form fields for Remove option */}
-            {/* ... */}
+            <div className={styles.input1Container}>
+              <div className={styles.inputGroup}>
+                <label htmlFor="ckBtc" className={styles.labelWithIcon}>
+                  <div className={styles.iconContainer}>
+                    <Image
+                      src="/icons/ckBTC.png"
+                      alt="ckBtc Icon"
+                      width={30}
+                      height={30}
+                      className={styles.iconImage}
+                    />
+                  </div>
+                  ckBtc
+                </label>
+
+                <input
+                  type="number"
+                  id="ckBtc"
+                  name="ckBtc"
+                  value={ckBtcAmount}
+                  onChange={(e) => setCkBtcAmount(e.target.value)}
+                  placeholder="0.0"
+                />
+              </div>
+              <div className={styles.gasFee}>
+                <p>Gas fees</p>
+              </div>
+            </div>
+            <div className={styles.input2Container}>
+              <label htmlFor="sUsd">
+                <div className={styles.inputGroup}>
+                  <select
+                    id="sUsd"
+                    name="sUsd"
+                    value={Currency}
+                    onChange={(e) => setCurrency(e.target.value)}
+                  >
+                    <option value="sUSD">sUSD</option>
+                    <option value="sINR">sINR</option>
+                  </select>
+                  <input
+                    type="number"
+                    id="ckBtc"
+                    name="ckBtc"
+                    value={ckBtcAmount}
+                    onChange={(e) => setCkBtcAmount(e.target.value)}
+                    placeholder="0.0"
+                  />
+                </div>
+              </label>
+              <div className={styles.gasFee}>
+                <p>Gas fees</p>
+              </div>
+            </div>
+
+            <button
+              type="button"
+              className={styles.Calculate}
+              onClick={handleCalculate}
+            >
+              Add Collateral
+            </button>
           </form>
         );
       default:
@@ -243,7 +296,6 @@ const Borrow = () => {
             <div className={styles.modalBackdrop}>
               <div className={styles.modalContent}>
                 <div className={styles.modalNavbar}>
-                  <div className={styles.modalTitle}>Borrow Form</div>
                   <div className={styles.modalDropdown}>
                     <select
                       value={selectedOption}
@@ -251,7 +303,6 @@ const Borrow = () => {
                     >
                       <option>Borrow</option>
                       <option>Add Collateral</option>
-                      <option>Remove</option>
                     </select>
                   </div>
                   <div className={styles.closeIconContainer}>
