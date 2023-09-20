@@ -93,7 +93,6 @@ return (
             </tr>
           </tbody>
         </table>
-        {/* Modal */}
         {isModalOpen && (
           <div className={styles.modalBackdrop}>
             <div className={styles.modalContent}>
