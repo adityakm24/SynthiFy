@@ -1,14 +1,14 @@
 import React from "react";
-import MintForm from "../components/MintForm";
+import BorrowForm from "../components/BorrowForm";
 import Navbar from "../components/Navbar";
 
-const Mint = () => {
+const Borrow = () => {
   return (
     <div>
       <Navbar />
-      <MintForm />
+      <BorrowForm />
     </div>
   );
 };
 
-export default Mint;
+export default Borrow;

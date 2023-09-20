@@ -84,7 +84,7 @@ const MyApp = () => {
         <Link href="/" className={styles.navbarLink}>
           Dashboard
         </Link>
-        <Link href="/mint" className={styles.navbarLink}>
+        <Link href="/borrow" className={styles.navbarLink}>
           Mint
         </Link>
         <Link href="/profile" className={styles.navbarLink}>
