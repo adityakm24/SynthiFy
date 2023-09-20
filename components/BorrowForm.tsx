@@ -3,8 +3,11 @@ import { useRouter } from "next/router";
 import styles from "../assets/styles/Borrow.module.css";
 import Image from "next/image";
 import Link from "next/link";
+import {Opt} from "azle"
 
-import {vaultManageridlFactory} from "../vaultmanager.did"
+
+
+import {vaultManageridlFactory} from "../vaultmanager.did.js"
 
 const Borrow = () => {
   const [vaultID, setVaultID] = useState("");
@@ -121,6 +124,22 @@ const Borrow = () => {
 
   };
 
+  const handleCreateVaultFunction = async() => {
+    if(vaultManager!==null){
+      
+      try{
+
+
+        //@ts-ignore
+      const vaultId = await vaultManager.createVault([])
+      console.log(vaultId)
+      }
+      catch(e){
+        console.log("Error occured when creating vault:",e)
+      }
+    }
+  }
+
 
 
     const handleVaultIDChange = (e) => {
@@ -148,6 +167,8 @@ const Borrow = () => {
         console.error("Error fetching data:", error);
       }
     };
+
+
 
 
   const getForm = () => {
@@ -378,9 +399,7 @@ const Borrow = () => {
           <div className={styles.createWalletContainer}>
             <button
               className={styles.createWalletButton}
-              onClick={() => {
-                // Handle "Create Vault" button click
-              }}
+              onClick={handleCreateVaultFunction}
             >
               Create Vault
             </button>
