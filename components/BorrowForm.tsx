@@ -265,6 +265,42 @@ const Borrow = () => {
       case "Add Collateral":
         return (
           <form>
+            <div className={styles.input3Container}>
+              <div className={styles.inputGroup}>
+                <label htmlFor="ckBtc" className={styles.labelWithIcon}>
+                  Vault LTV Ratio
+                </label>
+                <div className={styles.TextRight}>
+                  <p>0</p>
+                </div>
+              </div>
+
+              <div className={styles.inputGroup}>
+                <label htmlFor="ckBtc" className={styles.labelWithIcon}>
+                  Vault Current Collateral
+                </label>
+                <div className={styles.TextRight}>
+                  <p>0</p>
+                </div>
+              </div>
+
+              <div className={styles.inputGroup}>
+                <label htmlFor="ckBtc" className={styles.labelWithIcon}>
+                  Vault Current Collaterisation Ratio
+                </label>
+                <div className={styles.TextRight}>
+                  <p>0</p>
+                </div>
+              </div>
+              <div className={styles.inputGroup}>
+                <label htmlFor="ckBtc" className={styles.labelWithIcon}>
+                  Health Factor
+                </label>
+                <div className={styles.TextRight}>
+                  <p>0</p>
+                </div>
+              </div>
+            </div>
             <div className={styles.input1Container}>
               <label htmlFor="sUsd">
                 <div className={styles.inputGroup}>
