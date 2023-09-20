@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 const Borrow = () => {
-  const [vaultID, setvaultID] = useState("");
+  const [vaultID, setVaultID] = useState("");
   const [collatAmnt, setcollatAmnt] = useState("");
     const [ckBtcAmount, setckBtcAmount] = useState("");
   const [Currency, setCurrency] = useState("sUSD");
@@ -70,6 +70,19 @@ const Borrow = () => {
   const handleCalculate = () => {
     // Implement your calculation logic here
   };
+
+    const handleVaultIDChange = (e) => {
+      const inputValue = e.target.value;
+
+      // Check if the input is a positive integer
+      if (/^[1-9]\d*$/.test(inputValue)) {
+        setVaultID(inputValue);
+      } else {
+        // If not a positive integer, you can display an error message or handle it in another way
+        // For now, we clear the input
+        setVaultID("");
+      }
+    };
 
   const getForm = () => {
     switch (selectedOption) {
@@ -201,12 +214,12 @@ const Borrow = () => {
                 <div className={styles.inputGroup}>
                   Vault ID
                   <input
-                    type="number"
-                    id="ckBtc"
-                    name="ckBtc"
+                    type="text" 
+                    id="vaultID"
+                    name="vaultID"
                     value={vaultID}
-                    onChange={(e) => setvaultID(e.target.value)}
-                    placeholder="0.0"
+                    onChange={handleVaultIDChange}
+                    placeholder="Enter a positive integer"
                   />
                 </div>
               </label>
