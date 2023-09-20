@@ -7,13 +7,15 @@ import Link from "next/link";
 const Borrow = () => {
   const [vaultID, setVaultID] = useState("");
   const [collatAmnt, setcollatAmnt] = useState("");
-    const [ckBtcAmount, setckBtcAmount] = useState("");
+  const [ckBtcAmount, setckBtcAmount] = useState("");
   const [Currency, setCurrency] = useState("sUSD");
   const [selectedPill, setSelectedPill] = useState("");
   const [connectedAddress, setConnectedAddress] = useState(null);
   const [isConnected, setIsConnected] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedOption, setSelectedOption] = useState("Borrow"); // Default selection
+  const [selectedOption, setSelectedOption] = useState("Borrow");
+  const [backendData, setBackendData] = useState("");
+
   const router = useRouter();
 
   useEffect(() => {
@@ -75,14 +77,28 @@ const Borrow = () => {
       const inputValue = e.target.value;
 
       // Check if the input is a positive integer
-      if (/^[1-9]\d*$/.test(inputValue)) {
+      if (/^[0-9]\d*$/.test(inputValue)) {
         setVaultID(inputValue);
       } else {
         // If not a positive integer, you can display an error message or handle it in another way
         // For now, we clear the input
         setVaultID("");
       }
+  };
+  
+    const handleCreateVault = async () => {
+      try {
+        // Simulate fetching data from the backend
+        const response = await fetch("backend/api/endpoint"); // Replace with your actual API endpoint
+        const data = await response.json();
+
+        // Update the dummy state with the fetched data
+        setBackendData(data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
     };
+
 
   const getForm = () => {
     switch (selectedOption) {
@@ -214,12 +230,12 @@ const Borrow = () => {
                 <div className={styles.inputGroup}>
                   Vault ID
                   <input
-                    type="text" 
+                    type="text"
                     id="vaultID"
                     name="vaultID"
                     value={vaultID}
                     onChange={handleVaultIDChange}
-                    placeholder="Enter a positive integer"
+                    placeholder="0"
                   />
                 </div>
               </label>
@@ -265,6 +281,21 @@ const Borrow = () => {
             </button>
           </form>
         );
+      case "Create Vault":
+        return (
+          <div className={styles.createWalletContainer}>
+            <button
+              className={styles.createWalletButton}
+              onClick={() => {
+                // Handle "Create Vault" button click
+              }}
+            >
+              Create Vault
+            </button>
+            {backendData && <p className={styles.backendData}>{backendData}</p>}
+          </div>
+        );
+
       default:
         return null;
     }
@@ -310,6 +341,7 @@ const Borrow = () => {
                     >
                       <option>Borrow</option>
                       <option>Add Collateral</option>
+                      <option>Create Vault</option>
                     </select>
                   </div>
                   <div className={styles.closeIconContainer}>

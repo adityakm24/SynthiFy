@@ -257,3 +257,28 @@
 
   background-color: rgb(31, 77, 141);
 }
+
+/* Add these styles to your CSS file */
+.createWalletContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.createWalletButton {
+  padding: 16px 24px; /* Increase padding to make the button bigger */
+  font-size: 18px;   /* Increase font size */
+  background-color: #007bff; /* Change the background color */
+  color: #fff;       /* Change the text color */
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.createWalletButton:hover {
+  background-color: #0056b3; /* Change the hover background color */
+}
+
