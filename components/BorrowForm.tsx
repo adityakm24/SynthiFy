@@ -4,6 +4,8 @@ import styles from "../assets/styles/Borrow.module.css";
 import Image from "next/image";
 import Link from "next/link";
 
+import {vaultManageridlFactory} from "../vaultmanager.did"
+
 const Borrow = () => {
   const [vaultID, setVaultID] = useState("");
   const [collatAmnt, setcollatAmnt] = useState("");
@@ -15,6 +17,9 @@ const Borrow = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState("Borrow");
   const [backendData, setBackendData] = useState("");
+  const [vaultManager,setVaultManager] = useState(null)
+
+  const vaultManagerAddress = "bw4dl-smaaa-aaaaa-qaacq-cai"
 
   const router = useRouter();
 
@@ -28,6 +33,7 @@ const Borrow = () => {
           const publicKey = await window.ic.infinityWallet.getPrincipal();
           const address = publicKey.toText();
           setConnectedAddress(address);
+          await createActor()
           console.log(`The connected user's public key is:`, publicKey);
         }
       } catch (e) {
@@ -69,8 +75,35 @@ const Borrow = () => {
     setIsModalOpen(!isModalOpen);
   };
 
+
+  const createActor = async () => {
+    try {
+      const _vaultManager = await window.ic.infinityWallet.createActor({
+      canisterId: vaultManagerAddress,
+      interfaceFactory: vaultManageridlFactory,
+      host:"http://localhost:4943/", 
+      
+    })
+    setVaultManager(_vaultManager)
+    } catch(e){
+      console.log("Error creating actor:",e)
+    };
+
+  }
+
   const handleCalculate = () => {
     // Implement your calculation logic here
+  };
+
+  const handleaddCollateral = () => {
+    // Implement your calculation logic here
+    const collatAmount = Math.pow(parseInt(collatAmnt),8)
+    const vaultId = parseInt(vaultID)
+    if(vaultManager !== null){
+      //@ts-ignore
+    console.log(vaultManager.addCollateral(vaultId,collatAmount))
+    }
+
   };
 
     const handleVaultIDChange = (e) => {
