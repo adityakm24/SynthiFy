@@ -2,17 +2,20 @@ import styles from "../assets/styles/Profile.module.css";
 import Link from "next/link";
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
+import {encodeIcrcAccount	} from "@dfinity/ledger"
+import { Principal } from "@dfinity/principal";
 
 const Profile = () => {
-  const [connectedAddress, setConnectedAddress] = useState(null);
+  const [connectedAddress, setConnectedAddress] = useState<string|null>(null);
   const [isConnected, setIsConnected] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isModalOpen0, setIsModalOpen0] = useState(false);
   const [isModalOpen1, setIsModalOpen1] = useState(false);
   const [assets, setAssets] = useState([]); // State to store assets
+  const [connectPrincipal,setConnectedPrincipal] = useState<Principal |null>(null)
+  const[encodedAccount,setEncodedAccount] = useState("")
   const router = useRouter();
   const canisterAddressText = "bkyz2-fmaaa-aaaaa-qaaaq-cai"
-
   useEffect(() => {
     const checkWalletConnection = async () => {
       try {
@@ -23,9 +26,11 @@ const Profile = () => {
         setAssets(userAssets); // Set the assets in state
 
         if (result) {
-          const publicKey = await window.ic.infinityWallet.getPrincipal();
+          const publicKey:Principal = await window.ic.infinityWallet.getPrincipal();
+          setConnectedPrincipal(publicKey)
           const address = publicKey.toText();
           setConnectedAddress(address);
+          setEncodedAccount(encodeIcrcAccount({owner:Principal.fromText(canisterAddressText),subaccount:padPrincipalWithZeros(publicKey.toUint8Array())}))
           await createActor()
         }
       } catch (e) {
@@ -63,6 +68,12 @@ const Profile = () => {
     };
 
   }
+
+  const padPrincipalWithZeros = (blob:Uint8Array)=> {
+    let newUin8Array = new Uint8Array(32);
+    newUin8Array.set(blob);
+    return newUin8Array;
+}
 
   const copyAddress = () => {
     if (connectedAddress) {
@@ -144,7 +155,7 @@ const Profile = () => {
                   <div className={styles.modalContainer}>
                     <div className={styles.modalHeader}>
                       <p>Deposit your ckbtc to the below address.</p>
-                      <h3>{connectedAddress}</h3>
+                      <h3>{encodedAccount}</h3>
                     </div>
                   </div>
 

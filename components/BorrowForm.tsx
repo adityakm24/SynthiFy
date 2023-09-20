@@ -107,7 +107,7 @@ const Borrow = () => {
     if(vaultManager !== null){
     try{
       //@ts-ignore
-      // await vaultManager.addCollateral(vaultId,collatAmount)
+      await vaultManager.addCollateral(vaultId,collatAmount)
       //@ts-ignore
       setCurrentVaultDetails(await vaultManager.getVaultDetails(vaultId))
       console.log(currentVautDetails)
