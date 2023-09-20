@@ -5,7 +5,9 @@ import Image from "next/image";
 import Link from "next/link";
 
 const Borrow = () => {
-  const [ckBtcAmount, setCkBtcAmount] = useState("");
+  const [vaultID, setvaultID] = useState("");
+  const [collatAmnt, setcollatAmnt] = useState("");
+    const [ckBtcAmount, setckBtcAmount] = useState("");
   const [Currency, setCurrency] = useState("sUSD");
   const [selectedPill, setSelectedPill] = useState("");
   const [connectedAddress, setConnectedAddress] = useState(null);
@@ -202,8 +204,8 @@ const Borrow = () => {
                     type="number"
                     id="ckBtc"
                     name="ckBtc"
-                    value={ckBtcAmount}
-                    onChange={(e) => setCkBtcAmount(e.target.value)}
+                    value={vaultID}
+                    onChange={(e) => setvaultID(e.target.value)}
                     placeholder="0.0"
                   />
                 </div>
@@ -231,8 +233,8 @@ const Borrow = () => {
                   type="number"
                   id="ckBtc"
                   name="ckBtc"
-                  value={ckBtcAmount}
-                  onChange={(e) => setCkBtcAmount(e.target.value)}
+                  value={collatAmnt}
+                  onChange={(e) => setcollatAmnt(e.target.value)}
                   placeholder="0.0"
                 />
               </div>
