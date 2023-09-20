@@ -195,6 +195,24 @@ const Borrow = () => {
         return (
           <form>
             <div className={styles.input1Container}>
+              <label htmlFor="sUsd">
+                <div className={styles.inputGroup}>
+                  Vault ID
+                  <input
+                    type="number"
+                    id="ckBtc"
+                    name="ckBtc"
+                    value={ckBtcAmount}
+                    onChange={(e) => setCkBtcAmount(e.target.value)}
+                    placeholder="0.0"
+                  />
+                </div>
+              </label>
+              <div className={styles.gasFee}>
+                <p>Gass Fees: 10</p>
+              </div>
+            </div>
+            <div className={styles.input2Container}>
               <div className={styles.inputGroup}>
                 <label htmlFor="ckBtc" className={styles.labelWithIcon}>
                   <div className={styles.iconContainer}>
@@ -219,33 +237,7 @@ const Borrow = () => {
                 />
               </div>
               <div className={styles.gasFee}>
-                <p>Gas fees</p>
-              </div>
-            </div>
-            <div className={styles.input2Container}>
-              <label htmlFor="sUsd">
-                <div className={styles.inputGroup}>
-                  <select
-                    id="sUsd"
-                    name="sUsd"
-                    value={Currency}
-                    onChange={(e) => setCurrency(e.target.value)}
-                  >
-                    <option value="sUSD">sUSD</option>
-                    <option value="sINR">sINR</option>
-                  </select>
-                  <input
-                    type="number"
-                    id="ckBtc"
-                    name="ckBtc"
-                    value={ckBtcAmount}
-                    onChange={(e) => setCkBtcAmount(e.target.value)}
-                    placeholder="0.0"
-                  />
-                </div>
-              </label>
-              <div className={styles.gasFee}>
-                <p>Gas fees</p>
+                <p>Gass Fees: 10</p>
               </div>
             </div>
 
