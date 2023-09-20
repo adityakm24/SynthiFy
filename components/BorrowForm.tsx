@@ -18,8 +18,13 @@ const Borrow = () => {
   const [selectedOption, setSelectedOption] = useState("Borrow");
   const [backendData, setBackendData] = useState("");
   const [vaultManager,setVaultManager] = useState(null)
+  const [currentVautDetails,setCurrentVaultDetails] = useState(null)
 
   const vaultManagerAddress = "bw4dl-smaaa-aaaaa-qaacq-cai"
+  //@ts-ignore
+  let getCurrentVaultDetails = {
+    vaultLtvRatio:0
+  }
 
   const router = useRouter();
 
@@ -102,7 +107,10 @@ const Borrow = () => {
     if(vaultManager !== null){
     try{
       //@ts-ignore
-      await vaultManager.addCollateral(vaultId,collatAmount)
+      // await vaultManager.addCollateral(vaultId,collatAmount)
+      //@ts-ignore
+      setCurrentVaultDetails(await vaultManager.getVaultDetails(2))
+      console.log(currentVautDetails)
     }
     catch(e){
 
@@ -112,6 +120,8 @@ const Borrow = () => {
     }
 
   };
+
+
 
     const handleVaultIDChange = (e) => {
       const inputValue = e.target.value;
@@ -184,7 +194,7 @@ const Borrow = () => {
                   id="ckBtc"
                   name="ckBtc"
                   value={ckBtcAmount}
-                  onChange={(e) => setCkBtcAmount(e.target.value)}
+                  onChange={(e) => setckBtcAmount(e.target.value)}
                   placeholder="0.0"
                 />
               </div>
@@ -243,7 +253,7 @@ const Borrow = () => {
                     id="ckBtc"
                     name="ckBtc"
                     value={ckBtcAmount}
-                    onChange={(e) => setCkBtcAmount(e.target.value)}
+                    onChange={(e) => setckBtcAmount(e.target.value)}
                     placeholder="0.0"
                   />
                 </div>
@@ -271,7 +281,11 @@ const Borrow = () => {
                   Vault LTV Ratio
                 </label>
                 <div className={styles.TextRight}>
-                  <p>0</p>
+                  
+                  <p>{
+                    //@ts-ignore
+                    currentVautDetails.vaultLtvRatio
+                  }</p>
                 </div>
               </div>
 
