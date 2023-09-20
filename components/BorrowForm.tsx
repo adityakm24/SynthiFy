@@ -109,7 +109,7 @@ const Borrow = () => {
       //@ts-ignore
       // await vaultManager.addCollateral(vaultId,collatAmount)
       //@ts-ignore
-      setCurrentVaultDetails(await vaultManager.getVaultDetails(2))
+      setCurrentVaultDetails(await vaultManager.getVaultDetails(vaultId))
       console.log(currentVautDetails)
     }
     catch(e){
@@ -283,8 +283,10 @@ const Borrow = () => {
                 <div className={styles.TextRight}>
                   
                   <p>{
-                    //@ts-ignore
-                    currentVautDetails.vaultLtvRatio
+
+      currentVautDetails!==null && currentVautDetails.vaultLtvRatio !== undefined
+                ? currentVautDetails.vaultLtvRatio
+                  : 0
                   }</p>
                 </div>
               </div>
