@@ -4,11 +4,12 @@ import styles from "../assets/styles/Borrow.module.css";
 import Image from "next/image";
 import Link from "next/link";
 import {Opt} from "azle"
+import { Principal } from "@dfinity/principal";
 
 
 
 import {vaultManageridlFactory} from "../vaultmanager.did.js"
-
+import { vaultmanager_SERVICE } from "@/vaultmanager(ts).did";
 const Borrow = () => {
   const [vaultID, setVaultID] = useState("");
   const [collatAmnt, setcollatAmnt] = useState("");
@@ -20,15 +21,14 @@ const Borrow = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState("Borrow");
   const [backendData, setBackendData] = useState("");
-  const [vaultManager,setVaultManager] = useState(null)
+  const [vaultManager,setVaultManager] = useState<vaultmanager_SERVICE |null>(null)
   const [currentVautDetails,setCurrentVaultDetails] = useState(null)
+  const [connectPrincipal,setConnectedPrincipal] = useState<Principal |null>(null)
+  const [currentVaultIds,setCurrentVaultIds] = useState<Array<bigint>>([])
 
   const vaultManagerAddress = "bw4dl-smaaa-aaaaa-qaacq-cai"
-  //@ts-ignore
-  let getCurrentVaultDetails = {
-    vaultLtvRatio:0
-  }
 
+  
   const router = useRouter();
 
   useEffect(() => {
@@ -39,6 +39,7 @@ const Borrow = () => {
 
         if (result) {
           const publicKey = await window.ic.infinityWallet.getPrincipal();
+          setConnectedPrincipal(publicKey)
           const address = publicKey.toText();
           setConnectedAddress(address);
           await createActor()
@@ -51,6 +52,14 @@ const Borrow = () => {
 
     checkWalletConnection();
   }, []);
+
+
+  useEffect(() => {
+    // Call getuserIdVaults whenever selectedOption changes to "Create Vault"
+    if (selectedOption === "Create Vault" && vaultManager !== null) {
+      getuserIdVaults();
+    }
+  }, [selectedOption, vaultManager]);
 
   const connectWallet = async () => {
     try {
@@ -75,6 +84,18 @@ const Borrow = () => {
     }
   };
 
+  const getuserIdVaults = async() => {
+    if(vaultManager!==null && connectPrincipal !==null){
+      try{
+      const vaultids = await vaultManager.getUserVaultIds(connectPrincipal)
+      setCurrentVaultIds(vaultids)
+      }
+      catch(e){
+
+      }
+      
+    }
+  }
   const handleOptionChange = (e) => {
     setSelectedOption(e.target.value);
   };
@@ -132,6 +153,7 @@ const Borrow = () => {
 
         //@ts-ignore
       const vaultId = await vaultManager.createVault([])
+      getuserIdVaults();
       console.log(vaultId)
       }
       catch(e){
@@ -171,7 +193,7 @@ const Borrow = () => {
 
 
 
-  const getForm = () => {
+  const getForm =  () => {
     switch (selectedOption) {
       case "Borrow":
         return (
@@ -395,7 +417,7 @@ const Borrow = () => {
           </form>
         );
       case "Create Vault":
-        return (
+          return (
           <div className={styles.createWalletContainer}>
             <button
               className={styles.createWalletButton}
@@ -403,6 +425,16 @@ const Borrow = () => {
             >
               Create Vault
             </button>
+            {currentVaultIds.length > 0 && (
+        <div>
+          <p>Current Vault IDs:</p>
+          <ul>
+            {currentVaultIds.map((vaultId) => (
+              <li key={vaultId.toString()}>{vaultId.toString()}</li>
+            ))}
+          </ul>
+        </div>
+      )}
             {backendData && <p className={styles.backendData}>{backendData}</p>}
           </div>
         );

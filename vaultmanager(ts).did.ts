@@ -55,12 +55,13 @@ export interface VaultStorageData {
 }
 export type _AzleResult = { 'Ok' : string } |
   { 'Err' : string };
-export interface _SERVICE {
+export interface vaultmanager_SERVICE {
   'addCollateral' : ActorMethod<[bigint, bigint], ManualReply>,
   'borrow' : ActorMethod<[bigint, bigint], bigint>,
   'calculatenewAccumulator' : ActorMethod<[number, number, number], number>,
   'createVault' : ActorMethod<[[] | [Uint8Array | number[]]], bigint>,
   'getBtcPrice' : ActorMethod<[], string>,
+  'getUserVaultIds' : ActorMethod<[Principal], Array<bigint>>,
   'getVaultDetails' : ActorMethod<[bigint], IndividualVaultData>,
   'icrc1_balance_of' : ActorMethod<[Account], bigint>,
   'icrc1_decimals' : ActorMethod<[], bigint>,

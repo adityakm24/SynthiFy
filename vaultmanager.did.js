@@ -66,6 +66,11 @@ export const vaultManageridlFactory = ({ IDL }) => {
       ),
     'createVault' : IDL.Func([IDL.Opt(IDL.Vec(IDL.Nat8))], [IDL.Nat], []),
     'getBtcPrice' : IDL.Func([], [IDL.Text], []),
+    'getUserVaultIds' : IDL.Func(
+        [IDL.Principal],
+        [IDL.Vec(IDL.Nat)],
+        ['query'],
+      ),
     'getVaultDetails' : IDL.Func([IDL.Nat], [IndividualVaultData], ['query']),
     'icrc1_balance_of' : IDL.Func([Account], [IDL.Nat], ['query']),
     'icrc1_decimals' : IDL.Func([], [IDL.Nat], ['query']),
