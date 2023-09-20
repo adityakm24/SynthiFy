@@ -95,13 +95,20 @@ const Borrow = () => {
     // Implement your calculation logic here
   };
 
-  const handleaddCollateral = () => {
+  const handleaddCollateral = async() => {
     // Implement your calculation logic here
     const collatAmount = Math.pow(parseInt(collatAmnt),8)
     const vaultId = parseInt(vaultID)
     if(vaultManager !== null){
+    try{
       //@ts-ignore
-    console.log(vaultManager.addCollateral(vaultId,collatAmount))
+      await vaultManager.addCollateral(vaultId,collatAmount)
+    }
+    catch(e){
+
+      //@todo: show the error messaeg e somewhere
+      console.log(e)
+    }
     }
 
   };
@@ -308,7 +315,7 @@ const Borrow = () => {
             <button
               type="button"
               className={styles.Calculate}
-              onClick={handleCalculate}
+              onClick={handleaddCollateral}
             >
               Add Collateral
             </button>
