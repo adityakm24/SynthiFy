@@ -1,5 +1,37 @@
 export const vaultManageridlFactory = ({ IDL }) => {
-  const ManualReply = IDL.Variant({ 'Ok' : IDL.Nat, 'Err' : IDL.Text });
+  const _InlineICRCTransferErrorGenericError = IDL.Record({
+    'message' : IDL.Text,
+    'error_code' : IDL.Nat,
+  });
+  const _InlineICRCTransferErrorBadBurn = IDL.Record({
+    'min_burn_amount' : IDL.Nat,
+  });
+  const _InlineICRCTransferErrorDuplicate = IDL.Record({
+    'duplicate_of' : IDL.Nat,
+  });
+  const _InlineICRCTransferErrorBadFee = IDL.Record({
+    'expected_fee' : IDL.Nat,
+  });
+  const _InlineICRCTransferErrorCreatedInFuture = IDL.Record({
+    'ledger_time' : IDL.Nat64,
+  });
+  const _InlineICRCTransferErrorInsufficientFunds = IDL.Record({
+    'balance' : IDL.Nat,
+  });
+  const ICRCTransferError = IDL.Variant({
+    'GenericError' : _InlineICRCTransferErrorGenericError,
+    'TemporarilyUnavailable' : IDL.Null,
+    'BadBurn' : _InlineICRCTransferErrorBadBurn,
+    'Duplicate' : _InlineICRCTransferErrorDuplicate,
+    'BadFee' : _InlineICRCTransferErrorBadFee,
+    'CreatedInFuture' : _InlineICRCTransferErrorCreatedInFuture,
+    'TooOld' : IDL.Null,
+    'InsufficientFunds' : _InlineICRCTransferErrorInsufficientFunds,
+  });
+  const ManualReply = IDL.Variant({
+    'Ok' : IDL.Nat,
+    'Err' : ICRCTransferError,
+  });
   const IndividualVaultData = IDL.Record({
     'vaultLtvRatio' : IDL.Float64,
     'normalisedDebt' : IDL.Float64,
@@ -73,7 +105,7 @@ export const vaultManageridlFactory = ({ IDL }) => {
       ),
     'getVaultDetails' : IDL.Func([IDL.Nat], [IndividualVaultData], ['query']),
     'icrc1_balance_of' : IDL.Func([Account], [IDL.Nat], ['query']),
-    'icrc1_decimals' : IDL.Func([], [IDL.Nat], ['query']),
+    'icrc1_decimals' : IDL.Func([], [IDL.Nat8], ['query']),
     'icrc1_fee' : IDL.Func([], [IDL.Nat], ['query']),
     'icrc1_metadata' : IDL.Func(
         [],
@@ -101,7 +133,13 @@ export const vaultManageridlFactory = ({ IDL }) => {
         [IDL.Nat],
         [],
       ),
+    'resetVault' : IDL.Func([], [IDL.Text], []),
     'testInit' : IDL.Func([], [_AzleResult], []),
+    'testPadAccount' : IDL.Func(
+        [IDL.Opt(IDL.Vec(IDL.Nat8))],
+        [Account],
+        ['query'],
+      ),
     'withdrawCollateral' : IDL.Func(
         [IDL.Nat, IDL.Nat, Account],
         [IDL.Float64],
