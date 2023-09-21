@@ -120,7 +120,7 @@ const Borrow = () => {
 
   }
 
-  const handleCalculate = () => {
+  const handleBorrow = () => {
     // Implement your calculation logic here
   };
 
@@ -284,7 +284,7 @@ const Borrow = () => {
             <button
               type="button"
               className={styles.Calculate}
-              onClick={handleCalculate}
+              onClick={handleBorrow}
             >
               Borrow
             </button>
