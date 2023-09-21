@@ -169,7 +169,7 @@ const Borrow = () => {
 
 
 
-    const handleVaultIDChange = (e) => {
+    const handleVaultIDChange = (e:React.ChangeEvent<HTMLInputElement>) => {
       const inputValue = e.target.value;
 
       // Check if the input is a positive integer
