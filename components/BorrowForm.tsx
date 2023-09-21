@@ -24,7 +24,7 @@ const Borrow = () => {
   const [vaultManager,setVaultManager] = useState<vaultmanager_SERVICE |null>(null)
   const [currentVautDetails,setCurrentVaultDetails] = useState(null)
   const [connectPrincipal,setConnectedPrincipal] = useState<Principal |null>(null)
-  const [currentVaultIds,setCurrentVaultIds] = useState<Array<bigint>>([])
+  const [currentVaultIds,setCurrentVaultIds] = useState<Array<bigint>>([1,2])
 
   const vaultManagerAddress = "bw4dl-smaaa-aaaaa-qaacq-cai"
 
@@ -233,13 +233,19 @@ const Borrow = () => {
                 </label>
 
                 <input
-                  type="number"
-                  id="ckBtc"
-                  name="ckBtc"
-                  value={ckBtcAmount}
-                  onChange={(e) => setckBtcAmount(e.target.value)}
-                  placeholder="0.0"
-                />
+  type="number"
+  id="ckBtc"
+  name="ckBtc"
+  value={ckBtcAmount}
+  onChange={(e) => {
+    const newValue = parseFloat(e.target.value);
+    if (!isNaN(newValue) && newValue >= 0) {
+      setckBtcAmount(newValue);
+    }
+  }}
+  placeholder="0.0"
+/>
+
               </div>
               <div className={styles.gasFee}>
                 <p>Gas fees</p>
@@ -313,6 +319,15 @@ const Borrow = () => {
             >
               Calculate
             </button>
+            <button
+  className={styles.Calculate}
+  onClick={() => setSelectedOption("Create Vault")}
+  style={{ marginTop: '10px' }} 
+>
+  Create Vault
+</button>
+
+
           </form>
         );
       case "Add Collateral":
@@ -426,14 +441,17 @@ const Borrow = () => {
               Create Vault
             </button>
             {currentVaultIds.length > 0 && (
-        <div>
-          <p>Current Vault IDs:</p>
-          <ul>
-            {currentVaultIds.map((vaultId) => (
-              <li key={vaultId.toString()}>{vaultId.toString()}</li>
-            ))}
-          </ul>
-        </div>
+        <div style={{ backgroundColor: 'black', color: 'white', border: '2px solid #1e90ff', borderRadius: '5px', boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)', fontFamily: 'Arial, sans-serif', display: 'inline-block', padding: '5px', marginTop: '20px' }}>
+        <p style={{ fontSize: '18px', marginBottom: '10px', textAlign: 'center' }}>Current Vault IDs:</p>
+        <ul style={{ listStyleType: 'none', padding: '0', textAlign: 'center' }}>
+          {currentVaultIds.map((vaultId) => (
+            <li key={vaultId.toString()} style={{ fontSize: '16px', marginBottom: '5px', padding: '5px 10px', backgroundColor: '#1e90ff', border: '1px solid #1e90ff', borderRadius: '3px', transition: 'background-color 0.3s, transform 0.3s', margin: '10px 5px' }}>
+              {vaultId.toString()}
+            </li>
+          ))}
+        </ul>
+      </div>
+      
       )}
             {backendData && <p className={styles.backendData}>{backendData}</p>}
           </div>
