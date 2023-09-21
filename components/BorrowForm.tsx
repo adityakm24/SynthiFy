@@ -429,6 +429,13 @@ const Borrow = () => {
             >
               Add Collateral
             </button>
+            <button
+  className={styles.Calculate}
+  onClick={() => setSelectedOption("Create Vault")}
+  style={{ marginTop: '10px' }} 
+>
+  Create Vault
+</button>
           </form>
         );
       case "Create Vault":
