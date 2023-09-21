@@ -201,102 +201,66 @@ const Borrow = () => {
             <div className={styles.input3Container}>
               <div className={styles.inputGroup}>
                 <label htmlFor="ckBtc" className={styles.labelWithIcon}>
-                  Vault Collateral
+                  Vault LTV Ratio
                 </label>
                 <div className={styles.TextRight}>
-                  <p>0 LUSD</p>
+                  <p>
+                    {currentVautDetails !== null &&
+                    currentVautDetails.vaultLtvRatio !== undefined
+                      ? currentVautDetails.vaultLtvRatio
+                      : 0}
+                  </p>
                 </div>
               </div>
 
               <div className={styles.inputGroup}>
                 <label htmlFor="ckBtc" className={styles.labelWithIcon}>
-                  Vault Debt
+                  Vault Current Collateral
                 </label>
                 <div className={styles.TextRight}>
-                  <p>0 agEUR</p>
+                  <p>0</p>
+                </div>
+              </div>
+
+              <div className={styles.inputGroup}>
+                <label htmlFor="ckBtc" className={styles.labelWithIcon}>
+                  Vault Current Collaterisation Ratio
+                </label>
+                <div className={styles.TextRight}>
+                  <p>0</p>
+                </div>
+              </div>
+              <div className={styles.inputGroup}>
+                <label htmlFor="ckBtc" className={styles.labelWithIcon}>
+                  Health Factor
+                </label>
+                <div className={styles.TextRight}>
+                  <p>0</p>
                 </div>
               </div>
             </div>
             <div className={styles.input1Container}>
-              <div className={styles.inputGroup}>
-                <label htmlFor="ckBtc" className={styles.labelWithIcon}>
-                  <div className={styles.iconContainer}>
-                    <Image
-                      src="/icons/ckBTC.png"
-                      alt="ckBtc Icon"
-                      width={30}
-                      height={30}
-                      className={styles.iconImage}
-                    />
-                  </div>
-                  ckBtc
-                </label>
-
-                <input
-  type="number"
-  id="ckBtc"
-  name="ckBtc"
-  value={ckBtcAmount}
-  onChange={(e) => {
-    const newValue = parseFloat(e.target.value);
-    if (!isNaN(newValue) && newValue >= 0) {
-      setckBtcAmount(newValue);
-    }
-  }}
-  placeholder="0.0"
-/>
-
-              </div>
+              <label htmlFor="sUsd">
+                <div className={styles.inputGroup}>
+                  Vault ID
+                  <input
+                    type="text"
+                    id="vaultID"
+                    name="vaultID"
+                    value={vaultID}
+                    onChange={handleVaultIDChange}
+                    placeholder="0"
+                  />
+                </div>
+              </label>
               <div className={styles.gasFee}>
-                <p>Gas fees</p>
-              </div>
-              <div className={styles.pillGroup}>
-                <button
-                  className={`${styles.pill} ${
-                    selectedPill === "25%" ? styles.active : ""
-                  }`}
-                  onClick={() => setSelectedPill("25%")}
-                >
-                  25%
-                </button>
-                <button
-                  className={`${styles.pill} ${
-                    selectedPill === "50%" ? styles.active : ""
-                  }`}
-                  onClick={() => setSelectedPill("50%")}
-                >
-                  50%
-                </button>
-                <button
-                  className={`${styles.pill} ${
-                    selectedPill === "75%" ? styles.active : ""
-                  }`}
-                  onClick={() => setSelectedPill("75%")}
-                >
-                  75%
-                </button>
-                <button
-                  className={`${styles.pill} ${
-                    selectedPill === "100%" ? styles.active : ""
-                  }`}
-                  onClick={() => setSelectedPill("100%")}
-                >
-                  100%
-                </button>
+                <p>Gass Fees: 10</p>
               </div>
             </div>
             <div className={styles.input2Container}>
               <label htmlFor="sUsd">
                 <div className={styles.inputGroup}>
-                  <select
-                    id="sUsd"
-                    name="sUsd"
-                    value={Currency}
-                    onChange={(e) => setCurrency(e.target.value)}
-                  >
-                    <option value="sUSD">sUSD</option>
-                    <option value="sINR">sINR</option>
-                  </select>
+                  synthUsd
                   <input
                     type="number"
                     id="ckBtc"
@@ -317,17 +281,15 @@ const Borrow = () => {
               className={styles.Calculate}
               onClick={handleCalculate}
             >
-              Calculate
+              Borrow
             </button>
             <button
-  className={styles.Calculate}
-  onClick={() => setSelectedOption("Create Vault")}
-  style={{ marginTop: '10px' }} 
->
-  Create Vault
-</button>
-
-
+              className={styles.Vault}
+              onClick={() => setSelectedOption("Create Vault")}
+              style={{ marginTop: "10px" }}
+            >
+              Create Vault
+            </button>
           </form>
         );
       case "Add Collateral":

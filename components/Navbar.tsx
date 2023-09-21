@@ -85,7 +85,7 @@ const MyApp = () => {
           Dashboard
         </Link>
         <Link href="/borrow" className={styles.navbarLink}>
-          Mint
+          Borrow
         </Link>
         <Link href="/profile" className={styles.navbarLink}>
           Profile

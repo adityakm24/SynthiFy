@@ -106,6 +106,7 @@
 }
 .Calculate {
   width: 100%;
+   font-size: 17px;
   padding: 10px;
   border-radius: 10px;
   background-color: rgb(255, 255, 255);
@@ -282,22 +283,31 @@
   background-color: #0056b3; /* Change the hover background color */
 }
 
-/* Add this CSS to your styles.module.css file */
-/* Button styles for hover effect */
+
 .Calculate:hover,
 .Calculate:active,
 .Calculate:focus,
 .Calculate:visited {
-  cursor: pointer; /* Change cursor to pointer on hover */
-  transition: background-color 0.3s, transform 0.2s; /* Add transition for smooth hover and click effect */
-}
+  cursor: pointer; 
+  transition: background-color 0.3s, transform 0.2s; }
 
-/* Add a background color change on hover and a slight scaling effect on click */
 .Calculate:hover {
   background-color: #000000;
   border:2px solid #abffff;
   color: #fff; /* Change text color on hover if needed */
   transform: scale(1.01); /* Slight scaling on hover */
+}
+
+.Vault {
+  width: 100%;
+  padding: 10px;
+  border-radius: 10px;
+  font-size: 17px;
+  background-color: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
+  border: 0px solid black;
+  font-weight: 700;
+  text-decoration: underline;
 }
 
 
