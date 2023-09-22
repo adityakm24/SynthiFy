@@ -14,6 +14,16 @@ export interface Allowance {
   'expires_at' : [] | [bigint],
 }
 export interface AllowanceArgs { 'account' : Account, 'spender' : Account }
+export type ICRCTransferError = {
+    'GenericError' : _InlineICRCTransferErrorGenericError
+  } |
+  { 'TemporarilyUnavailable' : null } |
+  { 'BadBurn' : _InlineICRCTransferErrorBadBurn } |
+  { 'Duplicate' : _InlineICRCTransferErrorDuplicate } |
+  { 'BadFee' : _InlineICRCTransferErrorBadFee } |
+  { 'CreatedInFuture' : _InlineICRCTransferErrorCreatedInFuture } |
+  { 'TooOld' : null } |
+  { 'InsufficientFunds' : _InlineICRCTransferErrorInsufficientFunds };
 export interface IndividualVaultData {
   'vaultLtvRatio' : number,
   'normalisedDebt' : number,
@@ -26,7 +36,7 @@ export interface IndividualVaultData {
   'vaultId' : bigint,
 }
 export type ManualReply = { 'Ok' : bigint } |
-  { 'Err' : string };
+  { 'Err' : ICRCTransferError };
 export interface SupportedStandard { 'url' : string, 'name' : string }
 export type Value = { 'Int' : bigint } |
   { 'Nat' : bigint } |
@@ -55,6 +65,19 @@ export interface VaultStorageData {
 }
 export type _AzleResult = { 'Ok' : string } |
   { 'Err' : string };
+export interface _InlineICRCTransferErrorBadBurn { 'min_burn_amount' : bigint }
+export interface _InlineICRCTransferErrorBadFee { 'expected_fee' : bigint }
+export interface _InlineICRCTransferErrorCreatedInFuture {
+  'ledger_time' : bigint,
+}
+export interface _InlineICRCTransferErrorDuplicate { 'duplicate_of' : bigint }
+export interface _InlineICRCTransferErrorGenericError {
+  'message' : string,
+  'error_code' : bigint,
+}
+export interface _InlineICRCTransferErrorInsufficientFunds {
+  'balance' : bigint,
+}
 export interface vaultmanager_SERVICE {
   'addCollateral' : ActorMethod<[bigint, bigint], ManualReply>,
   'borrow' : ActorMethod<[bigint, bigint], bigint>,
@@ -64,7 +87,7 @@ export interface vaultmanager_SERVICE {
   'getUserVaultIds' : ActorMethod<[Principal], Array<bigint>>,
   'getVaultDetails' : ActorMethod<[bigint], IndividualVaultData>,
   'icrc1_balance_of' : ActorMethod<[Account], bigint>,
-  'icrc1_decimals' : ActorMethod<[], bigint>,
+  'icrc1_decimals' : ActorMethod<[], number>,
   'icrc1_fee' : ActorMethod<[], bigint>,
   'icrc1_metadata' : ActorMethod<[], Array<[string, Value]>>,
   'icrc1_minting_account' : ActorMethod<[], [] | [Account]>,
@@ -79,6 +102,8 @@ export interface vaultmanager_SERVICE {
     [bigint, bigint, [] | [Uint8Array | number[]]],
     bigint
   >,
+  'resetVault' : ActorMethod<[], string>,
   'testInit' : ActorMethod<[], _AzleResult>,
+  'testPadAccount' : ActorMethod<[[] | [Uint8Array | number[]]], Account>,
   'withdrawCollateral' : ActorMethod<[bigint, bigint, Account], number>,
 }

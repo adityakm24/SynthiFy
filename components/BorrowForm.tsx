@@ -9,7 +9,7 @@ import { Principal } from "@dfinity/principal";
 
 
 import {vaultManageridlFactory} from "../vaultmanager.did.js"
-import { vaultmanager_SERVICE } from "@/vaultmanager(ts).did";
+import { vaultmanager_SERVICE,IndividualVaultData } from "@/vaultmanager(ts).did";
 const Borrow = () => {
   const [vaultID, setVaultID] = useState("");
   const [synthUsdAmount, setsynthUsdAmount] = useState("");
@@ -23,11 +23,11 @@ const Borrow = () => {
   const [selectedOption, setSelectedOption] = useState("Borrow");
   const [backendData, setBackendData] = useState("");
   const [vaultManager,setVaultManager] = useState<vaultmanager_SERVICE |null>(null)
-  const [currentVautDetails,setCurrentVaultDetails] = useState(null)
+  const [currentVautDetails,setCurrentVaultDetails] = useState<IndividualVaultData | null>(null)
   const [connectPrincipal,setConnectedPrincipal] = useState<Principal |null>(null)
-  const [currentVaultIds,setCurrentVaultIds] = useState<Array<bigint>>([1,2])
+  const [currentVaultIds,setCurrentVaultIds] = useState<Array<bigint>>([])
 
-  const vaultManagerAddress = "bw4dl-smaaa-aaaaa-qaacq-cai"
+  const vaultManagerAddress = "avqkn-guaaa-aaaaa-qaaea-cai"
 
   
   const router = useRouter();
@@ -121,18 +121,23 @@ const Borrow = () => {
 
   }
 
-  const handleCalculate = () => {
+  const handleBorrow = () => {
     // Implement your calculation logic here
   };
 
   const handleaddCollateral = async() => {
     // Implement your calculation logic here
-    const collatAmount = Math.pow(parseInt(collatAmnt),8)
+
+    console.log("collatAmount",parseFloat(collatAmnt))
+    const decimalAdjusted = BigInt(Math.pow(10,8) * parseFloat(collatAmnt))
+    console.log("decimal adjusts",decimalAdjusted)
+
     const vaultId = parseInt(vaultID)
     if(vaultManager !== null){
     try{
       //@ts-ignore
-      await vaultManager.addCollateral(vaultId,collatAmount)
+      const result = await vaultManager.addCollateral(vaultId,decimalAdjusted)
+      console.log(result)
       //@ts-ignore
       setCurrentVaultDetails(await vaultManager.getVaultDetails(vaultId))
       console.log(currentVautDetails)
@@ -165,7 +170,7 @@ const Borrow = () => {
 
 
 
-    const handleVaultIDChange = (e) => {
+    const handleVaultIDChange = (e:React.ChangeEvent<HTMLInputElement>) => {
       const inputValue = e.target.value;
 
       // Check if the input is a positive integer
@@ -280,7 +285,7 @@ const Borrow = () => {
             <button
               type="button"
               className={styles.Calculate}
-              onClick={handleCalculate}
+              onClick={handleBorrow}
             >
               Borrow
             </button>
@@ -317,7 +322,12 @@ const Borrow = () => {
                   Vault Current Collateral
                 </label>
                 <div className={styles.TextRight}>
-                  <p>0</p>
+                  <p>{
+
+currentVautDetails!==null && currentVautDetails.vaultCurrentCollateral !== undefined
+          ? currentVautDetails.vaultCurrentCollateral
+            : 0
+            }</p>
                 </div>
               </div>
 
@@ -326,7 +336,12 @@ const Borrow = () => {
                   Vault Current Collaterisation Ratio
                 </label>
                 <div className={styles.TextRight}>
-                  <p>0</p>
+                  <p>{
+
+currentVautDetails!==null && currentVautDetails.vaultLtvRatio !== undefined
+          ? 1 / currentVautDetails.vaultLtvRatio
+            : 0
+            }</p>
                 </div>
               </div>
               <div className={styles.inputGroup}>
