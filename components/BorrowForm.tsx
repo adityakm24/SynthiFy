@@ -12,6 +12,7 @@ import {vaultManageridlFactory} from "../vaultmanager.did.js"
 import { vaultmanager_SERVICE } from "@/vaultmanager(ts).did";
 const Borrow = () => {
   const [vaultID, setVaultID] = useState("");
+  const [synthUsdAmount, setsynthUsdAmount] = useState("");
   const [collatAmnt, setcollatAmnt] = useState("");
   const [ckBtcAmount, setckBtcAmount] = useState("");
   const [Currency, setCurrency] = useState("sUSD");
@@ -263,10 +264,10 @@ const Borrow = () => {
                   synthUsd
                   <input
                     type="number"
-                    id="ckBtc"
-                    name="ckBtc"
-                    value={ckBtcAmount}
-                    onChange={(e) => setckBtcAmount(e.target.value)}
+                    id="synthUsd"
+                    name="synthUsd"
+                    value={synthUsdAmount}
+                    onChange={(e) => setsynthUsdAmount(e.target.value)}
                     placeholder="0.0"
                   />
                 </div>
