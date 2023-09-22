@@ -220,6 +220,7 @@ const Borrow = () => {
   const getForm =  () => {
     switch (selectedOption) {
       case "Borrow":
+         setVaultID(0);
         return (
           <form>
             <div className={styles.input3Container}>
@@ -323,6 +324,7 @@ const Borrow = () => {
           </form>
         );
       case "Add Collateral":
+        setVaultID(0);
         return (
           <form>
             <div className={styles.input3Container}>
@@ -441,6 +443,7 @@ currentVautDetails!==null && currentVautDetails.vaultLtvRatio !== undefined
           </form>
         );
       case "Create Vault":
+         setVaultID(0);
           return (
           <div className={styles.createWalletContainer}>
             <button
