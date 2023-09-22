@@ -103,7 +103,7 @@ const MyApp = () => {
               >
                 {assets.map((asset, index) => (
                   <option key={index} value={asset.name}>
-                    {asset.name} {asset.balance}
+                    {asset.name} {asset.balance/100000000}
                   </option>
                 ))}
               </select>
