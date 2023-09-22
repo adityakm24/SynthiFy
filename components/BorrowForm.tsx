@@ -97,8 +97,18 @@ const Borrow = () => {
       
     }
   }
+
+
+  const resetState = () => {
+    setVaultID("");
+    setsynthUsdAmount("");
+    setcollatAmnt("");
+    setCurrentVaultDetails(null);
+  };
   const handleOptionChange = (e) => {
     setSelectedOption(e.target.value);
+    resetState()
+
   };
 
   const toggleModal = () => {
