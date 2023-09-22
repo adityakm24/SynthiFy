@@ -229,6 +229,7 @@ const Borrow = () => {
 
   const getForm =  () => {
     switch (selectedOption) {
+      //asset.synthUsdAmount this will be userAssets 1st element  userAssets[0]
       case "Borrow":
         //  setVaultID(0);
         return (
@@ -333,6 +334,7 @@ const Borrow = () => {
             </button>
           </form>
         );
+      //asset.ckbtAmount  this will be userAssets 2n element  userAssets[1]
       case "Add Collateral":
         // setVaultID(0);
         return (
@@ -452,7 +454,8 @@ currentVautDetails!==null && currentVautDetails.vaultLtvRatio !== undefined
 </button>
           </form>
         );
-      case "Create Vault":
+      //asset.ckbtcAmount
+        case "Create Vault":
         //  setVaultID(0);
           return (
           <div className={styles.createWalletContainer}>
