@@ -121,8 +121,26 @@ const Borrow = () => {
 
   }
 
-  const handleBorrow = () => {
+  const handleBorrow = async () => {
     // Implement your calculation logic here
+    console.log("collatAmount",parseFloat(synthUsdAmount))
+    const decimalAdjustedsUsd = BigInt(Math.pow(10,8) * parseFloat(synthUsdAmount))
+    console.log("decimal adjusts",decimalAdjustedsUsd)
+
+    const vaultId = BigInt(parseInt(vaultID))
+
+    if(vaultManager !== null){
+      try {
+        const result = await vaultManager.borrow(vaultId,decimalAdjustedsUsd)
+        console.log(result)
+        
+        setCurrentVaultDetails(await vaultManager.getVaultDetails(vaultId))
+        console.log(currentVautDetails)
+      }
+      catch(e){
+        console.log(e)
+      }
+    }
   };
 
   const handleaddCollateral = async() => {
@@ -132,13 +150,13 @@ const Borrow = () => {
     const decimalAdjusted = BigInt(Math.pow(10,8) * parseFloat(collatAmnt))
     console.log("decimal adjusts",decimalAdjusted)
 
-    const vaultId = parseInt(vaultID)
+    const vaultId = BigInt(parseInt(vaultID))
     if(vaultManager !== null){
     try{
-      //@ts-ignore
+      
       const result = await vaultManager.addCollateral(vaultId,decimalAdjusted)
       console.log(result)
-      //@ts-ignore
+      
       setCurrentVaultDetails(await vaultManager.getVaultDetails(vaultId))
       console.log(currentVautDetails)
     }
@@ -213,8 +231,8 @@ const Borrow = () => {
                   <p>
                     {currentVautDetails !== null &&
                     currentVautDetails.vaultLtvRatio !== undefined
-                      ? currentVautDetails.vaultLtvRatio
-                      : 0}
+                      ? `${Math.round(currentVautDetails.vaultLtvRatio * 100)}%`
+                      : `0%`}
                   </p>
                 </div>
               </div>
@@ -224,7 +242,10 @@ const Borrow = () => {
                   Vault Current Collateral
                 </label>
                 <div className={styles.TextRight}>
-                  <p>0</p>
+                  <p>{currentVautDetails !== null &&
+                    currentVautDetails.vaultCurrentCollateral !== undefined
+                      ? `${currentVautDetails.vaultCurrentCollateral} CKBTC`
+                      : 0}</p>
                 </div>
               </div>
 
@@ -233,7 +254,10 @@ const Borrow = () => {
                   Vault Current Collaterisation Ratio
                 </label>
                 <div className={styles.TextRight}>
-                  <p>0</p>
+                  <p>{currentVautDetails !== null &&
+                    currentVautDetails.vaultLtvRatio !== undefined
+                      ? `${Math.round(1 /currentVautDetails.vaultLtvRatio * 100 )}%`
+                      : `0%`}</p>
                 </div>
               </div>
               <div className={styles.inputGroup}>

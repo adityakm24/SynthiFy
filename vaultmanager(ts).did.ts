@@ -37,7 +37,19 @@ export interface IndividualVaultData {
 }
 export type ManualReply = { 'Ok' : bigint } |
   { 'Err' : ICRCTransferError };
+export type ManualReply_1 = { 'Ok' : bigint } |
+  { 'Err' : TransferError };
 export interface SupportedStandard { 'url' : string, 'name' : string }
+export type TransferError = {
+    'GenericError' : _InlineTransferErrorGenericError
+  } |
+  { 'TemporarilyUnavailable' : null } |
+  { 'BadBurn' : _InlineTransferErrorBadBurn } |
+  { 'Duplicate' : _InlineTransferErrorDuplicate } |
+  { 'BadFee' : _InlineTransferErrorBadFee } |
+  { 'CreatedInFuture' : _InlineTransferErrorCreatedInFuture } |
+  { 'TooOld' : null } |
+  { 'InsufficientFunds' : _InlineTransferErrorInsufficientFunds };
 export type Value = { 'Int' : bigint } |
   { 'Nat' : bigint } |
   { 'Blob' : Uint8Array | number[] } |
@@ -78,9 +90,18 @@ export interface _InlineICRCTransferErrorGenericError {
 export interface _InlineICRCTransferErrorInsufficientFunds {
   'balance' : bigint,
 }
+export interface _InlineTransferErrorBadBurn { 'min_burn_amount' : bigint }
+export interface _InlineTransferErrorBadFee { 'expected_fee' : bigint }
+export interface _InlineTransferErrorCreatedInFuture { 'ledger_time' : bigint }
+export interface _InlineTransferErrorDuplicate { 'duplicate_of' : bigint }
+export interface _InlineTransferErrorGenericError {
+  'message' : string,
+  'error_code' : bigint,
+}
+export interface _InlineTransferErrorInsufficientFunds { 'balance' : bigint }
 export interface vaultmanager_SERVICE {
   'addCollateral' : ActorMethod<[bigint, bigint], ManualReply>,
-  'borrow' : ActorMethod<[bigint, bigint], bigint>,
+  'borrow' : ActorMethod<[bigint, bigint], ManualReply_1>,
   'calculatenewAccumulator' : ActorMethod<[number, number, number], number>,
   'createVault' : ActorMethod<[[] | [Uint8Array | number[]]], bigint>,
   'getBtcPrice' : ActorMethod<[], string>,

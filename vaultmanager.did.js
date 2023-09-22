@@ -118,7 +118,7 @@ export const vaultManageridlFactory = ({ IDL }) => {
   const _AzleResult = IDL.Variant({ 'Ok' : IDL.Text, 'Err' : IDL.Text });
   return IDL.Service({
     'addCollateral' : IDL.Func([IDL.Nat, IDL.Nat], [ManualReply], []),
-    'borrow' : IDL.Func([IDL.Principal, IDL.Nat, IDL.Nat], [ManualReply_1], []),
+    'borrow' : IDL.Func([IDL.Nat, IDL.Nat], [ManualReply_1], []),
     'calculatenewAccumulator' : IDL.Func(
         [IDL.Float64, IDL.Float64, IDL.Nat32],
         [IDL.Float64],
