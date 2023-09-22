@@ -337,8 +337,8 @@ const Borrow = () => {
                   <p>{
 
       currentVautDetails!==null && currentVautDetails.vaultLtvRatio !== undefined
-                ? currentVautDetails.vaultLtvRatio
-                  : 0
+                ? `${Math.round(currentVautDetails.vaultLtvRatio * 100)} %`
+                  : `0%`
                   }</p>
                 </div>
               </div>
@@ -351,7 +351,7 @@ const Borrow = () => {
                   <p>{
 
 currentVautDetails!==null && currentVautDetails.vaultCurrentCollateral !== undefined
-          ? currentVautDetails.vaultCurrentCollateral
+          ? `${currentVautDetails.vaultCurrentCollateral} CKBTC`
             : 0
             }</p>
                 </div>
@@ -365,8 +365,8 @@ currentVautDetails!==null && currentVautDetails.vaultCurrentCollateral !== undef
                   <p>{
 
 currentVautDetails!==null && currentVautDetails.vaultLtvRatio !== undefined
-          ? 1 / currentVautDetails.vaultLtvRatio
-            : 0
+          ? `${Math.round(1 / currentVautDetails.vaultLtvRatio * 100)} %`
+            : `0%`
             }</p>
                 </div>
               </div>
