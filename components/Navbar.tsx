@@ -21,6 +21,7 @@ const MyApp = () => {
         const userAssets = await window.ic.infinityWallet.getUserAssets();
         console.log(`User's list of tokens/assets`, userAssets);
         setIsConnected(result);
+        console.log("useAssets",userAssets)
         setAssets(userAssets); // Set the assets in state
 
         if (result) {
