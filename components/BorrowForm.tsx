@@ -601,33 +601,41 @@ currentVautDetails!==null && currentVautDetails.vaultLtvRatio !== undefined
                     <p>
                       {currentVautDetails !== null &&
                       currentVautDetails.vaultLtvRatio !== undefined
-                        ? `${Math.round(currentVautDetails.vaultLtvRatio * 100)}%`
+                        ? `${Math.round(
+                            currentVautDetails.vaultLtvRatio * 100
+                          )}%`
                         : `0%`}
                     </p>
                   </div>
                 </div>
-  
+
                 <div className={styles.inputGroup}>
                   <label htmlFor="ckBtc" className={styles.labelWithIcon}>
                     Vault Current Collateral
                   </label>
                   <div className={styles.TextRight}>
-                    <p>{currentVautDetails !== null &&
+                    <p>
+                      {currentVautDetails !== null &&
                       currentVautDetails.vaultCurrentCollateral !== undefined
                         ? `${currentVautDetails.vaultCurrentCollateral} CKBTC`
-                        : 0}</p>
+                        : 0}
+                    </p>
                   </div>
                 </div>
-  
+
                 <div className={styles.inputGroup}>
                   <label htmlFor="ckBtc" className={styles.labelWithIcon}>
                     Vault Current Collaterisation Ratio
                   </label>
                   <div className={styles.TextRight}>
-                    <p>{currentVautDetails !== null &&
+                    <p>
+                      {currentVautDetails !== null &&
                       currentVautDetails.vaultLtvRatio !== undefined
-                        ? `${Math.round(1 /currentVautDetails.vaultLtvRatio * 100 )}%`
-                        : `0%`}</p>
+                        ? `${Math.round(
+                            (1 / currentVautDetails.vaultLtvRatio) * 100
+                          )}%`
+                        : `0%`}
+                    </p>
                   </div>
                 </div>
                 <div className={styles.inputGroup}>
@@ -675,25 +683,28 @@ currentVautDetails!==null && currentVautDetails.vaultLtvRatio !== undefined
                   <p>Gas fees</p>
                 </div>
               </div>
-  
 
-              {Allowance?.allowance < BigInt(100000000000) && Allowance?.expires_at < new Date().getTime() ? (
-  <button
-    type="button"
-    className={styles.Calculate}
-    onClick={handleBorrow}
-  >
-    Approve
-  </button>
-) : (
-  <button
-    type="button"
-    className={styles.Calculate}
-    onClick={handleBorrow}
-  >
-    Repay Debt
-  </button>
-)}
+              {Allowance &&
+              (Array.isArray(Allowance.expires_at) &&
+              Allowance.expires_at.length === 0
+                ? true
+                : Allowance.expires_at[0] / BigInt(1000000) < new Date().getTime()) ? (
+                <button
+                  type="button"
+                  className={styles.Calculate}
+                  onClick={handleApprove} // Assuming this should trigger approval
+                >
+                  Approve
+                </button>
+              ) : (
+                <button
+                  type="button"
+                  className={styles.Calculate}
+                  onClick={handleBorrow} // Assuming this should trigger repayment
+                >
+                  Repay Debt
+                </button>
+              )}
 
               <button
                 className={styles.Vault}
