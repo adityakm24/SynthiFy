@@ -677,7 +677,7 @@ currentVautDetails!==null && currentVautDetails.vaultLtvRatio !== undefined
               </div>
   
 
-              {Allowance ? (
+              {Allowance?.allowance < BigInt(100000000000) && Allowance?.expires_at < new Date().getTime() ? (
   <button
     type="button"
     className={styles.Calculate}
