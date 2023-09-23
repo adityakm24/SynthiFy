@@ -9,7 +9,14 @@ import { Principal } from "@dfinity/principal";
 
 
 import {vaultManageridlFactory} from "../vaultmanager.did.js"
-import { vaultmanager_SERVICE,IndividualVaultData } from "@/vaultmanager(ts).did";
+import {synBaseIdlFactory} from "../synBase.did"
+import { vaultmanager_SERVICE,IndividualVaultData, AllowanceArgs } from "@/vaultmanager(ts).did";
+import { synBase_SERVICE } from "@/synbase(t).did";
+
+import { Account } from "@/vaultmanager(ts).did";
+import { Allowance } from "@/vaultmanager(ts).did";
+import { ApproveArgs } from "@/synbase(t).did";
+
 const Borrow = () => {
   const [vaultID, setVaultID] = useState("");
   const [synthUsdAmount, setsynthUsdAmount] = useState("");
@@ -26,9 +33,15 @@ const Borrow = () => {
   const [currentVautDetails,setCurrentVaultDetails] = useState<IndividualVaultData | null>(null)
   const [connectPrincipal,setConnectedPrincipal] = useState<Principal |null>(null)
   const [currentVaultIds, setCurrentVaultIds] = useState<Array<bigint>>([])
-  const [Allowance, setAllowance] = useState("");
+  const [Allowance, setAllowance] = useState<Allowance | null>(null);
+  const [synBaseAddress,setSynBaseAddress] = useState<synBase_SERVICE |null>(null)
+
 
   const vaultManagerAddress = "avqkn-guaaa-aaaaa-qaaea-cai"
+
+  const synthTokenAddress = "by6od-j4aaa-aaaaa-qaadq-cai"
+
+  const synthMinterAddress = "b77ix-eeaaa-aaaaa-qaada-cai"
 
   
   const router = useRouter();
@@ -44,7 +57,9 @@ const Borrow = () => {
           setConnectedPrincipal(publicKey)
           const address = publicKey.toText();
           setConnectedAddress(address);
-          await createActor()
+          await VaultManagercreateActor()
+          await SyntheTokenCreateActor()
+         
           console.log(`The connected user's public key is:`, publicKey);
         }
       } catch (e) {
@@ -62,6 +77,15 @@ const Borrow = () => {
       getuserIdVaults();
     }
   }, [selectedOption, vaultManager]);
+
+  useEffect(() => {
+    const main = async() =>{
+      await checkAllowance()
+    }
+
+    main();
+  },[connectPrincipal])
+
 
   const connectWallet = async () => {
     try {
@@ -117,7 +141,7 @@ const Borrow = () => {
   };
 
 
-  const createActor = async () => {
+  const VaultManagercreateActor = async () => {
     try {
       const _vaultManager = await window.ic.infinityWallet.createActor({
       canisterId: vaultManagerAddress,
@@ -132,8 +156,86 @@ const Borrow = () => {
 
   }
 
+  const checkAllowance = async() => {
+    console.log( `Checking synabse ${synBaseAddress} and connnectPrincipal ${connectPrincipal}`)
+    if(synBaseAddress !== null && connectPrincipal!==null) {
+      console.log("heeeeere")
+      const allowance_args: AllowanceArgs = {
+        account : {
+          owner:connectPrincipal,
+          subaccount:[]
+        },
+        spender:{
+          owner:Principal.fromText(synthMinterAddress),
+          subaccount:[]
+        }
+      }
+
+      const allowance = await synBaseAddress.icrc2_allowance(allowance_args)
+      console.log(allowance)
+      setAllowance(allowance)
+      console.log(allowance)
+    }
+  }
+
+  const handleApprove = async() =>{
+    console.log( `Checking synabse ${synBaseAddress} and connnectPrincipal ${connectPrincipal}`)
+    if(synBaseAddress !== null && connectPrincipal!==null) {
+      console.log("heeeeere")
+      const approve_args: ApproveArgs = {
+        fee:[],
+        memo:[],
+        from_subaccount:[],
+        created_at_time:[],
+        amount:BigInt(100000000000),
+        expected_allowance:[],
+        expires_at:[],
+        spender:{
+          owner:Principal.fromText(synthMinterAddress),
+          subaccount:[]
+        }
+      }
+
+      const approveResult = await synBaseAddress.icrc2_approve(approve_args)
+      if ('Ok' in approveResult) {
+        // It's of type 'Ok'
+        const okValue = approveResult['Ok']; // You can access the 'Ok' property
+        console.log('Ok result:', okValue);
+      } else if ('Err' in approveResult) {
+        // It's of type 'Err'
+        const errValue = approveResult['Err']; // You can access the 'Err' property
+        console.log('Err result:', errValue);
+      } else {
+        // It's neither 'Ok' nor 'Err'
+        console.log('Invalid result:', approveResult);
+      }
+      
+      
+      
+      
+      
+
+    }
+  }
+
+
+  const SyntheTokenCreateActor = async() => {
+    try {
+      const _synthBase = await window.ic.infinityWallet.createActor({
+        canisterId:synthTokenAddress,
+        interfaceFactory:synBaseIdlFactory,
+        host:"http://localhost:4943/"
+      })
+      setSynBaseAddress(_synthBase)
+    } catch(e){
+      console.log("Error creating synthActor:",e)
+    }
+  }
+
   const handleBorrow = async () => {
     // Implement your calculation logic here
+
+    if(synthUsdAmount !== null) {
     console.log("collatAmount",parseFloat(synthUsdAmount))
     const decimalAdjustedsUsd = BigInt(Math.pow(10,8) * parseFloat(synthUsdAmount))
     console.log("decimal adjusts",decimalAdjustedsUsd)
@@ -152,6 +254,8 @@ const Borrow = () => {
         console.log(e)
       }
     }
+
+  }
   };
 
   const handleaddCollateral = async() => {
@@ -572,13 +676,25 @@ currentVautDetails!==null && currentVautDetails.vaultLtvRatio !== undefined
                 </div>
               </div>
   
-              <button
-                type="button"
-                className={styles.Calculate}
-                onClick={handleBorrow}
-              >
-                {Allowance ? 'Approve' : 'Repay Debt'}
-              </button>
+
+              {Allowance ? (
+  <button
+    type="button"
+    className={styles.Calculate}
+    onClick={handleBorrow}
+  >
+    Approve
+  </button>
+) : (
+  <button
+    type="button"
+    className={styles.Calculate}
+    onClick={handleBorrow}
+  >
+    Repay Debt
+  </button>
+)}
+
               <button
                 className={styles.Vault}
                 onClick={() => setSelectedOption("Create Vault")}
