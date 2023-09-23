@@ -455,7 +455,8 @@ currentVautDetails!==null && currentVautDetails.vaultLtvRatio !== undefined
           </form>
         );
       //asset.ckbtcAmount
-        case "Create Vault":
+      
+      case "Create Vault":
         //  setVaultID(0);
           return (
           <div className={styles.createWalletContainer}>
@@ -481,7 +482,111 @@ currentVautDetails!==null && currentVautDetails.vaultLtvRatio !== undefined
             {backendData && <p className={styles.backendData}>{backendData}</p>}
           </div>
         );
-
+      
+        case "Repay Debt":
+          //  setVaultID(0);
+          return (
+            <form>
+              <div className={styles.input3Container}>
+                <div className={styles.inputGroup}>
+                  <label htmlFor="ckBtc" className={styles.labelWithIcon}>
+                    Vault LTV Ratio
+                  </label>
+                  <div className={styles.TextRight}>
+                    <p>
+                      {currentVautDetails !== null &&
+                      currentVautDetails.vaultLtvRatio !== undefined
+                        ? `${Math.round(currentVautDetails.vaultLtvRatio * 100)}%`
+                        : `0%`}
+                    </p>
+                  </div>
+                </div>
+  
+                <div className={styles.inputGroup}>
+                  <label htmlFor="ckBtc" className={styles.labelWithIcon}>
+                    Vault Current Collateral
+                  </label>
+                  <div className={styles.TextRight}>
+                    <p>{currentVautDetails !== null &&
+                      currentVautDetails.vaultCurrentCollateral !== undefined
+                        ? `${currentVautDetails.vaultCurrentCollateral} CKBTC`
+                        : 0}</p>
+                  </div>
+                </div>
+  
+                <div className={styles.inputGroup}>
+                  <label htmlFor="ckBtc" className={styles.labelWithIcon}>
+                    Vault Current Collaterisation Ratio
+                  </label>
+                  <div className={styles.TextRight}>
+                    <p>{currentVautDetails !== null &&
+                      currentVautDetails.vaultLtvRatio !== undefined
+                        ? `${Math.round(1 /currentVautDetails.vaultLtvRatio * 100 )}%`
+                        : `0%`}</p>
+                  </div>
+                </div>
+                <div className={styles.inputGroup}>
+                  <label htmlFor="ckBtc" className={styles.labelWithIcon}>
+                    Health Factor
+                  </label>
+                  <div className={styles.TextRight}>
+                    <p>0</p>
+                  </div>
+                </div>
+              </div>
+              <div className={styles.input1Container}>
+                <label htmlFor="sUsd">
+                  <div className={styles.inputGroup}>
+                    Vault ID
+                    <input
+                      type="text"
+                      id="vaultID"
+                      name="vaultID"
+                      value={vaultID}
+                      onChange={handleVaultIDChange}
+                      placeholder="0"
+                    />
+                  </div>
+                </label>
+                <div className={styles.gasFee}>
+                  <p>Gass Fees: 10</p>
+                </div>
+              </div>
+              <div className={styles.input2Container}>
+                <label htmlFor="sUsd">
+                  <div className={styles.inputGroup}>
+                    synthUsd
+                    <input
+                      type="number"
+                      id="synthUsd"
+                      name="synthUsd"
+                      value={synthUsdAmount}
+                      onChange={(e) => setsynthUsdAmount(e.target.value)}
+                      placeholder="0.0"
+                    />
+                  </div>
+                </label>
+                <div className={styles.gasFee}>
+                  <p>Gas fees</p>
+                </div>
+              </div>
+  
+              <button
+                type="button"
+                className={styles.Calculate}
+                onClick={handleBorrow}
+              >
+                Borrow
+              </button>
+              <button
+                className={styles.Vault}
+                onClick={() => setSelectedOption("Create Vault")}
+                style={{ marginTop: "10px" }}
+              >
+                Create Vault
+              </button>
+            </form>
+          );
       default:
         return null;
     }
@@ -528,6 +633,8 @@ currentVautDetails!==null && currentVautDetails.vaultLtvRatio !== undefined
                       <option>Borrow</option>
                       <option>Add Collateral</option>
                       <option>Create Vault</option>
+                      <option>Repay Debt</option>
+
                     </select>
                   </div>
                   <div className={styles.closeIconContainer}>
