@@ -35,6 +35,8 @@ const Borrow = () => {
   const [currentVaultIds, setCurrentVaultIds] = useState<Array<bigint>>([])
   const [Allowance, setAllowance] = useState<Allowance | null>(null);
   const [synBaseAddress,setSynBaseAddress] = useState<synBase_SERVICE |null>(null)
+  const[debtToRepay,setDebtToRepay] = useState("")
+
 
 
   const vaultManagerAddress = "avqkn-guaaa-aaaaa-qaaea-cai"
@@ -45,6 +47,7 @@ const Borrow = () => {
 
   
   const router = useRouter();
+  console.log("Allowance:",Allowance)
 
   useEffect(() => {
     const checkWalletConnection = async () => {
@@ -78,13 +81,14 @@ const Borrow = () => {
     }
   }, [selectedOption, vaultManager]);
 
+  //@todo: Change the use effect condition
   useEffect(() => {
     const main = async() =>{
       await checkAllowance()
     }
 
     main();
-  },[connectPrincipal])
+  },[selectedOption])
 
 
   const connectWallet = async () => {
@@ -170,11 +174,10 @@ const Borrow = () => {
           subaccount:[]
         }
       }
-
+      console.log("before allowance")
       const allowance = await synBaseAddress.icrc2_allowance(allowance_args)
       console.log(allowance)
       setAllowance(allowance)
-      console.log(allowance)
     }
   }
 
@@ -201,6 +204,7 @@ const Borrow = () => {
         // It's of type 'Ok'
         const okValue = approveResult['Ok']; // You can access the 'Ok' property
         console.log('Ok result:', okValue);
+        return true
       } else if ('Err' in approveResult) {
         // It's of type 'Err'
         const errValue = approveResult['Err']; // You can access the 'Err' property
@@ -257,6 +261,17 @@ const Borrow = () => {
 
   }
   };
+
+  const handleRepayDebt = async() => {
+
+    const vaultId = BigInt(parseInt(vaultID))
+    const _debtToRepay = BigInt(parseInt(debtToRepay))
+
+    if(vaultManager!==null) {
+      const result = await vaultManager.repayDebt(vaultId,_debtToRepay,[])
+      console.log(result)
+    }
+  }
 
   const handleaddCollateral = async() => {
     // Implement your calculation logic here
@@ -674,7 +689,7 @@ currentVautDetails!==null && currentVautDetails.vaultLtvRatio !== undefined
                       id="synthUsd"
                       name="synthUsd"
                       value={synthUsdAmount}
-                      onChange={(e) => setsynthUsdAmount(e.target.value)}
+                      onChange={(e) => setDebtToRepay(e.target.value)}
                       placeholder="0.0"
                     />
                   </div>
@@ -684,7 +699,7 @@ currentVautDetails!==null && currentVautDetails.vaultLtvRatio !== undefined
                 </div>
               </div>
 
-              {Allowance &&
+              {Allowance && Allowance.allowance && Allowance.allowance < BigInt(100000000000) &&
               (Array.isArray(Allowance.expires_at) &&
               Allowance.expires_at.length === 0
                 ? true
@@ -700,7 +715,7 @@ currentVautDetails!==null && currentVautDetails.vaultLtvRatio !== undefined
                 <button
                   type="button"
                   className={styles.Calculate}
-                  onClick={handleBorrow} // Assuming this should trigger repayment
+                  onClick={handleRepayDebt} // Assuming this should trigger repayment
                 >
                   Repay Debt
                 </button>
