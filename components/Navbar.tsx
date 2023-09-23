@@ -13,7 +13,13 @@ const MyApp = () => {
   const [isModalOpen0, setIsModalOpen0] = useState(false);
   const [isModalOpen1, setIsModalOpen1] = useState(false);
   const router = useRouter();
+  const vaultManagerAddress = "avqkn-guaaa-aaaaa-qaaea-cai"
 
+  const synthTokenAddress = "by6od-j4aaa-aaaaa-qaadq-cai"
+
+  const synthMinterAddress = "b77ix-eeaaa-aaaaa-qaada-cai"
+
+  const whitelist = [vaultManagerAddress,synthTokenAddress,synthMinterAddress]
   useEffect(() => {
     const checkWalletConnection = async () => {
       try {
@@ -40,7 +46,9 @@ const MyApp = () => {
 
   const connectWallet = async () => {
     try {
-      const publicKey = await window.ic.infinityWallet.requestConnect();
+      const publicKey = await window.ic.infinityWallet.requestConnect({
+        whitelist
+      });
       router.reload();
       const address = publicKey.toText();
       setConnectedAddress(address);

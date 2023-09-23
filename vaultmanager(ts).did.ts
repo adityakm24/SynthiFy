@@ -39,11 +39,24 @@ export type ManualReply = { 'Ok' : bigint } |
   { 'Err' : ICRCTransferError };
 export type ManualReply_1 = { 'Ok' : bigint } |
   { 'Err' : TransferError };
+export type ManualReply_2 = { 'Ok' : bigint } |
+  { 'Err' : TransferFromError };
 export interface SupportedStandard { 'url' : string, 'name' : string }
 export type TransferError = {
     'GenericError' : _InlineTransferErrorGenericError
   } |
   { 'TemporarilyUnavailable' : null } |
+  { 'BadBurn' : _InlineTransferErrorBadBurn } |
+  { 'Duplicate' : _InlineTransferErrorDuplicate } |
+  { 'BadFee' : _InlineTransferErrorBadFee } |
+  { 'CreatedInFuture' : _InlineTransferErrorCreatedInFuture } |
+  { 'TooOld' : null } |
+  { 'InsufficientFunds' : _InlineTransferErrorInsufficientFunds };
+export type TransferFromError = {
+    'GenericError' : _InlineTransferErrorGenericError
+  } |
+  { 'TemporarilyUnavailable' : null } |
+  { 'InsufficientAllowance' : _InlineTransferFromErrorInsufficientAllowance } |
   { 'BadBurn' : _InlineTransferErrorBadBurn } |
   { 'Duplicate' : _InlineTransferErrorDuplicate } |
   { 'BadFee' : _InlineTransferErrorBadFee } |
@@ -99,7 +112,10 @@ export interface _InlineTransferErrorGenericError {
   'error_code' : bigint,
 }
 export interface _InlineTransferErrorInsufficientFunds { 'balance' : bigint }
-export interface vaultmanager_SERVICE {
+export interface _InlineTransferFromErrorInsufficientAllowance {
+  'allowance' : bigint,
+}
+export interface _SERVICE {
   'addCollateral' : ActorMethod<[bigint, bigint], ManualReply>,
   'borrow' : ActorMethod<[bigint, bigint], ManualReply_1>,
   'calculatenewAccumulator' : ActorMethod<[number, number, number], number>,
@@ -121,7 +137,7 @@ export interface vaultmanager_SERVICE {
   'normalizeDebt' : ActorMethod<[number, number], number>,
   'repayDebt' : ActorMethod<
     [bigint, bigint, [] | [Uint8Array | number[]]],
-    bigint
+    ManualReply_2
   >,
   'resetVault' : ActorMethod<[], string>,
   'testInit' : ActorMethod<[], _AzleResult>,

@@ -1,4 +1,4 @@
-export const vaultManageridlFactory = ({ IDL }) => {
+export const idlFactory = ({ IDL }) => {
   const _InlineICRCTransferErrorGenericError = IDL.Record({
     'message' : IDL.Text,
     'error_code' : IDL.Nat,
@@ -116,6 +116,24 @@ export const vaultManageridlFactory = ({ IDL }) => {
     'AdministrativeData' : AdministrativeData,
   });
   const _AzleResult = IDL.Variant({ 'Ok' : IDL.Text, 'Err' : IDL.Text });
+  const _InlineTransferFromErrorInsufficientAllowance = IDL.Record({
+    'allowance' : IDL.Nat,
+  });
+  const TransferFromError = IDL.Variant({
+    'GenericError' : _InlineTransferErrorGenericError,
+    'TemporarilyUnavailable' : IDL.Null,
+    'InsufficientAllowance' : _InlineTransferFromErrorInsufficientAllowance,
+    'BadBurn' : _InlineTransferErrorBadBurn,
+    'Duplicate' : _InlineTransferErrorDuplicate,
+    'BadFee' : _InlineTransferErrorBadFee,
+    'CreatedInFuture' : _InlineTransferErrorCreatedInFuture,
+    'TooOld' : IDL.Null,
+    'InsufficientFunds' : _InlineTransferErrorInsufficientFunds,
+  });
+  const ManualReply_2 = IDL.Variant({
+    'Ok' : IDL.Nat,
+    'Err' : TransferFromError,
+  });
   return IDL.Service({
     'addCollateral' : IDL.Func([IDL.Nat, IDL.Nat], [ManualReply], []),
     'borrow' : IDL.Func([IDL.Nat, IDL.Nat], [ManualReply_1], []),
@@ -158,7 +176,7 @@ export const vaultManageridlFactory = ({ IDL }) => {
       ),
     'repayDebt' : IDL.Func(
         [IDL.Nat, IDL.Nat, IDL.Opt(IDL.Vec(IDL.Nat8))],
-        [IDL.Nat],
+        [ManualReply_2],
         [],
       ),
     'resetVault' : IDL.Func([], [IDL.Text], []),

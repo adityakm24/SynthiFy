@@ -8,9 +8,9 @@ import { Principal } from "@dfinity/principal";
 
 
 
-import {vaultManageridlFactory} from "../vaultmanager.did.js"
+import {idlFactory as vaultManageridlFactory} from "../vaultmanager.did.js"
 import {synBaseIdlFactory} from "../synBase.did"
-import { vaultmanager_SERVICE,IndividualVaultData, AllowanceArgs } from "@/vaultmanager(ts).did";
+import { _SERVICE as vaultmanager_SERVICE,IndividualVaultData, AllowanceArgs } from "@/vaultmanager(ts).did";
 import { synBase_SERVICE } from "@/synbase(t).did";
 
 import { Account } from "@/vaultmanager(ts).did";
@@ -45,9 +45,9 @@ const Borrow = () => {
 
   const synthMinterAddress = "b77ix-eeaaa-aaaaa-qaada-cai"
 
+  const whitelist = [vaultManagerAddress,synthTokenAddress,synthMinterAddress]
   
   const router = useRouter();
-  console.log("Allowance:",Allowance)
 
   useEffect(() => {
     const checkWalletConnection = async () => {
@@ -62,8 +62,8 @@ const Borrow = () => {
           setConnectedAddress(address);
           await VaultManagercreateActor()
           await SyntheTokenCreateActor()
-         
-          console.log(`The connected user's public key is:`, publicKey);
+         //
+          console.log(`The connected user's public key  sis:`, publicKey);
         }
       } catch (e) {
         console.log("Error checking wallet connection:", e);
@@ -83,17 +83,34 @@ const Borrow = () => {
 
   //@todo: Change the use effect condition
   useEffect(() => {
-    const main = async() =>{
+    console.log('inside use effect')
+    const main = async() =>{  
       await checkAllowance()
     }
 
     main();
-  },[selectedOption])
+  },[])
 
+//   useEffect(()=> {
+//     const main = async() =>{
+//       await checkCurrentVaultIds()
+//     };
+//     main();
+//   },[selectedOption])
 
+// const checkCurrentVaultIds = async() => {
+
+//   if(vaultManager !== null && vaultID !== ""){
+//     const vaultID
+//   setCurrentVaultDetails(await vaultManager.getVaultDetails(vaultId))
+//   }
+
+// }
   const connectWallet = async () => {
     try {
-      const publicKey = await window.ic.infinityWallet.requestConnect();
+      const publicKey = await window.ic.infinityWallet.requestConnect({
+        whitelist
+      });
       router.reload();
       const address = publicKey.toText();
       setConnectedAddress(address);
@@ -133,10 +150,14 @@ const Borrow = () => {
     setsynthUsdAmount("");
     setcollatAmnt("");
     setCurrentVaultDetails(null);
+    setCurrentVaultIds([])
   };
   const handleOptionChange = (e) => {
     setSelectedOption(e.target.value);
     resetState()
+    if (e.target.value === "Repay Debt") {
+      checkAllowance();
+    }
 
   };
 
@@ -161,7 +182,7 @@ const Borrow = () => {
   }
 
   const checkAllowance = async() => {
-    console.log( `Checking synabse ${synBaseAddress} and connnectPrincipal ${connectPrincipal}`)
+    console.log("inside ")
     if(synBaseAddress !== null && connectPrincipal!==null) {
       console.log("heeeeere")
       const allowance_args: AllowanceArgs = {
@@ -170,7 +191,7 @@ const Borrow = () => {
           subaccount:[]
         },
         spender:{
-          owner:Principal.fromText(synthMinterAddress),
+          owner:Principal.fromText(vaultManagerAddress),
           subaccount:[]
         }
       }
@@ -194,7 +215,7 @@ const Borrow = () => {
         expected_allowance:[],
         expires_at:[],
         spender:{
-          owner:Principal.fromText(synthMinterAddress),
+          owner:Principal.fromText(vaultManagerAddress),
           subaccount:[]
         }
       }
@@ -204,6 +225,7 @@ const Borrow = () => {
         // It's of type 'Ok'
         const okValue = approveResult['Ok']; // You can access the 'Ok' property
         console.log('Ok result:', okValue);
+        router.reload()
         return true
       } else if ('Err' in approveResult) {
         // It's of type 'Err'
@@ -261,15 +283,28 @@ const Borrow = () => {
 
   }
   };
-
+ 
+  //@bug here = if the valuues in the field are not entered it should not allow you to click buttons 
   const handleRepayDebt = async() => {
 
-    const vaultId = BigInt(parseInt(vaultID))
-    const _debtToRepay = BigInt(parseInt(debtToRepay))
+
 
     if(vaultManager!==null) {
-      const result = await vaultManager.repayDebt(vaultId,_debtToRepay,[])
+      console.log("inside vault manager address")
+      try{
+        const _vaultId = BigInt(parseInt(vaultID))
+        const _debtToRepay = BigInt(Math.pow(10,8) * parseInt(debtToRepay))
+        // const tempResult = await vaultManager.getBtcPrice()
+        // console.log((tempResult))
+
+        console.log(_vaultId)
+
+      const result = await vaultManager.repayDebt(_vaultId,_debtToRepay,[])
       console.log(result)
+      }
+      catch(e){
+        console.log(e)
+      }
     }
   }
 
@@ -688,7 +723,7 @@ currentVautDetails!==null && currentVautDetails.vaultLtvRatio !== undefined
                       type="number"
                       id="synthUsd"
                       name="synthUsd"
-                      value={synthUsdAmount}
+                      value={debtToRepay}
                       onChange={(e) => setDebtToRepay(e.target.value)}
                       placeholder="0.0"
                     />
@@ -699,11 +734,15 @@ currentVautDetails!==null && currentVautDetails.vaultLtvRatio !== undefined
                 </div>
               </div>
 
-              {Allowance && Allowance.allowance && Allowance.allowance < BigInt(100000000000) &&
-              (Array.isArray(Allowance.expires_at) &&
-              Allowance.expires_at.length === 0
-                ? true
-                : Allowance.expires_at[0] / BigInt(1000000) < new Date().getTime()) ? (
+              {
+    Allowance && (
+      (Allowance.allowance < BigInt(100000000000))
+      || 
+      (
+        Allowance.expires_at && Allowance.expires_at.length > 0 &&
+      Allowance.expires_at[0] / BigInt(1000000) < BigInt(new Date().getTime())
+      )
+  ) ? (
                 <button
                   type="button"
                   className={styles.Calculate}
@@ -717,8 +756,10 @@ currentVautDetails!==null && currentVautDetails.vaultLtvRatio !== undefined
                   className={styles.Calculate}
                   onClick={handleRepayDebt} // Assuming this should trigger repayment
                 >
-                  Repay Debt
+                  Repay Debt 
+                 
                 </button>
+                
               )}
 
               <button
