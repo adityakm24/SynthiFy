@@ -25,7 +25,8 @@ const Borrow = () => {
   const [vaultManager,setVaultManager] = useState<vaultmanager_SERVICE |null>(null)
   const [currentVautDetails,setCurrentVaultDetails] = useState<IndividualVaultData | null>(null)
   const [connectPrincipal,setConnectedPrincipal] = useState<Principal |null>(null)
-  const [currentVaultIds,setCurrentVaultIds] = useState<Array<bigint>>([])
+  const [currentVaultIds, setCurrentVaultIds] = useState<Array<bigint>>([])
+  const [Allowance, setAllowance] = useState("");
 
   const vaultManagerAddress = "avqkn-guaaa-aaaaa-qaaea-cai"
 
@@ -576,7 +577,7 @@ currentVautDetails!==null && currentVautDetails.vaultLtvRatio !== undefined
                 className={styles.Calculate}
                 onClick={handleBorrow}
               >
-                Borrow
+                {Allowance ? 'Approve' : 'Repay Debt'}
               </button>
               <button
                 className={styles.Vault}
