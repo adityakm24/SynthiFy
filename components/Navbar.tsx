@@ -92,9 +92,6 @@ const MyApp = () => {
         <img src="/icons/logo.png" alt="Logo" className={styles.logoImage} />
       </div>      <div className={styles.navbarLinks}>
         <Link href="/" className={styles.navbarLink}>
-          Dashboard
-        </Link>
-        <Link href="/borrow" className={styles.navbarLink}>
           Borrow
         </Link>
         <Link href="/profile" className={styles.navbarLink}>
