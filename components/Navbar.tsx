@@ -19,7 +19,9 @@ const MyApp = () => {
 
   const synthMinterAddress = "b77ix-eeaaa-aaaaa-qaada-cai"
 
-  const whitelist = [vaultManagerAddress,synthTokenAddress,synthMinterAddress]
+  const depositModuleAddress = "br5f7-7uaaa-aaaaa-qaaca-cai"
+
+  const whitelist = [vaultManagerAddress,synthTokenAddress,synthMinterAddress,depositModuleAddress]
   useEffect(() => {
     const checkWalletConnection = async () => {
       try {

@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import {encodeIcrcAccount	} from "@dfinity/ledger"
 import { Principal } from "@dfinity/principal";
+import {idlFactory as depositIdlFactory} from "../deposit.did"
 
 const Profile = () => {
   const [connectedAddress, setConnectedAddress] = useState<string|null>(null);
@@ -18,7 +19,9 @@ const Profile = () => {
   const [address, setaddress] = useState("");
   const [amount, setamount] = useState("");
   const router = useRouter();
-  const canisterAddressText = "br5f7-7uaaa-aaaaa-qaaca-cai"
+  const depositModuleAddress = "br5f7-7uaaa-aaaaa-qaaca-cai"
+
+  
   useEffect(() => {
     const checkWalletConnection = async () => {
       try {
@@ -33,7 +36,7 @@ const Profile = () => {
           setConnectedPrincipal(publicKey)
           const address = publicKey.toText();
           setConnectedAddress(address);
-          setEncodedAccount(encodeIcrcAccount({owner:Principal.fromText(canisterAddressText),subaccount:padPrincipalWithZeros(publicKey.toUint8Array())}))
+          setEncodedAccount(encodeIcrcAccount({owner:Principal.fromText(depositModuleAddress),subaccount:padPrincipalWithZeros(publicKey.toUint8Array())}))
           await createActor()
         }
       } catch (e) {
@@ -56,8 +59,8 @@ const Profile = () => {
   const createActor = async () => {
     try {
       const ckbtc = await window.ic.infinityWallet.createActor({
-      canisterId: canisterAddressText,
-      interfaceFactory: ckbtcidlFactory,
+      canisterId: depositModuleAddress,
+      interfaceFactory: depositIdlFactory,
       host:"http://localhost:4943/", 
     })
     try{
