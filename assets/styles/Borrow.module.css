@@ -180,6 +180,7 @@
   font-size: 16px;
   margin: 4px 2px;
   cursor: pointer;
+  margin-left: 25%;
 }
 
 .borrowButton:hover {
@@ -195,6 +196,8 @@
   font-size: 16px;
   margin: 4px 2px;
   cursor: pointer;
+  margin-left: 25%;
+
 }
 
 
@@ -315,11 +318,13 @@
   height: 50vh; 
   padding: 0 50px;
   
+  
 }
 
 .tableList {
   border-collapse: collapse;
   width: 100%;
+  
 }
 
 .tableList td,
@@ -333,6 +338,7 @@
 .tableList tr:nth-child(even) {
   background-color: #000000;
   color: white;
+
 }
 
 .tableList th {
@@ -346,7 +352,7 @@
 
 .tableList td {
 
-  background-color: rgb(31, 77, 141);
+  background-color: rgba(255, 255, 255, 0.167);
 }
 
 

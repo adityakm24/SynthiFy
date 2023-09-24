@@ -284,7 +284,7 @@ const Profile = () => {
                     </div>
 
                     <div className={styles.modalActions}>
-                      <button className={styles.general0}>
+                      <button className={styles.general2}>
                         Get Deposit Address
                       </button>
                       <br></br>

@@ -147,8 +147,14 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #0E76FD;
-  color: rgb(255, 255, 255);
+  border: 2px double transparent;
+  background-image: linear-gradient(rgb(255, 255, 255), rgb(255, 255, 255)), radial-gradient(circle at left top, rgb(1, 110, 218), rgb(217, 0, 192));
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+    color: rgb(0, 0, 0);
+}
+.general2:hover {
+  box-shadow: 0 0 5px 2px #ca92fb; /* Add shadow on hover */
 }
 
 .copyButton i,
@@ -177,18 +183,21 @@
 }
 
 .formButton {
-  background: linear-gradient(200deg, #6fe7977a 0%, #8458ca90 100%);
+  border: 2px double transparent;
+  background-image: linear-gradient(rgb(13, 14, 33), rgb(13, 14, 33)), radial-gradient(circle at left top, rgb(1, 110, 218), rgb(217, 0, 192));
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
   color: #fff;
   font-weight: bold;
   padding: 12px 26px; /* Adjusted padding */
-  border: none;
   border-radius: 10px;
   cursor: pointer;
   font-size: 15px;
-  margin: auto; /* Center the button */
+  margin: 20px auto 0 auto; /* 20px top margin, and auto for the right/left margin */
   justify-content: center;
   display: flex;
 }
+
 .formButton2{
   background:#69696959;
   color: #fff;
