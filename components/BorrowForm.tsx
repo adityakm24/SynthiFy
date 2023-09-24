@@ -834,7 +834,7 @@ currentVautDetails!==null && currentVautDetails.vaultLtvRatio !== undefined
                 <td>80%</td>
                 <td>
                   <button className={styles.borrowButton} onClick={toggleModal}>
-                    Borrow
+                    Manage Vault
                   </button>
                 </td>
               </tr>
