@@ -20,7 +20,7 @@ import { ApproveArgs } from "@/synbase(t).did";
 const Borrow = () => {
   const [vaultID, setVaultID] = useState("");
   const [synthUsdAmount, setsynthUsdAmount] = useState("");
- const [collatAmnt, setcollatAmnt] = useState(0.0);
+  const [collatAmnt, setcollatAmnt] = useState("");
   const [ckBtcAmount, setckBtcAmount] = useState("");
   const [Currency, setCurrency] = useState("sUSD");
   const [selectedPill, setSelectedPill] = useState("");
@@ -294,7 +294,7 @@ const validateFields3 = () => {
   const handleBorrow = async () => {
     if (validateFields1()) {
       if(synthUsdAmount !== null) {
-        console.log("collatAmount",synthUsdAmount)
+        console.log("collatAmount",parseFloat(synthUsdAmount))
         const decimalAdjustedsUsd = BigInt(Math.pow(10,8) * parseFloat(synthUsdAmount))
         console.log("decimal adjusts",decimalAdjustedsUsd)
     
@@ -328,7 +328,7 @@ const validateFields3 = () => {
 
 
 
-      const parsedValue = debtToRepay
+      const parsedValue = parseFloat(debtToRepay)
       const _debtToRepay = BigInt(Math.pow(10, 8)) * BigInt(Math.round(parsedValue * 10)) / BigInt(10);
 
   
@@ -352,9 +352,9 @@ const validateFields3 = () => {
 
   const handleaddCollateral = async() => {
     if (validateFields3()) {
-      console.log("collatAmount",collatAmnt)
+      console.log("collatAmount",parseFloat(collatAmnt))
 
-      const parsedValue = collatAmnt
+      const parsedValue = parseFloat(collatAmnt)
     const decimalAdjusted = BigInt(Math.pow(10, 8)) * BigInt(Math.round(parsedValue * 10)) / BigInt(10);
     console.log("decimal adjusts",decimalAdjusted)
 
@@ -545,14 +545,13 @@ const validateFields3 = () => {
                   Vault LTV Ratio
                 </label>
                 <div className={styles.TextRight}>
-                  <p>
-                    {currentVautDetails !== null &&
-                    currentVautDetails.vaultLtvRatio !== undefined
-                      ? `${Math.round(
-                          currentVautDetails.vaultLtvRatio * 100
-                        )} %`
-                      : `0%`}
-                  </p>
+                  
+                  <p>{
+
+      currentVautDetails!==null && currentVautDetails.vaultLtvRatio !== undefined
+                ? `${Math.round(currentVautDetails.vaultLtvRatio * 100)} %`
+                  : `0%`
+                  }</p>
                 </div>
               </div>
 
@@ -561,12 +560,12 @@ const validateFields3 = () => {
                   Vault Current Collateral
                 </label>
                 <div className={styles.TextRight}>
-                  <p>
-                    {currentVautDetails !== null &&
-                    currentVautDetails.vaultCurrentCollateral !== undefined
-                      ? `${currentVautDetails.vaultCurrentCollateral} CKBTC`
-                      : 0}
-                  </p>
+                  <p>{
+
+currentVautDetails!==null && currentVautDetails.vaultCurrentCollateral !== undefined
+          ? `${currentVautDetails.vaultCurrentCollateral} CKBTC`
+            : 0
+            }</p>
                 </div>
               </div>
 
@@ -575,14 +574,12 @@ const validateFields3 = () => {
                   Vault Current Collaterisation Ratio
                 </label>
                 <div className={styles.TextRight}>
-                  <p>
-                    {currentVautDetails !== null &&
-                    currentVautDetails.vaultLtvRatio !== undefined
-                      ? `${Math.round(
-                          (1 / currentVautDetails.vaultLtvRatio) * 100
-                        )} %`
-                      : `0%`}
-                  </p>
+                  <p>{
+
+currentVautDetails!==null && currentVautDetails.vaultLtvRatio !== undefined
+          ? `${Math.round(1 / currentVautDetails.vaultLtvRatio * 100)} %`
+            : `0%`
+            }</p>
                 </div>
               </div>
               <div className={styles.inputGroup}>
@@ -629,8 +626,8 @@ const validateFields3 = () => {
 
                 <input
                   type="number"
-                  id="collatAmnt"
-                  name="collatAmnt"
+                  id="ckBtc"
+                  name="ckBtc"
                   value={collatAmnt}
                   onChange={(e) => setcollatAmnt(e.target.value)}
                   placeholder="0.0"
@@ -649,12 +646,12 @@ const validateFields3 = () => {
               Add Collateral
             </button>
             <button
-              className={styles.Vault}
-              onClick={() => setSelectedOption("Create Vault")}
-              style={{ marginTop: "10px" }}
-            >
-              Create Vault
-            </button>
+  className={styles.Vault}
+  onClick={() => setSelectedOption("Create Vault")}
+  style={{ marginTop: '10px' }} 
+>
+  Create Vault
+</button>
           </form>
         );
       //asset.ckbtcAmount
