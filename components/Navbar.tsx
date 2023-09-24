@@ -88,8 +88,9 @@ const MyApp = () => {
 
   return (
     <nav className={styles.navbar}>
-      <h2 className={styles.navbarTitle}>Logo</h2>
-      <div className={styles.navbarLinks}>
+      <div className={styles.navbarLogo}>
+        <img src="/icons/logo.png" alt="Logo" className={styles.logoImage} />
+      </div>      <div className={styles.navbarLinks}>
         <Link href="/" className={styles.navbarLink}>
           Dashboard
         </Link>
