@@ -193,7 +193,7 @@ const Profile = () => {
         >
           <div className={styles.formContainer}>
             <h1>Withdraw</h1>
-            <h4>Balance: $1.0</h4>
+            <h4>Current Deposited Balance: $1.0</h4>
             <form onSubmit={handleWithdraw}>
               <input
                 type="number"
