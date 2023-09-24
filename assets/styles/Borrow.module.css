@@ -48,16 +48,43 @@
    margin-bottom: 20px;
 }
 
+.input24Container {
+  border: 0px black;
+  border-style: solid;
+  width: 600px;
+  padding: 20px;
+  margin-top: 20px;
+}
+
+.input25Container {
+  border: 0px black;
+  border-style: solid;
+  width: 650px;
+  padding: 20px;
+  position: absolute;
+   float: right;
+   left:50%;
+   top:76%;
+}
+
 .input3Container {
   border: 2px black;
   border-style: solid;
   width: 650px;
   padding: 20px;
-  margin-top: 20px;
-   margin-bottom: 20px;
    float: right;
 }
-
+.input31Container {
+  border: 2px black;
+  border-style: solid;
+  width: 650px;
+  padding: 20px;
+   float: right;
+   margin-top: -12%;
+   position: absolute;
+   left:50%;
+   bottom:23%;
+}
 
 .subContainer {
   border: 2px black;
@@ -409,4 +436,15 @@
   justify-content: center; /* Horizontally center elements */
   align-items: center; /* Vertically center elements */
   color: white;
+}
+
+.VaultDetails {
+  padding: 16px 24px; 
+  font-size: 18px;   
+  background-color: #000000; 
+  color: #fff;       
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s;
 }
