@@ -523,6 +523,7 @@ const validateFields1 = () => {
             >
               Borrow
             </button>
+            <div>
             <button
               className={styles.Vault}
               onClick={() => setSelectedOption("Create Vault")}
@@ -530,6 +531,7 @@ const validateFields1 = () => {
             >
               Create Vault
             </button>
+            </div>
           </form>
         );
       //asset.ckbtAmount  this will be userAssets 2n element  userAssets[1]
@@ -636,6 +638,7 @@ currentVautDetails!==null && currentVautDetails.vaultLtvRatio !== undefined
               </div>
             </div>
 
+            <div>
             <button
               type="button"
               className={styles.Calculate}
@@ -643,6 +646,7 @@ currentVautDetails!==null && currentVautDetails.vaultLtvRatio !== undefined
             >
               Add Collateral
             </button>
+            </div>
             <button
   className={styles.Vault}
   onClick={() => setSelectedOption("Create Vault")}
@@ -727,7 +731,7 @@ currentVautDetails!==null && currentVautDetails.vaultLtvRatio !== undefined
                       style={{
                         backgroundColor: "black",
                         color: "white",
-                        border: "2px solid #1e90ff",
+                        border: "2px solid #0f0d3b",
                         borderRadius: "5px",
                         boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
                         fontFamily: "Arial, sans-serif",
@@ -759,12 +763,13 @@ currentVautDetails!==null && currentVautDetails.vaultLtvRatio !== undefined
                               fontSize: "16px",
                               marginBottom: "5px",
                               padding: "5px 10px",
-                              backgroundColor: "#1e90ff",
-                              border: "1px solid #1e90ff",
+                              backgroundColor: "#fff",
+                              border: "1px solid #9793d9",
                               borderRadius: "3px",
                               transition:
                                 "background-color 0.3s, transform 0.3s",
                               margin: "10px 5px",
+                              color: "black"
                             }}
                           >
                             {vaultId.toString()}
@@ -958,7 +963,7 @@ currentVautDetails!==null && currentVautDetails.vaultLtvRatio !== undefined
                 </button>
                 
               )}
-
+              <div>
               <button
                 className={styles.Vault}
                 onClick={() => setSelectedOption("Create Vault")}
@@ -966,7 +971,9 @@ currentVautDetails!==null && currentVautDetails.vaultLtvRatio !== undefined
               >
                 Create Vault
               </button>
+              </div>
             </form>
+
           );
       default:
         return null;

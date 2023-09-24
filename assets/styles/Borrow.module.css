@@ -361,7 +361,7 @@
 .createWalletButton {
   padding: 16px 24px; 
   font-size: 18px;   
-  background-color: #007bff; 
+  background-color: #000000; 
   color: #fff;       
   border: none;
   border-radius: 8px;
@@ -370,7 +370,7 @@
 }
 
 .createWalletButton:hover {
-  background-color: #0056b3; /* Change the hover background color */
+  background-color: #584574af; /* Change the hover background color */
 }
 
 
@@ -403,7 +403,7 @@
 }
 
 .Vault {
-  width: 100%;
+  width: 15%;
   padding: 10px;
   border-radius: 10px;
   font-size: 17px;
@@ -411,20 +411,17 @@
   color: rgb(0, 0, 0);
   border: 0px solid black;
   font-weight: 700;
-  text-decoration: underline;
 }
 
 
 .Vault:hover {
-  width: 100%;
+  width: 15%;
   padding: 10px;
   border-radius: 10px;
   font-size: 17px;
-  color: rgb(0, 0, 0);
+  color: #3120e9;
   border: 0px solid black;
   font-weight: 700;
-  text-decoration: underline;
-  text-decoration-color:#5ea3ec;
   cursor: pointer;
 }
 
