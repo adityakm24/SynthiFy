@@ -22,9 +22,7 @@ export type ICRCTransferError = {
   { 'InsufficientFunds' : _InlineICRCTransferErrorInsufficientFunds };
 export type ManualReply = { 'Ok' : bigint } |
   { 'Err' : ICRCTransferError };
-export type ManualReply_1 = { 'Ok' : bigint } |
-  { 'Err' : ICRCTransferError };
-export type ManualReply_2 = { 'Ok' : Array<UtxoStatus> } |
+export type ManualReply_1 = { 'Ok' : Array<UtxoStatus> } |
   { 'Err' : UpdateBalanceError };
 export interface SupportedStandard { 'url' : string, 'name' : string }
 export type UpdateBalanceError = {
@@ -78,7 +76,7 @@ export interface _InlineUtxoStatusMinted {
 }
 export interface _SERVICE {
   'getBalance' : ActorMethod<[Principal], bigint>,
-  'getBtcDepositAddress' : ActorMethod<[], string>,
+  'getBtcDepositAddress' : ActorMethod<[Principal], string>,
   'getCaller' : ActorMethod<[], Principal>,
   'getTime' : ActorMethod<[], bigint>,
   'getUint8array' : ActorMethod<[Principal], Uint8Array | number[]>,
@@ -92,13 +90,11 @@ export interface _SERVICE {
   'icrc1_symbol' : ActorMethod<[], string>,
   'icrc1_total_supply' : ActorMethod<[], bigint>,
   'icrc2_allowance' : ActorMethod<[AllowanceArgs], Allowance>,
-  'mintTokens' : ActorMethod<[Account, bigint], ManualReply>,
   'testPadAccount' : ActorMethod<[[] | [Uint8Array | number[]]], Account>,
-  'transfer' : ActorMethod<[Account, bigint], ManualReply_1>,
   'transferToVault' : ActorMethod<
     [Principal, bigint, Principal, bigint],
-    ManualReply_1
+    ManualReply
   >,
-  'updateBalance' : ActorMethod<[], ManualReply_2>,
+  'updateBalance' : ActorMethod<[Principal], ManualReply_1>,
   'updateVaultManagerAddress' : ActorMethod<[Principal], string>,
 }

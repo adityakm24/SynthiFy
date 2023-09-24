@@ -11,7 +11,7 @@ import { Principal } from "@dfinity/principal";
 import {idlFactory as vaultManageridlFactory} from "../vaultmanager.did.js"
 import {synBaseIdlFactory} from "../synBase.did"
 import { _SERVICE as vaultmanager_SERVICE,IndividualVaultData, AllowanceArgs } from "@/vaultmanager(ts).did";
-import { synBase_SERVICE } from "@/synbase(t).did";
+import { _SERVICE as synBase_SERVICE } from "@/synbase(t).did";
 
 import { Account } from "@/vaultmanager(ts).did";
 import { Allowance } from "@/vaultmanager(ts).did";
@@ -38,11 +38,11 @@ const Borrow = () => {
   const[debtToRepay,setDebtToRepay] = useState("")
 
 
-  const vaultManagerAddress = "avqkn-guaaa-aaaaa-qaaea-cai"
+  const vaultManagerAddress = "isswh-liaaa-aaaal-qcdrq-cai"
 
-  const synthTokenAddress = "by6od-j4aaa-aaaaa-qaadq-cai"
+  const synthTokenAddress = "i3r53-5aaaa-aaaal-qcdqa-cai"
 
-  const synthMinterAddress = "b77ix-eeaaa-aaaaa-qaada-cai"
+  const synthMinterAddress = "i4q3p-qyaaa-aaaal-qcdqq-cai"
 
   const whitelist = [vaultManagerAddress,synthTokenAddress,synthMinterAddress]
   
@@ -200,7 +200,7 @@ const validateFields1 = () => {
       const _vaultManager = await window.ic.infinityWallet.createActor({
       canisterId: vaultManagerAddress,
       interfaceFactory: vaultManageridlFactory,
-      host:"http://localhost:4943/", 
+      host:undefined, 
       
     })
     setVaultManager(_vaultManager)
@@ -279,7 +279,7 @@ const validateFields1 = () => {
       const _synthBase = await window.ic.infinityWallet.createActor({
         canisterId:synthTokenAddress,
         interfaceFactory:synBaseIdlFactory,
-        host:"http://localhost:4943/"
+        host:undefined
       })
       setSynBaseAddress(_synthBase)
     } catch(e){

@@ -13,13 +13,13 @@ const MyApp = () => {
   const [isModalOpen0, setIsModalOpen0] = useState(false);
   const [isModalOpen1, setIsModalOpen1] = useState(false);
   const router = useRouter();
-  const vaultManagerAddress = "avqkn-guaaa-aaaaa-qaaea-cai"
+  const vaultManagerAddress = "isswh-liaaa-aaaal-qcdrq-cai"
 
-  const synthTokenAddress = "by6od-j4aaa-aaaaa-qaadq-cai"
+  const synthTokenAddress = "i3r53-5aaaa-aaaal-qcdqa-cai"
 
-  const synthMinterAddress = "b77ix-eeaaa-aaaaa-qaada-cai"
+  const synthMinterAddress = "i4q3p-qyaaa-aaaal-qcdqq-cai"
 
-  const depositModuleAddress = "br5f7-7uaaa-aaaaa-qaaca-cai"
+  const depositModuleAddress = "ivtqt-gqaaa-aaaal-qcdra-cai"
 
   const whitelist = [vaultManagerAddress,synthTokenAddress,synthMinterAddress,depositModuleAddress]
   useEffect(() => {

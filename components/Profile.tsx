@@ -1,3 +1,5 @@
+//@todo: reset btcDepositAddress on page reload or if its not default value 
+
 import styles from "../assets/styles/Profile.module.css";
 import Link from "next/link";
 import React, { useState, useEffect } from "react";
@@ -26,9 +28,15 @@ const Profile = () => {
   const[depositModule,setDepositModule] = useState<DepositModule | null>(null)
   const [vaultManager,setVaultManager] = useState<vaultmanager_SERVICE |null>(null)
 
+  const [btcDepositAddress,setbtcDepositAddress] = useState<string>("Click Get  Deposit Address")
+  const [loadingDepositAddress, setLoadingDepositAddress] = useState(false);
+
+  const [currentUserBalance,setUserBalance] = useState<string|null>(null)
+
+
   const router = useRouter();
-  const depositModuleAddress = "br5f7-7uaaa-aaaaa-qaaca-cai"
-  const vaultManagerAddress = "avqkn-guaaa-aaaaa-qaaea-cai"
+  const depositModuleAddress = "ivtqt-gqaaa-aaaal-qcdra-cai"
+  const vaultManagerAddress = "isswh-liaaa-aaaal-qcdrq-cai"
 
 
   useEffect(() => {
@@ -48,6 +56,7 @@ const Profile = () => {
           setEncodedAccount(encodeIcrcAccount({owner:Principal.fromText(depositModuleAddress),subaccount:padPrincipalWithZeros(publicKey.toUint8Array())}))
           await DepositModulecreateActor()
           await VaultManagercreateActor()
+          
         }
       } catch (e) {
         console.log("Error checking wallet connection:", e);
@@ -57,8 +66,22 @@ const Profile = () => {
     checkWalletConnection();
   }, []);
 
+  useEffect(() =>{
+
+    const main = async() =>{
+    if(depositModule!==null && connectPrincipal!==null){
+      console.log("inside main")
+      const balance = await depositModule.getBalance(connectPrincipal)
+      setUserBalance(balance.toString())
+    }}
+
+    main()
+  })
+
   const toggleModal1 = () => {
+    setbtcDepositAddress("Click Get Deposit Address");
     setIsModalOpen1(!isModalOpen1);
+
   };
 
   const toggleModal0 = () => {
@@ -71,7 +94,7 @@ const Profile = () => {
       const depositModule = await window.ic.infinityWallet.createActor({
       canisterId: depositModuleAddress,
       interfaceFactory: depositIdlFactory,
-      host:"http://localhost:4943/", 
+      host:undefined, 
     })
 
     setDepositModule(depositModule)
@@ -82,12 +105,51 @@ const Profile = () => {
 
   }
 
+  const handleGetDepositAddress = async() => {
+    if(depositModule!==null &&connectPrincipal!==null){
+      try{
+        setLoadingDepositAddress(true);
+      const address = await depositModule.getBtcDepositAddress(connectPrincipal)
+      setbtcDepositAddress(address)
+      }
+      catch(e){
+        
+        console.error("Error getting deposit address:", e);
+        setbtcDepositAddress("Error getting address");
+      } finally{
+        setLoadingDepositAddress(false);
+
+      }
+    }
+  }
+
+  const handleUpdateBtcBalance = async() =>{
+    if(depositModule!==null && connectPrincipal!=null){
+      try{
+        setLoadingDepositAddress(true);
+        const updateResult = await depositModule.updateBalance(connectPrincipal)
+        if("Err" in updateResult){
+          setbtcDepositAddress("Error updating balance ");
+          console.log(updateResult)
+        }
+        else{
+        setbtcDepositAddress("Btc balance updated")
+        }
+      }
+      catch(e){
+        console.error("Erro updating balance ", e);
+        setbtcDepositAddress("Error updating balance ");
+      } finally{
+        setLoadingDepositAddress(false);
+      }
+    }
+  }
   const VaultManagercreateActor = async() => {
     try {
       const vaultManager = await window.ic.infinityWallet.createActor({
       canisterId: vaultManagerAddress,
       interfaceFactory: vaultManageridlFactory,
-      host:"http://localhost:4943/", 
+      host:undefined, 
     })
 
     setVaultManager(vaultManager)
@@ -194,7 +256,7 @@ const Profile = () => {
         >
           <div className={styles.formContainer}>
             <h1>Withdraw</h1>
-            <h4>Current Deposited Balance: $1.0</h4>
+            <h4>Current Deposited Balance In Module: {currentUserBalance ?? "loading"} CKBTC</h4>
             <form onSubmit={handleWithdraw}>
               <input
                 type="number"
@@ -278,17 +340,17 @@ const Profile = () => {
                   ></i>
                   <div className={styles.modalContainer}>
                     <div className={styles.modalHeader}>
-                      <h3>Placeholder </h3>
+                    <h3>{ loadingDepositAddress ? "Loading..." : btcDepositAddress }</h3>
                       <br></br>
                       <br></br>
                     </div>
 
                     <div className={styles.modalActions}>
-                      <button className={styles.general2}>
+                      <button className={styles.general2} onClick={handleGetDepositAddress}>
                         Get Deposit Address
                       </button>
                       <br></br>
-                      <button className={styles.general2}>
+                      <button className={styles.general2} onClick={handleUpdateBtcBalance}>
                         Update Deposit Address
                       </button>
                     </div>

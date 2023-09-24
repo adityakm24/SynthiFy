@@ -142,7 +142,7 @@ export interface _InlineTransferErrorInsufficientFunds { 'balance' : bigint }
 export interface _InlineTransferFromErrorInsufficientAllowance {
   'allowance' : bigint,
 }
-export interface synBase_SERVICE {
+export interface _SERVICE {
   'getCurrentState' : ActorMethod<[], State>,
   'icrc1_balance_of' : ActorMethod<[Account], bigint>,
   'icrc1_decimals' : ActorMethod<[], number>,
@@ -160,4 +160,5 @@ export interface synBase_SERVICE {
   'testPadAccount' : ActorMethod<[[] | [Uint8Array | number[]]], Account>,
   'testingFee' : ActorMethod<[[] | [bigint]], boolean>,
   'updateMinterAccount' : ActorMethod<[Principal], string>,
+  'updatePrimaryAccount' : ActorMethod<[Principal], string>,
 }
