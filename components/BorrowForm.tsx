@@ -110,18 +110,28 @@ const validateFields1 = () => {
     alert("Please fill in all required fields");
     return false;
   }
+  else if (synthUsdAmount < 0) {
+      alert("Please the SynthUSD amount entred ");
+      return false;
+  }
   return true;
 };
 const validateFields2 = () => {
   if (vaultID === "" || debtToRepay === "") {
     alert("Please fill in all required fields");
     return false;
+  } else if (debtToRepay < 0) {
+    alert("Please the Debt TO Repay amount entred ");
+    return false;
   }
   return true;
 };
 const validateFields3 = () => {
-  if (vaultID === "" ||  collatAmnt === "") {
+  if (vaultID === "" || collatAmnt === "") {
     alert("Please fill in all required fields");
+    return false;
+  } else if (collatAmnt < 0) {
+    alert("Please the Collateral amount entred ");
     return false;
   }
   return true;
