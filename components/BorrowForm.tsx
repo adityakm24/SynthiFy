@@ -106,34 +106,30 @@ const Borrow = () => {
 
 // }
 const validateFields1 = () => {
-  if (vaultID === "" || synthUsdAmount === "") {
-    alert("Please fill in all required fields");
+  const synthUsdAmountNum = parseFloat(synthUsdAmount);
+
+  if (vaultID === "" || isNaN(synthUsdAmountNum) || synthUsdAmountNum < 0) {
+    alert("Please fill in all required fields correctly");
     return false;
   }
-  else if (synthUsdAmount < 0) {
-      alert("Please check the SynthUSD amount entred ");
-      return false;
+
+  return true;
+};
+
+  const validateFields2 = () => {
+  const debtToRepayNum = parseFloat(debtToRepay);
+  if (vaultID === "" || debtToRepay === "" || debtToRepayNum < 0) {
+    alert("Please fill in all required fields");
+    return false;
   }
   return true;
 };
-const validateFields2 = () => {
-  if (vaultID === "" || debtToRepay === "") {
+  const validateFields3 = () => {
+  const collatAmntNum = parseFloat(collatAmnt);
+  if (vaultID === "" || collatAmnt === "" || collatAmntNum < 0) {
     alert("Please fill in all required fields");
     return false;
-  } else if (debtToRepay < 0) {
-    alert("Please the Debt TO Repay amount entred ");
-    return false;
-  }
-  return true;
-};
-const validateFields3 = () => {
-  if (vaultID === "" || collatAmnt === "") {
-    alert("Please fill in all required fields");
-    return false;
-  } else if (collatAmnt < 0) {
-    alert("Please the Collateral amount entred ");
-    return false;
-  }
+  } 
   return true;
 };
 
