@@ -41,6 +41,8 @@ export type ManualReply_1 = { 'Ok' : bigint } |
   { 'Err' : TransferError };
 export type ManualReply_2 = { 'Ok' : bigint } |
   { 'Err' : TransferFromError };
+export type ManualReply_3 = { 'Ok' : number } |
+  { 'Err' : TransferError };
 export interface SupportedStandard { 'url' : string, 'name' : string }
 export type TransferError = {
     'GenericError' : _InlineTransferErrorGenericError
@@ -142,5 +144,5 @@ export interface _SERVICE {
   'resetVault' : ActorMethod<[], string>,
   'testInit' : ActorMethod<[], _AzleResult>,
   'testPadAccount' : ActorMethod<[[] | [Uint8Array | number[]]], Account>,
-  'withdrawCollateral' : ActorMethod<[bigint, bigint, Account], number>,
+  'withdrawCollateral' : ActorMethod<[bigint, bigint, Account], ManualReply_3>,
 }

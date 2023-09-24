@@ -8,6 +8,7 @@ import {idlFactory as depositIdlFactory} from "../deposit.did"
 import {idlFactory as vaultManageridlFactory} from "../vaultmanager.did.js"
 import {_SERVICE as DepositModule} from "../deposit.did(t)"
 import {_SERVICE as vaultmanager_SERVICE} from "../vaultmanager(ts).did"
+import { Account } from "@/synbase(t).did";
 
 const Profile = () => {
   const [connectedAddress, setConnectedAddress] = useState<string|null>(null);
@@ -126,6 +127,8 @@ const Profile = () => {
     return true;
   };
 
+  //@major issue use is able to enter any text in address field 
+
   const handleWithdraw = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -133,9 +136,24 @@ const Profile = () => {
       // Handle form submission logic here
       // You can make an API call or perform any other action
 
+      
       if(vaultManager!==null){
+
+        try{
         const _vauldId = BigInt(parseInt(vaultID))
-        console.log(await vaultManager.getVaultDetails(_vauldId))
+        const parsedValue = parseFloat(amount)
+        const amountToWithdraw = BigInt(Math.pow(10, 8)) * BigInt(Math.round(parsedValue * 10)) / BigInt(10);
+        const toAccount:Account = {
+          owner:Principal.fromText(address),
+          subaccount:[]
+        }
+
+
+        console.log(await vaultManager.withdrawCollateral(_vauldId,amountToWithdraw,toAccount))
+      }
+      catch(e){
+        console.log("Error occured:",e)
+      }
       }
     }
   };

@@ -134,6 +134,10 @@ export const idlFactory = ({ IDL }) => {
     'Ok' : IDL.Nat,
     'Err' : TransferFromError,
   });
+  const ManualReply_3 = IDL.Variant({
+    'Ok' : IDL.Float64,
+    'Err' : TransferError,
+  });
   return IDL.Service({
     'addCollateral' : IDL.Func([IDL.Nat, IDL.Nat], [ManualReply], []),
     'borrow' : IDL.Func([IDL.Nat, IDL.Nat], [ManualReply_1], []),
@@ -188,7 +192,7 @@ export const idlFactory = ({ IDL }) => {
       ),
     'withdrawCollateral' : IDL.Func(
         [IDL.Nat, IDL.Nat, Account],
-        [IDL.Float64],
+        [ManualReply_3],
         [],
       ),
   });
