@@ -200,7 +200,11 @@
 
 .closeIcon {
   font-size: 1.5rem;
-  color: #ccc;
+  color:rgb(43, 43, 43);
+  cursor: pointer;
+  font-size: 20px;
+  color: #7c7c7c;
+  z-index: 2;
 }
 
 

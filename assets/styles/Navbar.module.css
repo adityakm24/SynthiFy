@@ -1,12 +1,12 @@
-/* styles/globals.css */
-
 .navbar {
-  background-color: #000000; /* Purple background color */
+  background-color: #242424; /* Purple background color */
   color: #fff; /* White text color */
   padding: 1rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  border-radius: 10px;
+  margin: 5px;
 }
 .logoImage {
   max-width: 140px; 
@@ -45,6 +45,7 @@
 .navbarLink {
   color: white;
   text-decoration: none;
+  padding: 10px;
   font-size: 18px;
   transition: color 0.3s;
   float: left;
@@ -52,6 +53,23 @@
 
 .navbarLink:hover {
   color: #0056b3; 
+  text-decoration: underline;
+  transition: 0.2s;
+}
+
+.activeLink {
+  background-color: #0E76FD;
+  border-radius: 10px;
+  padding: 10px;
+  color: white; 
+  text-align: center;
+  width: 70px;
+}
+.activeLink:hover {
+  background-color: #2281fe;
+  border-radius: 10px;
+  padding: 10px;
+  color: white; 
 }
 
 .dropdownContainer {
@@ -79,9 +97,6 @@
   padding: 20px;
    border-radius: 20px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.262);
-  align-items: center;
-  align-content: center;
-  text-align: center;
 }
 
 .modalHeader {
@@ -158,7 +173,7 @@
   width: 100%;
   padding: 12px;
   border: 1px solid #ccc;
-  border-radius: 4px;
+  border-radius: 10px;
   background-color: #fff;
   cursor: pointer;
 }
@@ -168,7 +183,7 @@
   color: #fff;
   padding: 12px 36px;
   border: none;
-  border-radius: 5px;
+  border-radius: 10px;
   cursor: pointer;
   font-size: 15px;
   z-index: 4;
@@ -179,7 +194,6 @@
   color: #fff;
   padding: 12px 36px;
   border: none;
-  border-radius: 5px;
   cursor: pointer;
   font-size: 15px;
    z-index: 4;
