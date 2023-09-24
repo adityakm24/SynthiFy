@@ -15,7 +15,7 @@ const Profile = () => {
   const [connectPrincipal,setConnectedPrincipal] = useState<Principal |null>(null)
   const[encodedAccount,setEncodedAccount] = useState("")
   const router = useRouter();
-  const canisterAddressText = "bkyz2-fmaaa-aaaaa-qaaaq-cai"
+  const canisterAddressText = "br5f7-7uaaa-aaaaa-qaaca-cai"
   useEffect(() => {
     const checkWalletConnection = async () => {
       try {

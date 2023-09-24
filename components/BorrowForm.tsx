@@ -296,8 +296,8 @@ const validateFields3 = () => {
             const result = await vaultManager.borrow(vaultId,decimalAdjustedsUsd)
             console.log(result)
             
-            setCurrentVaultDetails(await vaultManager.getVaultDetails(vaultId))
-            console.log(currentVautDetails)
+            // setCurrentVaultDetails(await vaultManager.getVaultDetails(vaultId))
+            // console.log(currentVautDetails)
           }
           catch(e){
             console.log(e)
