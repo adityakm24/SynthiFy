@@ -104,25 +104,7 @@
 .iconContainer {
   margin-right: 8px; 
 }
-.Calculate {
-  width: 100%;
-   font-size: 17px;
-  padding: 10px;
-  border-radius: 10px;
-  background-color: rgb(255, 255, 255);
-  color: rgb(0, 0, 0);
-  border: 2px solid black;
-}
 
-.Calculate:hover {
-  transition: 0.3s;
-  width: 100%;
-  padding: 10px;
-  border-radius: 10px;
-  background-color: rgb(0, 0, 0);
-  color: rgb(255, 255, 255);
-  border: 2px solid black;
-}
 
 .wallet-connect-container {
   text-align: center;
@@ -298,6 +280,26 @@
   transform: scale(1.01); /* Slight scaling on hover */
 }
 
+.Calculate {
+  width: 100%;
+   font-size: 17px;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
+  border: 2px solid black;
+}
+
+.Calculate:hover {
+  transition: 0.3s;
+  width: 100%;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
+  border: 2px solid black;
+}
+
 .Vault {
   width: 100%;
   padding: 10px;
@@ -309,5 +311,20 @@
   font-weight: 700;
   text-decoration: underline;
 }
+
+
+.Vault:hover {
+  width: 100%;
+  padding: 10px;
+  border-radius: 10px;
+  font-size: 17px;
+  background-color: rgb(210, 210, 210);
+  color: rgb(0, 0, 0);
+  border: 0px solid black;
+  font-weight: 700;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
 
 
