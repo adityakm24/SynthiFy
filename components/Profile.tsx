@@ -13,7 +13,10 @@ const Profile = () => {
   const [isModalOpen1, setIsModalOpen1] = useState(false);
   const [assets, setAssets] = useState([]); // State to store assets
   const [connectPrincipal,setConnectedPrincipal] = useState<Principal |null>(null)
-  const[encodedAccount,setEncodedAccount] = useState("")
+  const [encodedAccount, setEncodedAccount] = useState("")
+  const [vaultID, setvaultID] = useState("");
+  const [address, setaddress] = useState("");
+  const [amount, setamount] = useState("");
   const router = useRouter();
   const canisterAddressText = "br5f7-7uaaa-aaaaa-qaaca-cai"
   useEffect(() => {
@@ -87,9 +90,32 @@ const Profile = () => {
         });
     }
   };
+
+  const validateFields1 = () => {
+    if (vaultID === "" || synthUsdAmount === "") {
+      alert("Please fill in all required fields");
+      return false;
+    }
+    return true;
+  };
+
+
   const updateBalance = () => {
     //add animation for loading balance
   };
+
+    const handleVaultIDChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+      const inputValue = e.target.value;
+
+      // Check if the input is a positive integer
+      if (/^[0-9]\d*$/.test(inputValue)) {
+        setvaultID(inputValue);
+      } else {
+        // If not a positive integer, you can display an error message or handle it in another way
+        // For now, we clear the input
+        setvaultID("");
+      }
+    };
 
   return (
     <div className={styles.body}>
@@ -109,6 +135,15 @@ const Profile = () => {
           <div className={styles.formContainer}>
             <h1>Withdraw</h1>
             <form action="">
+              <input
+                type="number"
+                name="VaultID"
+                id="VaultID"
+                className={styles.formInput}
+                value={vaultID}
+                onChange={handleVaultIDChange}
+                placeholder="Enter VaultID"
+              />
               <input
                 type="number"
                 name="address"
