@@ -5,6 +5,9 @@ import { useRouter } from "next/router";
 import {encodeIcrcAccount	} from "@dfinity/ledger"
 import { Principal } from "@dfinity/principal";
 import {idlFactory as depositIdlFactory} from "../deposit.did"
+import {idlFactory as vaultManageridlFactory} from "../vaultmanager.did.js"
+import {_SERVICE as DepositModule} from "../deposit.did(t)"
+import {_SERVICE as vaultmanager_SERVICE} from "../vaultmanager(ts).did"
 
 const Profile = () => {
   const [connectedAddress, setConnectedAddress] = useState<string|null>(null);
@@ -18,10 +21,15 @@ const Profile = () => {
   const [vaultID, setvaultID] = useState("");
   const [address, setaddress] = useState("");
   const [amount, setamount] = useState("");
+
+  const[depositModule,setDepositModule] = useState<DepositModule | null>(null)
+  const [vaultManager,setVaultManager] = useState<vaultmanager_SERVICE |null>(null)
+
   const router = useRouter();
   const depositModuleAddress = "br5f7-7uaaa-aaaaa-qaaca-cai"
+  const vaultManagerAddress = "avqkn-guaaa-aaaaa-qaaea-cai"
 
-  
+
   useEffect(() => {
     const checkWalletConnection = async () => {
       try {
@@ -37,7 +45,8 @@ const Profile = () => {
           const address = publicKey.toText();
           setConnectedAddress(address);
           setEncodedAccount(encodeIcrcAccount({owner:Principal.fromText(depositModuleAddress),subaccount:padPrincipalWithZeros(publicKey.toUint8Array())}))
-          await createActor()
+          await DepositModulecreateActor()
+          await VaultManagercreateActor()
         }
       } catch (e) {
         console.log("Error checking wallet connection:", e);
@@ -56,23 +65,35 @@ const Profile = () => {
   };
 
 
-  const createActor = async () => {
+  const DepositModulecreateActor = async () => {
     try {
-      const ckbtc = await window.ic.infinityWallet.createActor({
+      const depositModule = await window.ic.infinityWallet.createActor({
       canisterId: depositModuleAddress,
       interfaceFactory: depositIdlFactory,
       host:"http://localhost:4943/", 
     })
-    try{
-    console.log("ckbtc: ",await ckbtc.getBtcDepositAddress())
-    }
-    catch(e){
-      console.log("Canister Error:",e)
-    }
+
+    setDepositModule(depositModule)
+
     } catch(e){
       console.log("Error creating actor:",e)
     };
 
+  }
+
+  const VaultManagercreateActor = async() => {
+    try {
+      const vaultManager = await window.ic.infinityWallet.createActor({
+      canisterId: vaultManagerAddress,
+      interfaceFactory: vaultManageridlFactory,
+      host:"http://localhost:4943/", 
+    })
+
+    setVaultManager(vaultManager)
+
+    } catch(e){
+      console.log("Error creating actor:",e)
+    };
   }
 
   const padPrincipalWithZeros = (blob:Uint8Array)=> {
@@ -105,12 +126,17 @@ const Profile = () => {
     return true;
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleWithdraw = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (validateFields1()) {
       // Handle form submission logic here
       // You can make an API call or perform any other action
+
+      if(vaultManager!==null){
+        const _vauldId = BigInt(parseInt(vaultID))
+        console.log(await vaultManager.getVaultDetails(_vauldId))
+      }
     }
   };
 
@@ -149,7 +175,7 @@ const Profile = () => {
         >
           <div className={styles.formContainer}>
             <h1>Withdraw</h1>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleWithdraw}>
               <input
                 type="number"
                 name="VaultID"
