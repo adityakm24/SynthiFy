@@ -1,8 +1,4 @@
 /* styles/globals.css */
-@import "~font-awesome/css/font-awesome.css";
-
-
-
 
 .navbar {
   background-color: #000000; /* Purple background color */
@@ -27,16 +23,6 @@
 }
 
 
-.disconnectButton {
-  background-color: red;
-  color: #fff;
-  padding: 0.5rem 1rem;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 1rem;
-  margin-right: 1rem;
-}
 
 
 
@@ -72,37 +58,6 @@
   position: relative;
   display: inline-block;
   
-}
-
-.connectButton {
-  background-color: #0E76FD; /* Green button color */
-  color: #fff; /* White text color */
-  padding: 12px 36px; /* Increase padding for button */
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
-  font-size: 15px;
-}
-
-.connectButton:hover {
-  background-color: #1a7dfe; /* Green button color */
-  color: #fff; /* White text color */
-  padding: 12px 36px; /* Increase padding for button */
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
-  font-size: 15px;
-}
-
-
-.disconnectDropdownButton {
-  background-color: #fafafa; /* Green button color */
-  color: #000000; /* White text color */
-  padding: 12px 26px; /* Increase padding for button */
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 15px; 
 }
 
 .modalBackdrop {
@@ -185,13 +140,15 @@
 }
 
 .dropdownContainer {
-  display: flex; /* Display children inline */
-  align-items: center; /* Vertically center children */
+  display: flex; 
+  align-items: center; 
+  border-radius: 10px;
 }
 
+
 .select-container {
-  flex-grow: 1; /* Allow the select element to grow and take available space */
-  margin-right: 8px; /* Add margin between select and button */
+  flex-grow: 1; 
+  margin-right: 8px; 
 }
 
 .select-element {
@@ -208,7 +165,7 @@
   color: #fff;
   padding: 12px 36px;
   border: none;
-  border-radius: 10px;
+  border-radius: 5px;
   cursor: pointer;
   font-size: 15px;
   z-index: 4;
@@ -219,11 +176,8 @@
   color: #fff;
   padding: 12px 36px;
   border: none;
-  border-radius: 10px;
+  border-radius: 5px;
   cursor: pointer;
   font-size: 15px;
    z-index: 4;
 }
-
-
-

@@ -9,14 +9,14 @@
 .input1Container {
   border: 2px black;
   border-style: solid;
-  width: 500px;
+  width: 600px;
   padding: 20px;  
 }
 
 .input2Container {
   border: 2px black;
   border-style: solid;
-  width: 500px;
+  width: 600px;
   padding: 20px;
   margin-top: 20px;
    margin-bottom: 20px;
@@ -25,7 +25,7 @@
 .input3Container {
   border: 2px black;
   border-style: solid;
-  width: 700px;
+  width: 650px;
   padding: 20px;
   margin-top: 20px;
    margin-bottom: 20px;
@@ -165,6 +165,9 @@
   width: 90%; 
   height: 70%;
   z-index: 4;
+  align-items: center;
+  align-content: center;
+  text-align: center;
 
 }
 
@@ -196,10 +199,6 @@
   color: #ccc;
 }
 
-/* Rest of your styles for form elements, buttons, etc. */
-
-/* ... (rest of your styles) */
-
 
 .tableContainer {
   display: flex;
@@ -227,8 +226,6 @@
   color: white;
 }
 
-
-
 .tableList th {
   padding-top: 12px;
   padding-bottom: 12px;
@@ -241,7 +238,7 @@
   background-color: rgb(31, 77, 141);
 }
 
-/* Add these styles to your CSS file */
+
 .createWalletContainer {
   display: flex;
   flex-direction: column;
@@ -251,10 +248,10 @@
 }
 
 .createWalletButton {
-  padding: 16px 24px; /* Increase padding to make the button bigger */
-  font-size: 18px;   /* Increase font size */
-  background-color: #007bff; /* Change the background color */
-  color: #fff;       /* Change the text color */
+  padding: 16px 24px; 
+  font-size: 18px;   
+  background-color: #007bff; 
+  color: #fff;       
   border: none;
   border-radius: 8px;
   cursor: pointer;
@@ -273,29 +270,23 @@
   cursor: pointer; 
   transition: background-color 0.3s, transform 0.2s; }
 
-.Calculate:hover {
-  background-color: #000000;
-  border:2px solid #abffff;
-  color: #fff; /* Change text color on hover if needed */
-  transform: scale(1.01); /* Slight scaling on hover */
-}
-
 .Calculate {
-  width: 100%;
-   font-size: 17px;
-  padding: 10px;
-  border-radius: 10px;
-  background-color: rgb(255, 255, 255);
-  color: rgb(0, 0, 0);
-  border: 2px solid black;
-}
-
-.Calculate:hover {
-  transition: 0.3s;
-  width: 100%;
+  width: 15%;
+  font-size: 17px;
   padding: 10px;
   border-radius: 10px;
   background-color: rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
+  border: 2px solid black;
+  box-shadow: #000000;
+}
+
+.Calculate:hover {
+  width: 15%;
+  font-size: 17px;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: rgb(39, 39, 39);
   color: rgb(255, 255, 255);
   border: 2px solid black;
 }
@@ -325,6 +316,3 @@
   text-decoration-color:#5ea3ec;
   cursor: pointer;
 }
-
-
-

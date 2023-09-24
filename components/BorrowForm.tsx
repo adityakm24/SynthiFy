@@ -106,13 +106,30 @@ const Borrow = () => {
 //   }
 
 // }
-const validateFields = () => {
+const validateFields1 = () => {
   if (vaultID === "" || synthUsdAmount === "") {
     alert("Please fill in all required fields");
     return false;
   }
   return true;
 };
+const validateFields2 = () => {
+  if (vaultID === "" || debtToRepay === "") {
+    alert("Please fill in all required fields");
+    return false;
+  }
+  return true;
+};
+const validateFields3 = () => {
+  if (vaultID === "" ||  collatAmnt === "") {
+    alert("Please fill in all required fields");
+    return false;
+  }
+  return true;
+};
+
+
+
   const connectWallet = async () => {
     try {
       const publicKey = await window.ic.infinityWallet.requestConnect({
@@ -266,7 +283,7 @@ const validateFields = () => {
   }
 
   const handleBorrow = async () => {
-    if (validateFields()) {
+    if (validateFields1()) {
       if(synthUsdAmount !== null) {
         console.log("collatAmount",parseFloat(synthUsdAmount))
         const decimalAdjustedsUsd = BigInt(Math.pow(10,8) * parseFloat(synthUsdAmount))
@@ -291,10 +308,10 @@ const validateFields = () => {
     }
     
   };
- 
+ //change1
   //@bug here = if the valuues in the field are not entered it should not allow you to click buttons 
   const handleRepayDebt = async() => {
-    if (validateFields()) {
+    if (validateFields2()) {
       if(vaultManager!==null) {
         console.log("inside vault manager address")
         try{
@@ -319,7 +336,7 @@ const validateFields = () => {
   }
 
   const handleaddCollateral = async() => {
-    if (validateFields()) {
+    if (validateFields3()) {
       console.log("collatAmount",parseFloat(collatAmnt))
     const decimalAdjusted = BigInt(Math.pow(10,8) * parseFloat(collatAmnt))
     console.log("decimal adjusts",decimalAdjusted)
