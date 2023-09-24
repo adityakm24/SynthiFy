@@ -828,7 +828,7 @@ currentVautDetails!==null && currentVautDetails.vaultLtvRatio !== undefined
           <table id="tableList" className={styles.tableList}>
             <thead>
               <tr>
-                <th></th>
+                <th>Collateral Token</th>
                 <th>Stablecoin</th>
                 <th>Interest Rate</th>
                 <th>Liquidation Fee</th>
@@ -863,7 +863,6 @@ currentVautDetails!==null && currentVautDetails.vaultLtvRatio !== undefined
                       <option>Add Collateral</option>
                       <option>Create Vault</option>
                       <option>Repay Debt</option>
-
                     </select>
                   </div>
                   <div className={styles.closeIconContainer}>
