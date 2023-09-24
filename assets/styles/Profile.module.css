@@ -1,15 +1,41 @@
 /* WalletConnect.css */
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap');
 
 .body {
-  height: 100vh; /* 100% of the viewport height */
+  height: 80vh; /* 100% of the viewport height */
   margin: 0;
   display: flex;
   justify-content: center; /* Horizontally center elements */
   align-items: center; /* Vertically center elements */
-  background-color: #000000;
   color: white;
+  background-image: radial-gradient(#69696959 1.2px, transparent 1px);
+  background-size: 36px 36px;
+  opacity: 0.8;
+  animation: pulsate 20s infinite;
 }
-
+.blob {
+  background-color: aliceblue;
+  background: linear-gradient(200deg, #0bc94a 0%, #752bec 100%);
+  height: 300px;
+  width: 500px;
+  aspect-ratio: 1;
+  position: absolute;
+  left:-10%;
+  top: 0%;
+  border-radius: 50px;
+  filter: blur(100px);
+  z-index: -1;
+  overflow-x: hidden;
+  animation: rotate 7s linear infinite;
+}
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
 
 .button {
   border-radius: 20px;
@@ -136,6 +162,8 @@
   align-items: center;
   justify-content: center;
   margin-top: 40px;
+  font-family: 'Archivo Black', sans-serif !important;
+  color: #fff;
 }
 
 .formInput {
@@ -149,16 +177,47 @@
 }
 
 .formButton {
-  background-color: #0E76FD;
+  background: linear-gradient(200deg, #6fe7977a 0%, #8458ca90 100%);
   color: #fff;
-  padding: 12px 36px;
+  font-weight: bold;
+  padding: 12px 26px; /* Adjusted padding */
   border: none;
   border-radius: 10px;
   cursor: pointer;
   font-size: 15px;
-  width: 105%
+  margin: auto; /* Center the button */
+  justify-content: center;
+  display: flex;
+}
+.formButton2{
+  background:#69696959;
+  color: #fff;
+  font-weight: bold;
+  padding: 12px 26px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 15px;
+  margin: auto;
+  justify-content: center;
+  display: flex;
+  box-shadow: 0 0 1px 0.5px rgba(255, 255, 255, 0.8); /* Added glowy white border */
 }
 
+
 .formButton:hover {
-  background-color: #1a7dfe;
+  box-shadow: 0 0 7px #fff; 
+}
+
+.formButton2:hover {
+  box-shadow: 0 0 10px #9cd9b0, 0 0 10px #b485ff; 
+}
+.notConnected {
+  height: 50vh; /* 100% of the viewport height */
+  margin: 0;
+  display: flex;
+  flex-direction: column; /* Arrange children vertically */
+  justify-content: center; /* Horizontally center elements */
+  align-items: center; /* Vertically center elements */
+  color: white;
 }

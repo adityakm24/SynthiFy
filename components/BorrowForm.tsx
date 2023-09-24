@@ -265,6 +265,11 @@ const validateFields1 = () => {
         console.log('Invalid result:', approveResult);
       }
       
+      
+      
+      
+      
+
     }
   }
 
@@ -814,6 +819,7 @@ currentVautDetails!==null && currentVautDetails.vaultLtvRatio !== undefined
 
   return (
     <div>
+      <div className={styles.blob}></div>
       {isConnected ? (
         <div className={styles.tableContainer}>
           <table id="tableList" className={styles.tableList}>
@@ -869,7 +875,19 @@ currentVautDetails!==null && currentVautDetails.vaultLtvRatio !== undefined
           )}
         </div>
       ) : (
-        <p>Wallet Not Connected</p>
+       <div className={styles.notConnected}>
+          <h1>Wallet Not Connected</h1>
+          <p>
+            Download and get started for free with{" "}
+            <Link href="https://wallet.bitfinity.network/" target="_blank">
+              BitFinity Wallet
+            </Link>{" "}
+            or{" "}
+            <Link href="https://plugwallet.ooo/" target="_blank">
+              Plug Wallet
+            </Link>
+          </p>
+        </div>
       )}
     </div>
   );

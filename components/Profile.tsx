@@ -178,6 +178,7 @@ const Profile = () => {
 
   return (
     <div className={styles.body}>
+    <div className={styles.blob}></div>
       {isConnected ? (
         <div
           style={{
@@ -240,7 +241,7 @@ const Profile = () => {
               padding: "20px",
             }}
           >
-            <button className={styles.general} onClick={toggleModal0}>
+            <button className={styles.formButton2} onClick={toggleModal0}>
               Deposit CkBTC
             </button>
 
@@ -265,7 +266,7 @@ const Profile = () => {
               </div>
             )}
 
-            <button className={styles.general} onClick={toggleModal1}>
+            <button className={styles.formButton2} onClick={toggleModal1}>
               Deposit BTC
             </button>
             {isModalOpen1 && (
@@ -298,7 +299,19 @@ const Profile = () => {
           </div>
         </div>
       ) : (
-        <p>Wallet Not Connected</p>
+        <div className={styles.notConnected}>
+          <h1>Wallet Not Connected</h1>
+          <p>
+            Download and get started for free with{" "}
+            <Link href="https://wallet.bitfinity.network/" target="_blank">
+              BitFinity Wallet
+            </Link>{" "}
+            or{" "}
+            <Link href="https://plugwallet.ooo/" target="_blank">
+              Plug Wallet
+            </Link>
+          </p>
+        </div>
       )}
     </div>
   );
