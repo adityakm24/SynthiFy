@@ -2,11 +2,11 @@
   background-color: aliceblue;
   background: linear-gradient(200deg, #0bc94a 0%, #752bec 100%);
   height: 300px;
-  width: 500px;
+  width: 300px;
   aspect-ratio: 1;
   position: absolute;
-  left:-10%;
-  top: 0%;
+  left:-5%;
+  top: -10%;
   border-radius: 50px;
   filter: blur(100px);
   z-index: 0;
@@ -234,14 +234,12 @@
   align-items: center;
   height: 50vh; 
   padding: 0 50px;
-  z-index: 999;
   
 }
 
 .tableList {
   border-collapse: collapse;
   width: 100%;
-  z-index: 999;
 }
 
 .tableList td,
@@ -249,7 +247,6 @@
   border: 0px solid #ddd;
   color: white;
   padding: 8px;
-  z-index: 999;
 
 }
 
