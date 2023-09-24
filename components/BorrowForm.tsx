@@ -38,7 +38,6 @@ const Borrow = () => {
   const[debtToRepay,setDebtToRepay] = useState("")
 
 
-
   const vaultManagerAddress = "avqkn-guaaa-aaaaa-qaaea-cai"
 
   const synthTokenAddress = "by6od-j4aaa-aaaaa-qaadq-cai"
@@ -169,10 +168,16 @@ const validateFields3 = () => {
   }
 
 
-
+  const resetState = () => {
+    setVaultID("");
+    setsynthUsdAmount("");
+    setcollatAmnt("");
+    setCurrentVaultDetails(null);
+    setCurrentVaultIds([])
+  };
   const handleOptionChange = (e) => {
     setSelectedOption(e.target.value);
-
+    resetState()
     if (e.target.value === "Repay Debt") {
       checkAllowance();
     }
@@ -290,8 +295,8 @@ const validateFields3 = () => {
             const result = await vaultManager.borrow(vaultId,decimalAdjustedsUsd)
             console.log(result)
             
-            // setCurrentVaultDetails(await vaultManager.getVaultDetails(vaultId))
-            // console.log(currentVautDetails)
+            setCurrentVaultDetails(await vaultManager.getVaultDetails(vaultId))
+            console.log(currentVautDetails)
           }
           catch(e){
             console.log(e)
@@ -315,13 +320,15 @@ const validateFields3 = () => {
 
       const parsedValue = parseFloat(debtToRepay)
       const _debtToRepay = BigInt(Math.pow(10, 8)) * BigInt(Math.round(parsedValue * 10)) / BigInt(10);
-          // const tempResult = await vaultManager.getBtcPrice()
-          // console.log((tempResult))
+
   
           console.log(_vaultId)
   
         const result = await vaultManager.repayDebt(_vaultId,_debtToRepay,[])
         console.log(result)
+
+        setCurrentVaultDetails(await vaultManager.getVaultDetails(_vaultId))
+        console.log(currentVautDetails)
         }
         catch(e){
           console.log(e)
