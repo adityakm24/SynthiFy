@@ -111,7 +111,7 @@ const validateFields1 = () => {
     return false;
   }
   else if (synthUsdAmount < 0) {
-      alert("Please the SynthUSD amount entred ");
+      alert("Please check the SynthUSD amount entred ");
       return false;
   }
   return true;
