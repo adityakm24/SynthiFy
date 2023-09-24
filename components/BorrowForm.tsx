@@ -169,16 +169,10 @@ const validateFields3 = () => {
   }
 
 
-  const resetState = () => {
-    setVaultID("");
-    setsynthUsdAmount("");
-    setcollatAmnt("");
-    setCurrentVaultDetails(null);
-    setCurrentVaultIds([])
-  };
+
   const handleOptionChange = (e) => {
     setSelectedOption(e.target.value);
-    resetState()
+
     if (e.target.value === "Repay Debt") {
       checkAllowance();
     }
@@ -316,7 +310,11 @@ const validateFields3 = () => {
         console.log("inside vault manager address")
         try{
           const _vaultId = BigInt(parseInt(vaultID))
-          const _debtToRepay = BigInt(Math.pow(10,8) * parseInt(debtToRepay))
+
+
+
+      const parsedValue = parseFloat(debtToRepay)
+      const _debtToRepay = BigInt(Math.pow(10, 8)) * BigInt(Math.round(parsedValue * 10)) / BigInt(10);
           // const tempResult = await vaultManager.getBtcPrice()
           // console.log((tempResult))
   
@@ -338,7 +336,9 @@ const validateFields3 = () => {
   const handleaddCollateral = async() => {
     if (validateFields3()) {
       console.log("collatAmount",parseFloat(collatAmnt))
-    const decimalAdjusted = BigInt(Math.pow(10,8) * parseFloat(collatAmnt))
+
+      const parsedValue = parseFloat(collatAmnt)
+    const decimalAdjusted = BigInt(Math.pow(10, 8)) * BigInt(Math.round(parsedValue * 10)) / BigInt(10);
     console.log("decimal adjusts",decimalAdjusted)
 
     const vaultId = BigInt(parseInt(vaultID))
