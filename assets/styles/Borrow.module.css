@@ -184,10 +184,14 @@
 }
 
 .modalDropdown {
+  appearance: none;
   flex-grow: 1;
   margin-left: 20px; 
   padding: 10px;
   border-radius: 10px;
+  float: left;
+  align-self: flex-start;
+  text-align-last: center;
 }
 
 .closeIconContainer {
