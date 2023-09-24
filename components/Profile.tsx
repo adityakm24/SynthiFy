@@ -90,13 +90,25 @@ const Profile = () => {
         });
     }
   };
-
   const validateFields1 = () => {
-    if (vaultID === "" || synthUsdAmount === "") {
+    if (vaultID === "" || address === "" || amount === "") {
       alert("Please fill in all required fields");
       return false;
     }
+    if (parseInt(amount) < 0) {
+      alert("Amount should not be negative");
+      return false;
+    }
     return true;
+  };
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    if (validateFields1()) {
+      // Handle form submission logic here
+      // You can make an API call or perform any other action
+    }
   };
 
 
@@ -134,7 +146,7 @@ const Profile = () => {
         >
           <div className={styles.formContainer}>
             <h1>Withdraw</h1>
-            <form action="">
+            <form onSubmit={handleSubmit}>
               <input
                 type="number"
                 name="VaultID"
@@ -145,17 +157,21 @@ const Profile = () => {
                 placeholder="Enter VaultID"
               />
               <input
-                type="number"
+                type="text"
                 name="address"
                 id="address"
                 className={styles.formInput}
+                value={address}
+                onChange={(e) => setaddress(e.target.value)}
                 placeholder="Enter address"
               />
               <input
                 type="number"
                 name="amount"
-                id="name"
+                id="amount"
                 className={styles.formInput}
+                value={amount}
+                onChange={(e) => setamount(e.target.value)}
                 placeholder="Enter amount"
               />
               <button type="submit" className={styles.formButton}>

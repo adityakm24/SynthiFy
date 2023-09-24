@@ -45,6 +45,10 @@
 .navbarLink {
   color: white;
   text-decoration: none;
+  border-radius: 10px;
+  padding: 10px;
+  text-align: center;
+  width: 70px;
   padding: 10px;
   font-size: 18px;
   transition: color 0.3s;
@@ -52,8 +56,12 @@
 }
 
 .navbarLink:hover {
-  color: #0056b3; 
-  text-decoration: underline;
+  background-color: #343434;
+  border-radius: 10px;
+  padding: 10px;
+  color: white; 
+  text-align: center;
+  width: 70px;
   transition: 0.2s;
 }
 
