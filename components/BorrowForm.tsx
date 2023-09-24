@@ -265,11 +265,6 @@ const validateFields1 = () => {
         console.log('Invalid result:', approveResult);
       }
       
-      
-      
-      
-      
-
     }
   }
 
