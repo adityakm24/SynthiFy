@@ -12,6 +12,7 @@
   z-index: 0;
   overflow-x: hidden;
   animation: rotate 7s linear infinite;
+  
 }
 @keyframes rotate {
   0% {
@@ -207,16 +208,68 @@
   font-weight: bold;
 }
 
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  20% {
+    transform: translateY(5px);
+  }
+  25% {
+    transform: translateY(0px);
+  }
+  35% {
+    transform: translateY(5px);
+  }
+}
+
 .modalDropdown {
-  appearance: none;
+  position: relative;
   flex-grow: 1;
-  margin-left: 20px; 
-  padding: 10px;
-  border-radius: 10px;
-  float: left;
+  margin-left: 20px;
   align-self: flex-start;
   text-align-last: center;
+  animation: bounce 5s infinite;
 }
+
+.modalDropdown select {
+  padding: 12px 20px;
+  margin: 8px 0 25px 0; /* Increased bottom margin to make space for the arrow */
+  box-sizing: border-box;
+  border: 2px solid #000;
+  border-radius: 8px;
+  appearance: none;
+  background-color: #fff;
+  font-size: 16px;
+  color: #000;
+  cursor: pointer;
+}
+
+.modalDropdown:after {
+  content: "";
+  position: absolute;
+  left: 54.5%;
+  bottom: 54%;
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 9px solid #000;
+
+  transform: translateX(-50%);
+}
+
+.modalDropdown:hover select {
+  border-color: #808080;
+}
+
+.modalDropdown select:focus {
+  outline: none;
+  border-color: #000;
+  box-shadow: 0 0 10px 1px rgba(0,0,0,0.1);
+}
+
+
 
 .closeIconContainer {
   cursor: pointer;
