@@ -248,6 +248,7 @@ function adjustDecimals(amount:bigint){
       <Head>
         <title>SynthiFy App</title>
         <meta name="SynthiFy App" content=" SynthiFy App" key=" SynthiFy App" />
+        <link rel="icon" href="/icons/tabicon.jpg" />{" "}
       </Head>
       <div className={styles.blob}></div>
       {isConnected ? (
