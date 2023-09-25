@@ -277,7 +277,7 @@ const validateFields1 = () => {
   const handleGetVaultDetails = async (e) => {
      e.preventDefault();
   if (vaultManager!==null){
-    alert("hi")
+
     const _vaultId = BigInt(parseInt(vaultID))
     const data = await vaultManager.getVaultDetails(_vaultId);
     setCurrentVaultDetails(data)
