@@ -279,7 +279,8 @@ const validateFields1 = () => {
   if (vaultManager!==null){
     alert("hi")
     const _vaultId = BigInt(parseInt(vaultID))
-    console.log(await vaultManager.getVaultDetails(_vaultId))
+    const data = await vaultManager.getVaultDetails(_vaultId);
+    setCurrentVaultDetails(data)
   }
 }
   const SyntheTokenCreateActor = async() => {
