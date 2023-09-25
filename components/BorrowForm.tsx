@@ -976,9 +976,18 @@ const Borrow = () => {
   return (
     <div>
       <Head>
-        <title>SynthiFy App</title>
-        <meta name="SynthiFy App" content=" SynthiFy App" key=" SynthiFy App" />
-        <link rel="icon" href="/icons/tabicon.jpg" />
+        <title>SynthiFy - Profile</title>
+        <meta
+          name="description"
+          content="Unlock liquidity for ckbtc with SynthiFy - a decentralized protocol."
+        />
+        <meta
+          name="keywords"
+          content="SynthiFy,SynthiFy App, Decentralized finance, Liquidity protocol, Crypto lending, Collateralized loans, Blockchain finance, Synth tokens, Stablecoin minting, Crypto borrowing, Crypto collateral, Instant liquidity, Asset-backed loans, Yield farming, Smart contracts, DeFi platform, Crypto assets, Cryptocurrency lending, Tokenized assets, Yield generation, Financial decentralization, Crypto-backed loans, Borrowing and lending, Cryptocurrency protocol, Decentralized liquidity pool, CKBTC collateral, SynthUSD stablecoin, Blockchain assets, Crypto investment, Digital currency, Peer-to-peer lending, Yield optimization, Blockchain lending, Crypto savings, DeFi ecosystem, Automated finance, Blockchain technology"
+        />
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="icon" href="/icons/tabicon.jpg" />{" "}
       </Head>
       <div className={styles.blob}></div>
       {isConnected ? (
