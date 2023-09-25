@@ -728,8 +728,28 @@ currentVautDetails!==null && currentVautDetails.vaultLtvRatio !== undefined
                       width: "500px",
                       maxHeight: "300px", // Set a max height
                       overflowY: "auto", // Set overflowY to auto
+                      scrollbarWidth: "thin", // for Firefox
+                      scrollbarColor: "grey white", // for Firefox
+                      MsOverflowStyle: "none", // for Internet Explorer 11
                     }}
                   >
+                    <style>
+                      {`
+        ::-webkit-scrollbar {
+          width: 12px; // set scrollbar width
+        }
+
+        ::-webkit-scrollbar-track {
+          background: white; // set track background color
+        }
+
+        ::-webkit-scrollbar-thumb {
+          background-color: grey; // set thumb color
+          border-radius: 6px; // set thumb border radius
+          border: 3px solid white; // set thumb border color
+        }
+        `}
+                    </style>
                     <p
                       style={{
                         fontSize: "18px",
