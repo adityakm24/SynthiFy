@@ -163,11 +163,12 @@ const validateFields1 = () => {
   const getuserIdVaults = async() => {
     if(vaultManager!==null && connectPrincipal !==null){
       try{
+        console.log("inside getUserIdVaults")
       const vaultids = await vaultManager.getUserVaultIds(connectPrincipal)
       setCurrentVaultIds(vaultids)
       }
       catch(e){
-
+        console.log("error in getting user id vaults",e)
       }
       
     }
@@ -377,11 +378,11 @@ const validateFields1 = () => {
 
   const handleCreateVaultFunction = async() => {
     if(vaultManager!==null){
-      
+      console.log("inside handle create vault")
       try{
 
 
-        //@ts-ignore
+
       const vaultId = await vaultManager.createVault([])
       getuserIdVaults();
       console.log(vaultId)
@@ -390,6 +391,8 @@ const validateFields1 = () => {
         console.log("Error occured when creating vault:",e)
       }
     }
+
+
   }
 
 
@@ -421,6 +424,8 @@ const validateFields1 = () => {
     };
     const handleVaultFunction = async() => {
       //vault details
+
+      console.log("inside create vault",vaultID)
     }
 
 
@@ -431,7 +436,7 @@ const validateFields1 = () => {
       case "Borrow":
         //  setVaultID(0);
         return (
-          <form>
+          <form onSubmit={(e) =>e.preventDefault()}>
             <div className={styles.input3Container}>
               <div className={styles.inputGroup}>
                 <label htmlFor="ckBtc" className={styles.labelWithIcon}>
@@ -814,31 +819,31 @@ currentVautDetails!==null && currentVautDetails.vaultLtvRatio !== undefined
             </form>
           </div>
         );
-        //  setVaultID(0);
-          return (
-          <div className={styles.createWalletContainer}>
-            <button
-              className={styles.createWalletButton}
-              onClick={handleCreateVaultFunction}
-            >
-              Create Vault
-            </button>
-            {currentVaultIds.length > 0 && (
-        <div style={{ backgroundColor: 'black', color: 'white', border: '2px solid #1e90ff', borderRadius: '5px', boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)', fontFamily: 'Arial, sans-serif', display: 'inline-block', padding: '5px', marginTop: '20px' }}>
-        <p style={{ fontSize: '18px', marginBottom: '10px', textAlign: 'center' }}>Current Vault IDs:</p>
-        <ul style={{ listStyleType: 'none', padding: '0', textAlign: 'center' }}>
-          {currentVaultIds.map((vaultId) => (
-            <li key={vaultId.toString()} style={{ fontSize: '16px', marginBottom: '5px', padding: '5px 10px', backgroundColor: '#1e90ff', border: '1px solid #1e90ff', borderRadius: '3px', transition: 'background-color 0.3s, transform 0.3s', margin: '10px 5px' }}>
-              {vaultId.toString()}
-            </li>
-          ))}
-        </ul>
-      </div>
+
+      //     return (
+      //     <div className={styles.createWalletContainer}>
+      //       <button
+      //         className={styles.createWalletButton}
+      //         onClick={handleCreateVaultFunction}
+      //       >
+      //         Create Vault
+      //       </button>
+      //       {currentVaultIds.length > 0 && (
+      //   <div style={{ backgroundColor: 'black', color: 'white', border: '2px solid #1e90ff', borderRadius: '5px', boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)', fontFamily: 'Arial, sans-serif', display: 'inline-block', padding: '5px', marginTop: '20px' }}>
+      //   <p style={{ fontSize: '18px', marginBottom: '10px', textAlign: 'center' }}>Current Vault IDs:</p>
+      //   <ul style={{ listStyleType: 'none', padding: '0', textAlign: 'center' }}>
+      //     {currentVaultIds.map((vaultId) => (
+      //       <li key={vaultId.toString()} style={{ fontSize: '16px', marginBottom: '5px', padding: '5px 10px', backgroundColor: '#1e90ff', border: '1px solid #1e90ff', borderRadius: '3px', transition: 'background-color 0.3s, transform 0.3s', margin: '10px 5px' }}>
+      //         {vaultId.toString()}
+      //       </li>
+      //     ))}
+      //   </ul>
+      // </div>
       
-      )}
-            {backendData && <p className={styles.backendData}>{backendData}</p>}
-          </div>
-        );
+      // )}
+      //       {backendData && <p className={styles.backendData}>{backendData}</p>}
+      //     </div>
+      //   );
       
         case "Repay Debt":
           //  setVaultID(0);
