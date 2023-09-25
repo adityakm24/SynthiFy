@@ -274,7 +274,8 @@ const validateFields1 = () => {
     }
   }
 
-const handleGetVaultDetails = async() => {
+  const handleGetVaultDetails = async (e) => {
+     e.preventDefault();
   if (vaultManager!==null){
     alert("hi")
     const _vaultId = BigInt(parseInt(vaultID))
@@ -652,8 +653,7 @@ currentVautDetails!==null && currentVautDetails.vaultLtvRatio !== undefined
 </button>
           </form>
         );
-      //asset.ckbtcAmount
-      
+      //asset.ckbtcAmount 
       case "Create Vault":
         //  setVaultID(0);
         return (
