@@ -743,7 +743,7 @@ const Borrow = () => {
                       display: "inline-block",
                       padding: "5px",
                       marginTop: "20px",
-                      width: "500px",
+                      width: "200px",
                       maxHeight: "300px", // Set a max height
                       overflowY: "auto", // Set overflowY to auto
                       scrollbarWidth: "thin", // for Firefox
