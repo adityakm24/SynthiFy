@@ -377,8 +377,8 @@ const validateFields1 = () => {
 
   };
     
-  const handleCreateVaultFunction = async () => {
-   event.preventDefault();
+  const handleCreateVaultFunction = async (e) => {
+   e.preventDefault();
    if(vaultManager!==null){
      console.log("inside handle create vault")
      try{
