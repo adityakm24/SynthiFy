@@ -4,14 +4,16 @@ import styles from "../assets/styles/Borrow.module.css";
 import Image from "next/image";
 import Link from "next/link";
 import Head from "next/head";
-import {Opt} from "azle"
+import { Opt } from "azle";
 import { Principal } from "@dfinity/principal";
 
-
-
-import {idlFactory as vaultManageridlFactory} from "../vaultmanager.did.js"
-import {synBaseIdlFactory} from "../synBase.did"
-import { _SERVICE as vaultmanager_SERVICE,IndividualVaultData, AllowanceArgs } from "@/vaultmanager(ts).did";
+import { idlFactory as vaultManageridlFactory } from "../vaultmanager.did.js";
+import { synBaseIdlFactory } from "../synBase.did";
+import {
+  _SERVICE as vaultmanager_SERVICE,
+  IndividualVaultData,
+  AllowanceArgs,
+} from "@/vaultmanager(ts).did";
 import { _SERVICE as synBase_SERVICE } from "@/synbase(t).did";
 
 import { Account } from "@/vaultmanager(ts).did";
@@ -30,25 +32,35 @@ const Borrow = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState("Borrow");
   const [backendData, setBackendData] = useState("");
-  const [vaultManager,setVaultManager] = useState<vaultmanager_SERVICE |null>(null)
-  const [currentVautDetails,setCurrentVaultDetails] = useState<IndividualVaultData | null>(null)
-  const [connectPrincipal,setConnectedPrincipal] = useState<Principal |null>(null)
-  const [currentVaultIds, setCurrentVaultIds] = useState<Array<bigint>>([])
+  const [vaultManager, setVaultManager] = useState<vaultmanager_SERVICE | null>(
+    null
+  );
+  const [currentVautDetails, setCurrentVaultDetails] =
+    useState<IndividualVaultData | null>(null);
+  const [connectPrincipal, setConnectedPrincipal] = useState<Principal | null>(
+    null
+  );
+  const [currentVaultIds, setCurrentVaultIds] = useState<Array<bigint>>([]);
   const [Allowance, setAllowance] = useState<Allowance | null>(null);
-  const [synBaseAddress,setSynBaseAddress] = useState<synBase_SERVICE |null>(null)
-  const[debtToRepay,setDebtToRepay] = useState("")
+  const [synBaseAddress, setSynBaseAddress] = useState<synBase_SERVICE | null>(
+    null
+  );
+  const [debtToRepay, setDebtToRepay] = useState("");
 
-  const[actualUserDebt,setActualUserDebt] = useState<number |null>()
+  const [actualUserDebt, setActualUserDebt] = useState<number | null>();
 
+  const vaultManagerAddress = "isswh-liaaa-aaaal-qcdrq-cai";
 
-  const vaultManagerAddress = "isswh-liaaa-aaaal-qcdrq-cai"
+  const synthTokenAddress = "i3r53-5aaaa-aaaal-qcdqa-cai";
 
-  const synthTokenAddress = "i3r53-5aaaa-aaaal-qcdqa-cai"
+  const synthMinterAddress = "i4q3p-qyaaa-aaaal-qcdqq-cai";
 
-  const synthMinterAddress = "i4q3p-qyaaa-aaaal-qcdqq-cai"
+  const whitelist = [
+    vaultManagerAddress,
+    synthTokenAddress,
+    synthMinterAddress,
+  ];
 
-  const whitelist = [vaultManagerAddress,synthTokenAddress,synthMinterAddress]
-  
   const router = useRouter();
 
   useEffect(() => {
@@ -59,12 +71,12 @@ const Borrow = () => {
 
         if (result) {
           const publicKey = await window.ic.infinityWallet.getPrincipal();
-          setConnectedPrincipal(publicKey)
+          setConnectedPrincipal(publicKey);
           const address = publicKey.toText();
           setConnectedAddress(address);
-          await VaultManagercreateActor()
-          await SyntheTokenCreateActor()
-         //
+          await VaultManagercreateActor();
+          await SyntheTokenCreateActor();
+          //
           console.log(`The connected user's public key  sis:`, publicKey);
         }
       } catch (e) {
@@ -75,7 +87,6 @@ const Borrow = () => {
     checkWalletConnection();
   }, []);
 
-
   useEffect(() => {
     // Call getuserIdVaults whenever selectedOption changes to "Create Vault"
     if (selectedOption === "Create Vault" && vaultManager !== null) {
@@ -85,63 +96,61 @@ const Borrow = () => {
 
   //@todo: Change the use effect condition
   useEffect(() => {
-    console.log('inside use effect')
-    const main = async() =>{  
-      await checkAllowance()
-    }
+    console.log("inside use effect");
+    const main = async () => {
+      await checkAllowance();
+    };
 
     main();
-  },[])
+  }, []);
 
-//   useEffect(()=> {
-//     const main = async() =>{
-//       await checkCurrentVaultIds()
-//     };
-//     main();
-//   },[selectedOption])
+  //   useEffect(()=> {
+  //     const main = async() =>{
+  //       await checkCurrentVaultIds()
+  //     };
+  //     main();
+  //   },[selectedOption])
 
-// const checkCurrentVaultIds = async() => {
+  // const checkCurrentVaultIds = async() => {
 
-//   if(vaultManager !== null && vaultID !== ""){
-//     const vaultID
-//   setCurrentVaultDetails(await vaultManager.getVaultDetails(vaultId))
-//   }
+  //   if(vaultManager !== null && vaultID !== ""){
+  //     const vaultID
+  //   setCurrentVaultDetails(await vaultManager.getVaultDetails(vaultId))
+  //   }
 
-// }
-const validateFields1 = () => {
-  const synthUsdAmountNum = parseFloat(synthUsdAmount);
+  // }
+  const validateFields1 = () => {
+    const synthUsdAmountNum = parseFloat(synthUsdAmount);
 
-  if (vaultID === "" || isNaN(synthUsdAmountNum) || synthUsdAmountNum < 0) {
-    alert("Please fill in all required fields correctly");
-    return false;
-  }
+    if (vaultID === "" || isNaN(synthUsdAmountNum) || synthUsdAmountNum < 0) {
+      alert("Please fill in all required fields correctly");
+      return false;
+    }
 
-  return true;
-};
+    return true;
+  };
 
   const validateFields2 = () => {
-  const debtToRepayNum = parseFloat(debtToRepay);
-  if (vaultID === "" || debtToRepay === "" || debtToRepayNum < 0) {
-    alert("Please fill in all required fields");
-    return false;
-  }
-  return true;
-};
+    const debtToRepayNum = parseFloat(debtToRepay);
+    if (vaultID === "" || debtToRepay === "" || debtToRepayNum < 0) {
+      alert("Please fill in all required fields");
+      return false;
+    }
+    return true;
+  };
   const validateFields3 = () => {
-  const collatAmntNum = parseFloat(collatAmnt);
-  if (vaultID === "" || collatAmnt === "" || collatAmntNum < 0) {
-    alert("Please fill in all required fields");
-    return false;
-  } 
-  return true;
-};
-
-
+    const collatAmntNum = parseFloat(collatAmnt);
+    if (vaultID === "" || collatAmnt === "" || collatAmntNum < 0) {
+      alert("Please fill in all required fields");
+      return false;
+    }
+    return true;
+  };
 
   const connectWallet = async () => {
     try {
       const publicKey = await window.ic.infinityWallet.requestConnect({
-        whitelist
+        whitelist,
       });
       router.reload();
       const address = publicKey.toText();
@@ -164,276 +173,261 @@ const validateFields1 = () => {
     }
   };
 
-  const getuserIdVaults = async() => {
-    if(vaultManager!==null && connectPrincipal !==null){
-      try{
-        console.log("inside getUserIdVaults")
-      const vaultids = await vaultManager.getUserVaultIds(connectPrincipal)
-      setCurrentVaultIds(vaultids)
+  const getuserIdVaults = async () => {
+    if (vaultManager !== null && connectPrincipal !== null) {
+      try {
+        console.log("inside getUserIdVaults");
+        const vaultids = await vaultManager.getUserVaultIds(connectPrincipal);
+        setCurrentVaultIds(vaultids);
+      } catch (e) {
+        console.log("error in getting user id vaults", e);
       }
-      catch(e){
-        console.log("error in getting user id vaults",e)
-      }
-      
     }
-  }
-
+  };
 
   const resetState = () => {
     setVaultID("");
     setsynthUsdAmount("");
     setcollatAmnt("");
     setCurrentVaultDetails(null);
-    setCurrentVaultIds([])
+    setCurrentVaultIds([]);
   };
   const handleOptionChange = (e) => {
     setSelectedOption(e.target.value);
-    resetState()
+    resetState();
     if (e.target.value === "Repay Debt") {
       checkAllowance();
     }
-
   };
 
   const toggleModal = () => {
     setIsModalOpen(!isModalOpen);
   };
 
-
   const VaultManagercreateActor = async () => {
     try {
       const _vaultManager = await window.ic.infinityWallet.createActor({
-      canisterId: vaultManagerAddress,
-      interfaceFactory: vaultManageridlFactory,
-      host:undefined, 
-      
-    })
-    setVaultManager(_vaultManager)
-    } catch(e){
-      console.log("Error creating actor:",e)
-    };
-
-  }
-
-  const checkAllowance = async() => {
-    console.log("inside ")
-    if(synBaseAddress !== null && connectPrincipal!==null) {
-      console.log("heeeeere")
-      const allowance_args: AllowanceArgs = {
-        account : {
-          owner:connectPrincipal,
-          subaccount:[]
-        },
-        spender:{
-          owner:Principal.fromText(vaultManagerAddress),
-          subaccount:[]
-        }
-      }
-      console.log("before allowance")
-      const allowance = await synBaseAddress.icrc2_allowance(allowance_args)
-      console.log(allowance)
-      setAllowance(allowance)
+        canisterId: vaultManagerAddress,
+        interfaceFactory: vaultManageridlFactory,
+        host: undefined,
+      });
+      setVaultManager(_vaultManager);
+    } catch (e) {
+      console.log("Error creating actor:", e);
     }
-  }
+  };
 
-  const handleApprove = async() =>{
-    console.log( `Checking synabse ${synBaseAddress} and connnectPrincipal ${connectPrincipal}`)
-    if(synBaseAddress !== null && connectPrincipal!==null) {
-      console.log("heeeeere")
+  const checkAllowance = async () => {
+    console.log("inside ");
+    if (synBaseAddress !== null && connectPrincipal !== null) {
+      console.log("heeeeere");
+      const allowance_args: AllowanceArgs = {
+        account: {
+          owner: connectPrincipal,
+          subaccount: [],
+        },
+        spender: {
+          owner: Principal.fromText(vaultManagerAddress),
+          subaccount: [],
+        },
+      };
+      console.log("before allowance");
+      const allowance = await synBaseAddress.icrc2_allowance(allowance_args);
+      console.log(allowance);
+      setAllowance(allowance);
+    }
+  };
+
+  const handleApprove = async () => {
+    console.log(
+      `Checking synabse ${synBaseAddress} and connnectPrincipal ${connectPrincipal}`
+    );
+    if (synBaseAddress !== null && connectPrincipal !== null) {
+      console.log("heeeeere");
       const approve_args: ApproveArgs = {
-        fee:[],
-        memo:[],
-        from_subaccount:[],
-        created_at_time:[],
-        amount:BigInt(100000000000),
-        expected_allowance:[],
-        expires_at:[],
-        spender:{
-          owner:Principal.fromText(vaultManagerAddress),
-          subaccount:[]
-        }
-      }
+        fee: [],
+        memo: [],
+        from_subaccount: [],
+        created_at_time: [],
+        amount: BigInt(100000000000),
+        expected_allowance: [],
+        expires_at: [],
+        spender: {
+          owner: Principal.fromText(vaultManagerAddress),
+          subaccount: [],
+        },
+      };
 
-      const approveResult = await synBaseAddress.icrc2_approve(approve_args)
-      if ('Ok' in approveResult) {
+      const approveResult = await synBaseAddress.icrc2_approve(approve_args);
+      if ("Ok" in approveResult) {
         // It's of type 'Ok'
-        const okValue = approveResult['Ok']; // You can access the 'Ok' property
-        console.log('Ok result:', okValue);
-        router.reload()
-        return true
-      } else if ('Err' in approveResult) {
+        const okValue = approveResult["Ok"]; // You can access the 'Ok' property
+        console.log("Ok result:", okValue);
+        router.reload();
+        return true;
+      } else if ("Err" in approveResult) {
         // It's of type 'Err'
-        const errValue = approveResult['Err']; // You can access the 'Err' property
-        console.log('Err result:', errValue);
+        const errValue = approveResult["Err"]; // You can access the 'Err' property
+        console.log("Err result:", errValue);
       } else {
         // It's neither 'Ok' nor 'Err'
-        console.log('Invalid result:', approveResult);
+        console.log("Invalid result:", approveResult);
       }
-    
-
     }
-  }
+  };
 
   const handleGetVaultDetails = async (e) => {
-     e.preventDefault();
-  if (vaultManager!==null){
+    e.preventDefault();
+    if (vaultManager !== null) {
+      const _vaultId = BigInt(parseInt(vaultID));
+      const data = await vaultManager.getVaultDetails(_vaultId);
+      setCurrentVaultDetails(data);
 
-    const _vaultId = BigInt(parseInt(vaultID))
-    const data = await vaultManager.getVaultDetails(_vaultId);
-    setCurrentVaultDetails(data)
-
-    const actualUserDebt = await vaultManager.getVaultActualDebt(_vaultId)
-    setActualUserDebt(actualUserDebt)
-
-  }
-}
-  const SyntheTokenCreateActor = async() => {
+      const actualUserDebt = await vaultManager.getVaultActualDebt(_vaultId);
+      setActualUserDebt(actualUserDebt);
+    }
+  };
+  const SyntheTokenCreateActor = async () => {
     try {
       const _synthBase = await window.ic.infinityWallet.createActor({
-        canisterId:synthTokenAddress,
-        interfaceFactory:synBaseIdlFactory,
-        host:undefined
-      })
-      setSynBaseAddress(_synthBase)
-    } catch(e){
-      console.log("Error creating synthActor:",e)
+        canisterId: synthTokenAddress,
+        interfaceFactory: synBaseIdlFactory,
+        host: undefined,
+      });
+      setSynBaseAddress(_synthBase);
+    } catch (e) {
+      console.log("Error creating synthActor:", e);
     }
-  }
+  };
 
   const handleBorrow = async () => {
     if (validateFields1()) {
-      if(synthUsdAmount !== null) {
-        console.log("collatAmount",parseFloat(synthUsdAmount))
-        const decimalAdjustedsUsd = BigInt(Math.pow(10,8) * parseFloat(synthUsdAmount))
-        console.log("decimal adjusts",decimalAdjustedsUsd)
-    
-        const vaultId = BigInt(parseInt(vaultID))
-    
-        if(vaultManager !== null){
+      if (synthUsdAmount !== null) {
+        console.log("collatAmount", parseFloat(synthUsdAmount));
+        const decimalAdjustedsUsd = BigInt(
+          Math.pow(10, 8) * parseFloat(synthUsdAmount)
+        );
+        console.log("decimal adjusts", decimalAdjustedsUsd);
+
+        const vaultId = BigInt(parseInt(vaultID));
+
+        if (vaultManager !== null) {
           try {
-            const result = await vaultManager.borrow(vaultId,decimalAdjustedsUsd)
-            console.log(result)
-            
-            setCurrentVaultDetails(await vaultManager.getVaultDetails(vaultId))
-            console.log(currentVautDetails)
-          }
-          catch(e){
-            console.log(e)
+            const result = await vaultManager.borrow(
+              vaultId,
+              decimalAdjustedsUsd
+            );
+            console.log(result);
+
+            setCurrentVaultDetails(await vaultManager.getVaultDetails(vaultId));
+            console.log(currentVautDetails);
+          } catch (e) {
+            console.log(e);
           }
         }
-    
       }
     }
-    
   };
- //change1
-  //@bug here = if the valuues in the field are not entered it should not allow you to click buttons 
-  const handleRepayDebt = async() => {
+  //change1
+  //@bug here = if the valuues in the field are not entered it should not allow you to click buttons
+  const handleRepayDebt = async () => {
     if (validateFields2()) {
-      if(vaultManager!==null) {
-        console.log("inside vault manager address")
-        try{
-          const _vaultId = BigInt(parseInt(vaultID))
+      if (vaultManager !== null) {
+        console.log("inside vault manager address");
+        try {
+          const _vaultId = BigInt(parseInt(vaultID));
 
+          const parsedValue = parseFloat(debtToRepay);
+          const _debtToRepay =
+            (BigInt(Math.pow(10, 8)) * BigInt(Math.round(parsedValue * 10))) /
+            BigInt(10);
 
+          console.log(_vaultId);
 
-      const parsedValue = parseFloat(debtToRepay)
-      const _debtToRepay = BigInt(Math.pow(10, 8)) * BigInt(Math.round(parsedValue * 10)) / BigInt(10);
+          const result = await vaultManager.repayDebt(
+            _vaultId,
+            _debtToRepay,
+            []
+          );
+          console.log(result);
 
-  
-          console.log(_vaultId)
-  
-        const result = await vaultManager.repayDebt(_vaultId,_debtToRepay,[])
-        console.log(result)
-
-        setCurrentVaultDetails(await vaultManager.getVaultDetails(_vaultId))
-        console.log(currentVautDetails)
-        }
-        catch(e){
-          console.log(e)
+          setCurrentVaultDetails(await vaultManager.getVaultDetails(_vaultId));
+          console.log(currentVautDetails);
+        } catch (e) {
+          console.log(e);
         }
       }
     }
+  };
 
-
-    
-  }
-
-  const handleaddCollateral = async() => {
+  const handleaddCollateral = async () => {
     if (validateFields3()) {
-      console.log("collatAmount",parseFloat(collatAmnt))
+      console.log("collatAmount", parseFloat(collatAmnt));
 
-      const parsedValue = parseFloat(collatAmnt)
-      console.log("parse values",parsedValue)
-    const decimalAdjusted = BigInt(parsedValue * 10**8);;
-    console.log("decimal adjusts",decimalAdjusted)
+      const parsedValue = parseFloat(collatAmnt);
+      console.log("parse values", parsedValue);
+      const decimalAdjusted = BigInt(parsedValue * 10 ** 8);
+      console.log("decimal adjusts", decimalAdjusted);
 
-    const vaultId = BigInt(parseInt(vaultID))
-    if(vaultManager !== null){
-    try{
-      
-      const result = await vaultManager.addCollateral(vaultId,decimalAdjusted)
-      console.log(result)
-      
-      setCurrentVaultDetails(await vaultManager.getVaultDetails(vaultId))
-      console.log(currentVautDetails)
-    }
-    catch(e){
+      const vaultId = BigInt(parseInt(vaultID));
+      if (vaultManager !== null) {
+        try {
+          const result = await vaultManager.addCollateral(
+            vaultId,
+            decimalAdjusted
+          );
+          console.log(result);
 
-      //@todo: show the error messaeg e somewhere
-      console.log(e)
-    }
-    }
-    }
-    
-
-  };
-    
-  const handleCreateVaultFunction = async (e) => {
-   e.preventDefault();
-   if(vaultManager!==null){
-     console.log("inside handle create vault")
-     try{
-     const vaultId = await vaultManager.createVault([])
-     getuserIdVaults();
-     console.log(vaultId)
-     }
-     catch(e){
-       console.log("Error occured when creating vault:",e)
-     }
-   }
- }
-
-
-
-    const handleVaultIDChange = (e:React.ChangeEvent<HTMLInputElement>) => {
-      const inputValue = e.target.value;
-
-      // Check if the input is a positive integer
-      if (/^[0-9]\d*$/.test(inputValue)) {
-        setVaultID(inputValue);
-      } else {
-        // If not a positive integer, you can display an error message or handle it in another way
-        // For now, we clear the input
-        setVaultID("");
+          setCurrentVaultDetails(await vaultManager.getVaultDetails(vaultId));
+          console.log(currentVautDetails);
+        } catch (e) {
+          //@todo: show the error messaeg e somewhere
+          console.log(e);
+        }
       }
-  };
-  
-    const handleVaultFunction = async() => {
-      //vault details
-
-      console.log("inside create vault",vaultID)
     }
+  };
 
+  const handleCreateVaultFunction = async (e) => {
+    e.preventDefault();
+    if (vaultManager !== null) {
+      console.log("inside handle create vault");
+      try {
+        const vaultId = await vaultManager.createVault([]);
+        getuserIdVaults();
+        console.log(vaultId);
+      } catch (e) {
+        console.log("Error occured when creating vault:", e);
+      }
+    }
+  };
 
+  const handleVaultIDChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const inputValue = e.target.value;
 
-  const getForm =  () => {
+    // Check if the input is a positive integer
+    if (/^[0-9]\d*$/.test(inputValue)) {
+      setVaultID(inputValue);
+    } else {
+      // If not a positive integer, you can display an error message or handle it in another way
+      // For now, we clear the input
+      setVaultID("");
+    }
+  };
+
+  const handleVaultFunction = async () => {
+    //vault details
+
+    console.log("inside create vault", vaultID);
+  };
+
+  const getForm = () => {
     switch (selectedOption) {
       //asset.synthUsdAmount this will be userAssets 1st element  userAssets[0]
       case "Borrow":
         //  setVaultID(0);
         return (
-          <form >
+          <form>
             <div className={styles.input3Container}>
               <div className={styles.inputGroup}>
                 <label htmlFor="ckBtc" className={styles.labelWithIcon}>
@@ -454,10 +448,12 @@ const validateFields1 = () => {
                   Vault Current Collateral
                 </label>
                 <div className={styles.TextRight}>
-                  <p>{currentVautDetails !== null &&
+                  <p>
+                    {currentVautDetails !== null &&
                     currentVautDetails.vaultCurrentCollateral !== undefined
                       ? `${currentVautDetails.vaultCurrentCollateral} CKBTC`
-                      : 0}</p>
+                      : 0}
+                  </p>
                 </div>
               </div>
 
@@ -466,10 +462,14 @@ const validateFields1 = () => {
                   Vault Current Collaterisation Ratio
                 </label>
                 <div className={styles.TextRight}>
-                  <p>{currentVautDetails !== null &&
+                  <p>
+                    {currentVautDetails !== null &&
                     currentVautDetails.vaultLtvRatio !== undefined
-                      ? `${Math.round(1 /currentVautDetails.vaultLtvRatio * 100 )}%`
-                      : `0%`}</p>
+                      ? `${Math.round(
+                          (1 / currentVautDetails.vaultLtvRatio) * 100
+                        )}%`
+                      : `0%`}
+                  </p>
                 </div>
               </div>
               <div className={styles.inputGroup}>
@@ -496,7 +496,7 @@ const validateFields1 = () => {
                 </div>
               </label>
               <div className={styles.gasFee}>
-                <p>Gass Fees: 10</p>
+                <p>Gas Fees: 10</p>
               </div>
             </div>
             <div className={styles.input2Container}>
@@ -526,13 +526,13 @@ const validateFields1 = () => {
               Borrow
             </button>
             <div>
-            <button
-              className={styles.Vault}
-              onClick={() => setSelectedOption("Create Vault")}
-              style={{ marginTop: "10px" }}
-            >
-              Create Vault
-            </button>
+              <button
+                className={styles.Vault}
+                onClick={() => setSelectedOption("Create Vault")}
+                style={{ marginTop: "10px" }}
+              >
+                Create Vault
+              </button>
             </div>
           </form>
         );
@@ -547,13 +547,14 @@ const validateFields1 = () => {
                   Vault LTV Ratio
                 </label>
                 <div className={styles.TextRight}>
-                  
-                  <p>{
-
-      currentVautDetails!==null && currentVautDetails.vaultLtvRatio !== undefined
-                ? `${Math.round(currentVautDetails.vaultLtvRatio * 100)} %`
-                  : `0%`
-                  }</p>
+                  <p>
+                    {currentVautDetails !== null &&
+                    currentVautDetails.vaultLtvRatio !== undefined
+                      ? `${Math.round(
+                          currentVautDetails.vaultLtvRatio * 100
+                        )} %`
+                      : `0%`}
+                  </p>
                 </div>
               </div>
 
@@ -562,12 +563,12 @@ const validateFields1 = () => {
                   Vault Current Collateral
                 </label>
                 <div className={styles.TextRight}>
-                  <p>{
-
-currentVautDetails!==null && currentVautDetails.vaultCurrentCollateral !== undefined
-          ? `${currentVautDetails.vaultCurrentCollateral} CKBTC`
-            : 0
-            }</p>
+                  <p>
+                    {currentVautDetails !== null &&
+                    currentVautDetails.vaultCurrentCollateral !== undefined
+                      ? `${currentVautDetails.vaultCurrentCollateral} CKBTC`
+                      : 0}
+                  </p>
                 </div>
               </div>
 
@@ -576,12 +577,14 @@ currentVautDetails!==null && currentVautDetails.vaultCurrentCollateral !== undef
                   Vault Current Collaterisation Ratio
                 </label>
                 <div className={styles.TextRight}>
-                  <p>{
-
-currentVautDetails!==null && currentVautDetails.vaultLtvRatio !== undefined
-          ? `${Math.round(1 / currentVautDetails.vaultLtvRatio * 100)} %`
-            : `0%`
-            }</p>
+                  <p>
+                    {currentVautDetails !== null &&
+                    currentVautDetails.vaultLtvRatio !== undefined
+                      ? `${Math.round(
+                          (1 / currentVautDetails.vaultLtvRatio) * 100
+                        )} %`
+                      : `0%`}
+                  </p>
                 </div>
               </div>
               <div className={styles.inputGroup}>
@@ -641,24 +644,24 @@ currentVautDetails!==null && currentVautDetails.vaultLtvRatio !== undefined
             </div>
 
             <div>
-            <button
-              type="button"
-              className={styles.Calculate}
-              onClick={handleaddCollateral}
-            >
-              Add Collateral
-            </button>
+              <button
+                type="button"
+                className={styles.Calculate}
+                onClick={handleaddCollateral}
+              >
+                Add Collateral
+              </button>
             </div>
             <button
-  className={styles.Vault}
-  onClick={() => setSelectedOption("Create Vault")}
-  style={{ marginTop: '10px' }} 
->
-  Create Vault
-</button>
+              className={styles.Vault}
+              onClick={() => setSelectedOption("Create Vault")}
+              style={{ marginTop: "10px" }}
+            >
+              Create Vault
+            </button>
           </form>
         );
-      //asset.ckbtcAmount 
+      //asset.ckbtcAmount
       case "Create Vault":
         //  setVaultID(0);
         return (
@@ -712,9 +715,11 @@ currentVautDetails!==null && currentVautDetails.vaultLtvRatio !== undefined
                   Vault Debt
                 </label>
                 <div className={styles.TextRight}>
-                <p>
-            {actualUserDebt !== null ? `${actualUserDebt} CKBTC` : 'Fetching'}
-        </p>
+                  <p>
+                    {actualUserDebt !== null
+                      ? `${actualUserDebt} CKBTC`
+                      : "Fetching"}
+                  </p>
                 </div>
               </div>
             </div>
@@ -807,8 +812,10 @@ currentVautDetails!==null && currentVautDetails.vaultLtvRatio !== undefined
             </div>
             <div className={styles.input25Container}>
               <div className={styles.createWalletContainer}>
-                <button className={styles.VaultDetails}
-                onClick={handleGetVaultDetails}>
+                <button
+                  className={styles.VaultDetails}
+                  onClick={handleGetVaultDetails}
+                >
                   Get Vault Details
                 </button>
               </div>
@@ -833,131 +840,124 @@ currentVautDetails!==null && currentVautDetails.vaultLtvRatio !== undefined
             </div>
           </form>
         );
-      
-        case "Repay Debt":
-          //  setVaultID(0);
-          return (
-            <form>
-              <div className={styles.input3Container}>
-                <div className={styles.inputGroup}>
-                  <label htmlFor="ckBtc" className={styles.labelWithIcon}>
-                    Vault LTV Ratio
-                  </label>
-                  <div className={styles.TextRight}>
-                    <p>
-                      {currentVautDetails !== null &&
-                      currentVautDetails.vaultLtvRatio !== undefined
-                        ? `${Math.round(
-                            currentVautDetails.vaultLtvRatio * 100
-                          )}%`
-                        : `0%`}
-                    </p>
-                  </div>
-                </div>
 
-                <div className={styles.inputGroup}>
-                  <label htmlFor="ckBtc" className={styles.labelWithIcon}>
-                    Vault Current Collateral
-                  </label>
-                  <div className={styles.TextRight}>
-                    <p>
-                      {currentVautDetails !== null &&
-                      currentVautDetails.vaultCurrentCollateral !== undefined
-                        ? `${currentVautDetails.vaultCurrentCollateral} CKBTC`
-                        : 0}
-                    </p>
-                  </div>
-                </div>
-
-                <div className={styles.inputGroup}>
-                  <label htmlFor="ckBtc" className={styles.labelWithIcon}>
-                    Vault Current Collaterisation Ratio
-                  </label>
-                  <div className={styles.TextRight}>
-                    <p>
-                      {currentVautDetails !== null &&
-                      currentVautDetails.vaultLtvRatio !== undefined
-                        ? `${Math.round(
-                            (1 / currentVautDetails.vaultLtvRatio) * 100
-                          )}%`
-                        : `0%`}
-                    </p>
-                  </div>
-                </div>
-                <div className={styles.inputGroup}>
-                  <label htmlFor="ckBtc" className={styles.labelWithIcon}>
-                    Health Factor
-                  </label>
-                  <div className={styles.TextRight}>
-                    <p>0</p>
-                  </div>
-                </div>
-              </div>
-              <div className={styles.input1Container}>
-                <label htmlFor="sUsd">
-                  <div className={styles.inputGroup}>
-                    Vault ID
-                    <input
-                      type="text"
-                      id="vaultID"
-                      name="vaultID"
-                      value={vaultID}
-                      onChange={handleVaultIDChange}
-                      placeholder="0"
-                    />
-                  </div>
+      case "Repay Debt":
+        //  setVaultID(0);
+        return (
+          <form>
+            <div className={styles.input3Container}>
+              <div className={styles.inputGroup}>
+                <label htmlFor="ckBtc" className={styles.labelWithIcon}>
+                  Vault LTV Ratio
                 </label>
-                <div className={styles.gasFee}>
-                  <p>Gass Fees: 10</p>
-                </div>
-              </div>
-              <div className={styles.input2Container}>
-                <label htmlFor="sUsd">
-                  <div className={styles.inputGroup}>
-                    synthUsd
-                    <input
-                      type="number"
-                      id="synthUsd"
-                      name="synthUsd"
-                      value={debtToRepay}
-                      onChange={(e) => setDebtToRepay(e.target.value)}
-                      placeholder="0.0"
-                    />
-                  </div>
-                </label>
-                <div className={styles.gasFee}>
-                  <p>Gas fees</p>
+                <div className={styles.TextRight}>
+                  <p>
+                    {currentVautDetails !== null &&
+                    currentVautDetails.vaultLtvRatio !== undefined
+                      ? `${Math.round(currentVautDetails.vaultLtvRatio * 100)}%`
+                      : `0%`}
+                  </p>
                 </div>
               </div>
 
-              {
-    Allowance && (
-      (Allowance.allowance < BigInt(100000000000))
-      || 
-      (
-        Allowance.expires_at && Allowance.expires_at.length > 0 &&
-      Allowance.expires_at[0] / BigInt(1000000) < BigInt(new Date().getTime())
-      )
-  ) ? (
-                <button
-                  type="button"
-                  className={styles.Calculate}
-                  onClick={handleApprove} // Assuming this should trigger approval
-                >
-                  Approve
-                </button>
-              ) : (
-                <button
-                  type="button"
-                  className={styles.Calculate}
-                  onClick={handleRepayDebt} // Assuming this should trigger repayment
-                >
-                  Repay Debt 
-                 
-                </button>
-                
-              )}
-              <div>
+              <div className={styles.inputGroup}>
+                <label htmlFor="ckBtc" className={styles.labelWithIcon}>
+                  Vault Current Collateral
+                </label>
+                <div className={styles.TextRight}>
+                  <p>
+                    {currentVautDetails !== null &&
+                    currentVautDetails.vaultCurrentCollateral !== undefined
+                      ? `${currentVautDetails.vaultCurrentCollateral} CKBTC`
+                      : 0}
+                  </p>
+                </div>
+              </div>
+
+              <div className={styles.inputGroup}>
+                <label htmlFor="ckBtc" className={styles.labelWithIcon}>
+                  Vault Current Collaterisation Ratio
+                </label>
+                <div className={styles.TextRight}>
+                  <p>
+                    {currentVautDetails !== null &&
+                    currentVautDetails.vaultLtvRatio !== undefined
+                      ? `${Math.round(
+                          (1 / currentVautDetails.vaultLtvRatio) * 100
+                        )}%`
+                      : `0%`}
+                  </p>
+                </div>
+              </div>
+              <div className={styles.inputGroup}>
+                <label htmlFor="ckBtc" className={styles.labelWithIcon}>
+                  Health Factor
+                </label>
+                <div className={styles.TextRight}>
+                  <p>0</p>
+                </div>
+              </div>
+            </div>
+            <div className={styles.input1Container}>
+              <label htmlFor="sUsd">
+                <div className={styles.inputGroup}>
+                  Vault ID
+                  <input
+                    type="text"
+                    id="vaultID"
+                    name="vaultID"
+                    value={vaultID}
+                    onChange={handleVaultIDChange}
+                    placeholder="0"
+                  />
+                </div>
+              </label>
+              <div className={styles.gasFee}>
+                <p>Gass Fees: 10</p>
+              </div>
+            </div>
+            <div className={styles.input2Container}>
+              <label htmlFor="sUsd">
+                <div className={styles.inputGroup}>
+                  synthUsd
+                  <input
+                    type="number"
+                    id="synthUsd"
+                    name="synthUsd"
+                    value={debtToRepay}
+                    onChange={(e) => setDebtToRepay(e.target.value)}
+                    placeholder="0.0"
+                  />
+                </div>
+              </label>
+              <div className={styles.gasFee}>
+                <p>Gas fees</p>
+              </div>
+            </div>
+
+            {Allowance &&
+            (Allowance.allowance < BigInt(100000000000) ||
+              (Allowance.expires_at &&
+                Allowance.expires_at.length > 0 &&
+                Allowance.expires_at[0] / BigInt(1000000) <
+                  BigInt(new Date().getTime()))) ? (
+              <button
+                type="button"
+                className={styles.Calculate}
+                onClick={handleApprove} // Assuming this should trigger approval
+              >
+                Approve
+              </button>
+            ) : (
+              <button
+                type="button"
+                className={styles.Calculate}
+                onClick={handleRepayDebt} // Assuming this should trigger repayment
+              >
+                Repay Debt
+              </button>
+            )}
+            <div>
               <button
                 className={styles.Vault}
                 onClick={() => setSelectedOption("Create Vault")}
@@ -965,10 +965,9 @@ currentVautDetails!==null && currentVautDetails.vaultLtvRatio !== undefined
               >
                 Create Vault
               </button>
-              </div>
-            </form>
-
-          );
+            </div>
+          </form>
+        );
       default:
         return null;
     }

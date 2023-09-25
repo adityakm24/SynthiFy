@@ -5,14 +5,13 @@
   width: 300px;
   aspect-ratio: 1;
   position: absolute;
-  left:-5%;
+  left: -5%;
   top: -10%;
   border-radius: 50px;
   filter: blur(100px);
   z-index: 0;
   overflow-x: hidden;
   animation: rotate 7s linear infinite;
-  
 }
 @keyframes rotate {
   0% {
@@ -23,20 +22,19 @@
   }
 }
 
-
 .centeredContainer {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh; 
+  height: 100vh;
 }
 
 .input1Container {
   border: 2px black;
   border-style: solid;
   width: 600px;
-  padding: 20px;  
+  padding: 20px;
 }
 
 .input2Container {
@@ -45,7 +43,7 @@
   width: 600px;
   padding: 20px;
   margin-top: 20px;
-   margin-bottom: 20px;
+  margin-bottom: 20px;
 }
 
 .input24Container {
@@ -62,9 +60,9 @@
   width: 650px;
   padding: 20px;
   position: absolute;
-   float: right;
-   left:50%;
-   top:76%;
+  float: right;
+  left: 50%;
+  top: 76%;
 }
 
 .input3Container {
@@ -72,18 +70,21 @@
   border-style: solid;
   width: 650px;
   padding: 20px;
-   float: right;
+  float: right;
+  position: absolute;
+  left: 50%;
+  top: 25%;
 }
 .input31Container {
   border: 2px black;
   border-style: solid;
   width: 650px;
   padding: 20px;
-   float: right;
-   margin-top: -12%;
-   position: absolute;
-   left:50%;
-   bottom:23%;
+  float: right;
+  margin-top: -15%;
+  position: absolute;
+  left: 50%;
+  bottom: 23%;
 }
 
 .subContainer {
@@ -116,7 +117,6 @@
   color: #4f4f4f;
   font-size: 25px;
 }
-
 
 .pillGroup {
   display: flex;
@@ -155,22 +155,20 @@
 }
 
 .iconContainer {
-  margin-right: 8px; 
+  margin-right: 8px;
 }
-
 
 .wallet-connect-container {
   text-align: center;
 }
-
 
 .button {
   border-radius: 20px;
 }
 
 .borrowButton {
-  background-color: rgba(255, 255, 255, 0); 
-  color: rgb(255, 255, 255); 
+  background-color: rgba(255, 255, 255, 0);
+  color: rgb(255, 255, 255);
   border: 2px solid #ffffff;
   border-radius: 10px;
   padding: 15px 32px;
@@ -185,8 +183,8 @@
 
 .borrowButton:hover {
   transition: 0.2s;
-  background-color: rgb(255, 255, 255); 
-  color: rgb(0, 0, 0); 
+  background-color: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
   border: 2px solid #ffffff;
   border-radius: 10px;
   padding: 15px 32px;
@@ -197,9 +195,7 @@
   margin: 4px 2px;
   cursor: pointer;
   margin-left: 25%;
-
 }
-
 
 .modalBackdrop {
   position: fixed;
@@ -217,13 +213,12 @@
   border-radius: 8px;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
   padding: 20px;
-  width: 90%; 
+  width: 90%;
   height: 70%;
   z-index: 4;
   align-items: center;
   align-content: center;
   text-align: center;
-
 }
 
 .modalNavbar {
@@ -239,7 +234,11 @@
 }
 
 @keyframes bounce {
-  0%, 20%, 50%, 80%, 100% {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
     transform: translateY(0);
   }
   20% {
@@ -296,10 +295,8 @@
 .modalDropdown select:focus {
   outline: none;
   border-color: #000;
-  box-shadow: 0 0 10px 1px rgba(0,0,0,0.1);
+  box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.1);
 }
-
-
 
 .closeIconContainer {
   cursor: pointer;
@@ -310,21 +307,17 @@
   color: #ccc;
 }
 
-
 .tableContainer {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 50vh; 
+  height: 50vh;
   padding: 0 50px;
-  
-  
 }
 
 .tableList {
   border-collapse: collapse;
   width: 100%;
-  
 }
 
 .tableList td,
@@ -332,13 +325,11 @@
   border: 0px solid #ddd;
   color: white;
   padding: 8px;
-
 }
 
 .tableList tr:nth-child(even) {
   background-color: #000000;
   color: white;
-
 }
 
 .tableList th {
@@ -347,14 +338,11 @@
   text-align: left;
   color: rgb(255, 255, 255);
   z-index: 999;
-
 }
 
 .tableList td {
-
   background-color: rgba(255, 255, 255, 0.167);
 }
-
 
 .createWalletContainer {
   display: flex;
@@ -365,10 +353,10 @@
 }
 
 .createWalletButton {
-  padding: 16px 24px; 
-  font-size: 18px;   
-  background-color: #000000; 
-  color: #fff;       
+  padding: 16px 24px;
+  font-size: 18px;
+  background-color: #000000;
+  color: #fff;
   border: none;
   border-radius: 8px;
   cursor: pointer;
@@ -379,13 +367,15 @@
   background-color: #584574af; /* Change the hover background color */
 }
 
-
 .Calculate:hover,
 .Calculate:active,
 .Calculate:focus,
 .Calculate:visited {
-  cursor: pointer; 
-  transition: background-color 0.3s, transform 0.2s; }
+  cursor: pointer;
+  transition:
+    background-color 0.3s,
+    transform 0.2s;
+}
 
 .Calculate {
   width: 15%;
@@ -419,7 +409,6 @@
   font-weight: 700;
 }
 
-
 .Vault:hover {
   width: 15%;
   padding: 10px;
@@ -442,10 +431,10 @@
 }
 
 .VaultDetails {
-  padding: 16px 24px; 
-  font-size: 18px;   
-  background-color: #000000; 
-  color: #fff;       
+  padding: 16px 24px;
+  font-size: 18px;
+  background-color: #000000;
+  color: #fff;
   border: none;
   border-radius: 8px;
   cursor: pointer;
