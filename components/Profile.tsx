@@ -72,7 +72,8 @@ const Profile = () => {
     if(depositModule!==null && connectPrincipal!==null){
       console.log("inside main")
       const balance = await depositModule.getBalance(connectPrincipal)
-      setUserBalance(balance.toString())
+      const decimalAdjustBalance = adjustDecimals(balance)
+      setUserBalance(decimalAdjustBalance.toString())
     }}
 
     main()
@@ -104,7 +105,11 @@ const Profile = () => {
     };
 
   }
+function adjustDecimals(amount:bigint){
+    const decimals = BigInt(Math.pow(10,8))
 
+    return(Number(amount*decimals/decimals)/100000000)
+}
   const handleGetDepositAddress = async() => {
     if(depositModule!==null &&connectPrincipal!==null){
       try{

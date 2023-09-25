@@ -352,7 +352,8 @@ const validateFields1 = () => {
       console.log("collatAmount",parseFloat(collatAmnt))
 
       const parsedValue = parseFloat(collatAmnt)
-    const decimalAdjusted = BigInt(Math.pow(10, 8)) * BigInt(Math.round(parsedValue * 10)) / BigInt(10);
+      console.log("parse values",parsedValue)
+    const decimalAdjusted = BigInt(parsedValue * 10**8);;
     console.log("decimal adjusts",decimalAdjusted)
 
     const vaultId = BigInt(parseInt(vaultID))
@@ -376,24 +377,24 @@ const validateFields1 = () => {
 
   };
 
-  const handleCreateVaultFunction = async() => {
-    if(vaultManager!==null){
-      console.log("inside handle create vault")
-      try{
+  // const handleCreateVaultFunction = async() => {
+  //   if(vaultManager!==null){
+  //     console.log("inside handle create vault")
+  //     try{
 
 
 
-      const vaultId = await vaultManager.createVault([])
-      getuserIdVaults();
-      console.log(vaultId)
-      }
-      catch(e){
-        console.log("Error occured when creating vault:",e)
-      }
-    }
+  //     const vaultId = await vaultManager.createVault([])
+  //     getuserIdVaults();
+  //     console.log(vaultId)
+  //     }
+  //     catch(e){
+  //       console.log("Error occured when creating vault:",e)
+  //     }
+  //   }
 
 
-  }
+  // }
 
 
 
@@ -410,18 +411,6 @@ const validateFields1 = () => {
       }
   };
   
-    const handleCreateVault = async () => {
-      try {
-        // Simulate fetching data from the backend
-        const response = await fetch("backend/api/endpoint"); // Replace with your actual API endpoint
-        const data = await response.json();
-
-        // Update the dummy state with the fetched data
-        setBackendData(data);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
     const handleVaultFunction = async() => {
       //vault details
 
@@ -727,7 +716,7 @@ currentVautDetails!==null && currentVautDetails.vaultLtvRatio !== undefined
                 <div className={styles.createWalletContainer}>
                   <button
                     className={styles.createWalletButton}
-                    onClick={handleCreateVaultFunction}
+                    // onClick={handleCreateVaultFunction}
                   >
                     Create Vault
                   </button>
@@ -792,7 +781,7 @@ currentVautDetails!==null && currentVautDetails.vaultLtvRatio !== undefined
                 <div className={styles.createWalletContainer}>
                   <button
                     className={styles.VaultDetails}
-                    onClick={handleVaultFunction}
+                   
                   >
                     Get Vault Details
                   </button>
