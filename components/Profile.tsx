@@ -373,10 +373,6 @@ function adjustDecimals(amount:bigint){
             <Link href="https://wallet.bitfinity.network/" target="_blank">
               BitFinity Wallet
             </Link>{" "}
-            or{" "}
-            <Link href="https://plugwallet.ooo/" target="_blank">
-              Plug Wallet
-            </Link>
           </p>
         </div>
       )}

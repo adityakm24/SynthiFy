@@ -265,11 +265,7 @@ const validateFields1 = () => {
         // It's neither 'Ok' nor 'Err'
         console.log('Invalid result:', approveResult);
       }
-      
-      
-      
-      
-      
+    
 
     }
   }
@@ -1057,10 +1053,6 @@ currentVautDetails!==null && currentVautDetails.vaultLtvRatio !== undefined
             <Link href="https://wallet.bitfinity.network/" target="_blank">
               BitFinity Wallet
             </Link>{" "}
-            or{" "}
-            <Link href="https://plugwallet.ooo/" target="_blank">
-              Plug Wallet
-            </Link>
           </p>
         </div>
       )}
