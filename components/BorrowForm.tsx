@@ -154,6 +154,7 @@ const validateFields1 = () => {
   const disconnectWallet = async () => {
     try {
       await window.ic.infinityWallet.disconnect();
+      router.reload();
       setIsConnected(false);
       setConnectedAddress(null);
       console.log("Wallet disconnected");

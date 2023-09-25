@@ -67,7 +67,6 @@ const Profile = () => {
   }, []);
 
   useEffect(() =>{
-
     const main = async() =>{
     if(depositModule!==null && connectPrincipal!==null){
       console.log("inside main")
