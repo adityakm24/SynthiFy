@@ -9,9 +9,12 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@dfinity/agent": "^0.19.2",
+    "@dfinity/candid": "^0.19.2",
     "@dfinity/ledger": "^0.0.15",
     "@dfinity/nns": "^0.16.5",
     "@dfinity/principal": "^0.19.2",
+    "@dfinity/utils": "^0.0.22",
     "@popperjs/core": "^2.11.8",
     "@rainbow-me/rainbowkit": "^1.0.9",
     "@types/node": "20.5.6",

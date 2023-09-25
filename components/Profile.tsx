@@ -11,6 +11,7 @@ import {idlFactory as vaultManageridlFactory} from "../vaultmanager.did.js"
 import {_SERVICE as DepositModule} from "../deposit.did(t)"
 import {_SERVICE as vaultmanager_SERVICE} from "../vaultmanager(ts).did"
 import { Account } from "@/synbase(t).did";
+import Head from "next/head";
 
 const Profile = () => {
   const [connectedAddress, setConnectedAddress] = useState<string|null>(null);
@@ -244,7 +245,11 @@ function adjustDecimals(amount:bigint){
 
   return (
     <div className={styles.body}>
-    <div className={styles.blob}></div>
+      <Head>
+        <title>SynthiFy App</title>
+        <meta name="SynthiFy App" content=" SynthiFy App" key=" SynthiFy App" />
+      </Head>
+      <div className={styles.blob}></div>
       {isConnected ? (
         <div
           style={{
@@ -260,7 +265,10 @@ function adjustDecimals(amount:bigint){
         >
           <div className={styles.formContainer}>
             <h1>Withdraw</h1>
-            <h4>Current Deposited Balance In Module: {currentUserBalance ?? "loading"} CKBTC</h4>
+            <h4>
+              Current Deposited Balance In Module:{" "}
+              {currentUserBalance ?? "loading"} CKBTC
+            </h4>
             <form onSubmit={handleWithdraw}>
               <input
                 type="number"
@@ -344,17 +352,27 @@ function adjustDecimals(amount:bigint){
                   ></i>
                   <div className={styles.modalContainer}>
                     <div className={styles.modalHeader}>
-                    <h3>{ loadingDepositAddress ? "Loading..." : btcDepositAddress }</h3>
+                      <h3>
+                        {loadingDepositAddress
+                          ? "Loading..."
+                          : btcDepositAddress}
+                      </h3>
                       <br></br>
                       <br></br>
                     </div>
 
                     <div className={styles.modalActions}>
-                      <button className={styles.general2} onClick={handleGetDepositAddress}>
+                      <button
+                        className={styles.general2}
+                        onClick={handleGetDepositAddress}
+                      >
                         Get Deposit Address
                       </button>
                       <br></br>
-                      <button className={styles.general2} onClick={handleUpdateBtcBalance}>
+                      <button
+                        className={styles.general2}
+                        onClick={handleUpdateBtcBalance}
+                      >
                         Update Deposit Address
                       </button>
                     </div>

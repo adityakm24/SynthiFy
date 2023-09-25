@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import styles from "../assets/styles/Borrow.module.css";
 import Image from "next/image";
 import Link from "next/link";
+import Head from "next/head";
 import {Opt} from "azle"
 import { Principal } from "@dfinity/principal";
 
@@ -832,31 +833,6 @@ currentVautDetails!==null && currentVautDetails.vaultLtvRatio !== undefined
             </div>
           </form>
         );
-
-      //     return (
-      //     <div className={styles.createWalletContainer}>
-      //       <button
-      //         className={styles.createWalletButton}
-      //         onClick={handleCreateVaultFunction}
-      //       >
-      //         Create Vault
-      //       </button>
-      //       {currentVaultIds.length > 0 && (
-      //   <div style={{ backgroundColor: 'black', color: 'white', border: '2px solid #1e90ff', borderRadius: '5px', boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)', fontFamily: 'Arial, sans-serif', display: 'inline-block', padding: '5px', marginTop: '20px' }}>
-      //   <p style={{ fontSize: '18px', marginBottom: '10px', textAlign: 'center' }}>Current Vault IDs:</p>
-      //   <ul style={{ listStyleType: 'none', padding: '0', textAlign: 'center' }}>
-      //     {currentVaultIds.map((vaultId) => (
-      //       <li key={vaultId.toString()} style={{ fontSize: '16px', marginBottom: '5px', padding: '5px 10px', backgroundColor: '#1e90ff', border: '1px solid #1e90ff', borderRadius: '3px', transition: 'background-color 0.3s, transform 0.3s', margin: '10px 5px' }}>
-      //         {vaultId.toString()}
-      //       </li>
-      //     ))}
-      //   </ul>
-      // </div>
-      
-      // )}
-      //       {backendData && <p className={styles.backendData}>{backendData}</p>}
-      //     </div>
-      //   );
       
         case "Repay Debt":
           //  setVaultID(0);
@@ -1000,6 +976,10 @@ currentVautDetails!==null && currentVautDetails.vaultLtvRatio !== undefined
 
   return (
     <div>
+      <Head>
+        <title>SynthiFy App</title>
+        <meta name="SynthiFy App" content=" SynthiFy App" key=" SynthiFy App" />
+      </Head>
       <div className={styles.blob}></div>
       {isConnected ? (
         <div className={styles.tableContainer}>
@@ -1056,7 +1036,7 @@ currentVautDetails!==null && currentVautDetails.vaultLtvRatio !== undefined
           )}
         </div>
       ) : (
-       <div className={styles.notConnected}>
+        <div className={styles.notConnected}>
           <h1>Wallet Not Connected</h1>
           <p>
             Download and get started for free with{" "}
