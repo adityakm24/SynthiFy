@@ -1021,6 +1021,7 @@ const Borrow = () => {
                       <option>Create Vault</option>
                       <option>Repay Debt</option>
                     </select>
+                    <span className={styles.arrow}>▼</span>
                   </div>
                   <div className={styles.closeIconContainer}>
                     <i
