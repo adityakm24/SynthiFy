@@ -1,4 +1,4 @@
-import "./styles/global.css"; // Updated the import path for global.css
+import "./styles/global.css"; 
 import Script from "next/script";
 
 function MyApp({ Component, pageProps }) {
