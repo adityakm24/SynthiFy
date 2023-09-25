@@ -37,6 +37,8 @@ const Borrow = () => {
   const [synBaseAddress,setSynBaseAddress] = useState<synBase_SERVICE |null>(null)
   const[debtToRepay,setDebtToRepay] = useState("")
 
+  const[actualUserDebt,setActualUserDebt] = useState<number |null>()
+
 
   const vaultManagerAddress = "isswh-liaaa-aaaal-qcdrq-cai"
 
@@ -277,6 +279,10 @@ const validateFields1 = () => {
     const _vaultId = BigInt(parseInt(vaultID))
     const data = await vaultManager.getVaultDetails(_vaultId);
     setCurrentVaultDetails(data)
+
+    const actualUserDebt = await vaultManager.getVaultActualDebt(_vaultId)
+    setActualUserDebt(actualUserDebt)
+
   }
 }
   const SyntheTokenCreateActor = async() => {
@@ -701,10 +707,12 @@ currentVautDetails!==null && currentVautDetails.vaultLtvRatio !== undefined
               </div>
               <div className={styles.inputGroup}>
                 <label htmlFor="ckBtc" className={styles.labelWithIcon}>
-                  Health Factor
+                  Vault Debt
                 </label>
                 <div className={styles.TextRight}>
-                  <p>0</p>
+                <p>
+            {actualUserDebt !== null ? `${actualUserDebt} CKBTC` : 'Fetching'}
+        </p>
                 </div>
               </div>
             </div>

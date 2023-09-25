@@ -124,6 +124,7 @@ export interface _SERVICE {
   'createVault' : ActorMethod<[[] | [Uint8Array | number[]]], bigint>,
   'getBtcPrice' : ActorMethod<[], string>,
   'getUserVaultIds' : ActorMethod<[Principal], Array<bigint>>,
+  'getVaultActualDebt' : ActorMethod<[bigint], number>,
   'getVaultDetails' : ActorMethod<[bigint], IndividualVaultData>,
   'icrc1_balance_of' : ActorMethod<[Account], bigint>,
   'icrc1_decimals' : ActorMethod<[], number>,

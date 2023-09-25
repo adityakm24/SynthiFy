@@ -153,6 +153,7 @@ export const idlFactory = ({ IDL }) => {
         [IDL.Vec(IDL.Nat)],
         ['query'],
       ),
+    'getVaultActualDebt' : IDL.Func([IDL.Nat], [IDL.Float64], ['query']),
     'getVaultDetails' : IDL.Func([IDL.Nat], [IndividualVaultData], ['query']),
     'icrc1_balance_of' : IDL.Func([Account], [IDL.Nat], ['query']),
     'icrc1_decimals' : IDL.Func([], [IDL.Nat8], ['query']),
