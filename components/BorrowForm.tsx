@@ -274,7 +274,13 @@ const validateFields1 = () => {
     }
   }
 
-
+const handleGetVaultDetails = async() => {
+  if (vaultManager!==null){
+    alert("hi")
+    const _vaultId = BigInt(parseInt(vaultID))
+    console.log(await vaultManager.getVaultDetails(_vaultId))
+  }
+}
   const SyntheTokenCreateActor = async() => {
     try {
       const _synthBase = await window.ic.infinityWallet.createActor({
@@ -794,7 +800,8 @@ currentVautDetails!==null && currentVautDetails.vaultLtvRatio !== undefined
             </div>
             <div className={styles.input25Container}>
               <div className={styles.createWalletContainer}>
-                <button className={styles.VaultDetails}>
+                <button className={styles.VaultDetails}
+                onClick={handleGetVaultDetails}>
                   Get Vault Details
                 </button>
               </div>
