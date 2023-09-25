@@ -436,7 +436,7 @@ const validateFields1 = () => {
       case "Borrow":
         //  setVaultID(0);
         return (
-          <form onSubmit={(e) =>e.preventDefault()}>
+          <form >
             <div className={styles.input3Container}>
               <div className={styles.inputGroup}>
                 <label htmlFor="ckBtc" className={styles.labelWithIcon}>
@@ -666,7 +666,7 @@ currentVautDetails!==null && currentVautDetails.vaultLtvRatio !== undefined
       case "Create Vault":
         //  setVaultID(0);
         return (
-          <div>
+          
             <form>
               <div className={styles.input3Container}>
                 <div className={styles.inputGroup}>
@@ -817,7 +817,7 @@ currentVautDetails!==null && currentVautDetails.vaultLtvRatio !== undefined
                 </div>
               </div>
             </form>
-          </div>
+
         );
 
       //     return (
