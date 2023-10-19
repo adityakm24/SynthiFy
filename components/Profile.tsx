@@ -282,6 +282,34 @@ const Profile = () => {
         />
         <meta name="twitter:site" content="@SynthiFyFinance" />
         <meta name="twitter:creator" content="@SynthiFyFinance" />
+        <meta property="og:type" content="website" />
+        <meta
+          property="og:title"
+          content="SynthiFy Finance - Unlock Liquidity with ckbtc Holdings"
+        />
+        <meta
+          property="og:description"
+          content="Unlock liquidity with SynthiFy Finance and maximize your crypto assets. Join the future of decentralized finance!"
+        />
+        <meta
+          property="og:image"
+          content="https://pbs.twimg.com/profile_images/1714692668796923904/n9qKs6od_400x400.jpg"
+        />
+        <meta property="og:url" content="https://synthifyapp.com/" />
+        <meta property="og:type" content="website" />
+        <meta
+          property="og:title"
+          content="SynthiFy Finance - Unlock Liquidity with ckbtc Holdings"
+        />
+        <meta
+          property="og:description"
+          content="Unlock liquidity with SynthiFy Finance and maximize your crypto assets. Join the future of decentralized finance!"
+        />
+        <meta
+          property="og:image"
+          content="https://pbs.twimg.com/profile_images/1714692668796923904/n9qKs6od_400x400.jpg"
+        />
+        <meta property="og:url" content="https://synthifyapp.com/" />
       </Head>
       <div className={styles.blob}></div>
       {isConnected ? (
