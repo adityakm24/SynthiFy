@@ -1,44 +1,50 @@
-//@todo: reset btcDepositAddress on page reload or if its not default value 
+//@todo: reset btcDepositAddress on page reload or if its not default value
 
 import styles from "../assets/styles/Profile.module.css";
 import Link from "next/link";
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
-import {encodeIcrcAccount	} from "@dfinity/ledger"
+import { encodeIcrcAccount } from "@dfinity/ledger";
 import { Principal } from "@dfinity/principal";
-import {idlFactory as depositIdlFactory} from "../deposit.did"
-import {idlFactory as vaultManageridlFactory} from "../vaultmanager.did.js"
-import {_SERVICE as DepositModule} from "../deposit.did(t)"
-import {_SERVICE as vaultmanager_SERVICE} from "../vaultmanager(ts).did"
+import { idlFactory as depositIdlFactory } from "../deposit.did";
+import { idlFactory as vaultManageridlFactory } from "../vaultmanager.did.js";
+import { _SERVICE as DepositModule } from "../deposit.did(t)";
+import { _SERVICE as vaultmanager_SERVICE } from "../vaultmanager(ts).did";
 import { Account } from "@/synbase(t).did";
 import Head from "next/head";
 
 const Profile = () => {
-  const [connectedAddress, setConnectedAddress] = useState<string|null>(null);
+  const [connectedAddress, setConnectedAddress] = useState<string | null>(null);
   const [isConnected, setIsConnected] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isModalOpen0, setIsModalOpen0] = useState(false);
   const [isModalOpen1, setIsModalOpen1] = useState(false);
   const [assets, setAssets] = useState([]); // State to store assets
-  const [connectPrincipal,setConnectedPrincipal] = useState<Principal |null>(null)
-  const [encodedAccount, setEncodedAccount] = useState("")
+  const [connectPrincipal, setConnectedPrincipal] = useState<Principal | null>(
+    null
+  );
+  const [encodedAccount, setEncodedAccount] = useState("");
   const [vaultID, setvaultID] = useState("");
   const [address, setaddress] = useState("");
   const [amount, setamount] = useState("");
 
-  const[depositModule,setDepositModule] = useState<DepositModule | null>(null)
-  const [vaultManager,setVaultManager] = useState<vaultmanager_SERVICE |null>(null)
+  const [depositModule, setDepositModule] = useState<DepositModule | null>(
+    null
+  );
+  const [vaultManager, setVaultManager] = useState<vaultmanager_SERVICE | null>(
+    null
+  );
 
-  const [btcDepositAddress,setbtcDepositAddress] = useState<string>("Click Get  Deposit Address")
+  const [btcDepositAddress, setbtcDepositAddress] = useState<string>(
+    "Click Get  Deposit Address"
+  );
   const [loadingDepositAddress, setLoadingDepositAddress] = useState(false);
 
-  const [currentUserBalance,setUserBalance] = useState<string|null>(null)
-
+  const [currentUserBalance, setUserBalance] = useState<string | null>(null);
 
   const router = useRouter();
-  const depositModuleAddress = "ivtqt-gqaaa-aaaal-qcdra-cai"
-  const vaultManagerAddress = "isswh-liaaa-aaaal-qcdrq-cai"
-
+  const depositModuleAddress = "ivtqt-gqaaa-aaaal-qcdra-cai";
+  const vaultManagerAddress = "isswh-liaaa-aaaal-qcdrq-cai";
 
   useEffect(() => {
     const checkWalletConnection = async () => {
@@ -50,14 +56,19 @@ const Profile = () => {
         setAssets(userAssets); // Set the assets in state
 
         if (result) {
-          const publicKey:Principal = await window.ic.infinityWallet.getPrincipal();
-          setConnectedPrincipal(publicKey)
+          const publicKey: Principal =
+            await window.ic.infinityWallet.getPrincipal();
+          setConnectedPrincipal(publicKey);
           const address = publicKey.toText();
           setConnectedAddress(address);
-          setEncodedAccount(encodeIcrcAccount({owner:Principal.fromText(depositModuleAddress),subaccount:padPrincipalWithZeros(publicKey.toUint8Array())}))
-          await DepositModulecreateActor()
-          await VaultManagercreateActor()
-          
+          setEncodedAccount(
+            encodeIcrcAccount({
+              owner: Principal.fromText(depositModuleAddress),
+              subaccount: padPrincipalWithZeros(publicKey.toUint8Array()),
+            })
+          );
+          await DepositModulecreateActor();
+          await VaultManagercreateActor();
         }
       } catch (e) {
         console.log("Error checking wallet connection:", e);
@@ -67,108 +78,103 @@ const Profile = () => {
     checkWalletConnection();
   }, []);
 
-  useEffect(() =>{
-    const main = async() =>{
-    if(depositModule!==null && connectPrincipal!==null){
-      console.log("inside main")
-      const balance = await depositModule.getBalance(connectPrincipal)
-      const decimalAdjustBalance = adjustDecimals(balance)
-      setUserBalance(decimalAdjustBalance.toString())
-    }}
+  useEffect(() => {
+    const main = async () => {
+      if (depositModule !== null && connectPrincipal !== null) {
+        console.log("inside main");
+        const balance = await depositModule.getBalance(connectPrincipal);
+        const decimalAdjustBalance = adjustDecimals(balance);
+        setUserBalance(decimalAdjustBalance.toString());
+      }
+    };
 
-    main()
-  })
+    main();
+  });
 
   const toggleModal1 = () => {
     setbtcDepositAddress("Click Get Deposit Address");
     setIsModalOpen1(!isModalOpen1);
-
   };
 
   const toggleModal0 = () => {
     setIsModalOpen0(!isModalOpen0);
   };
 
-
   const DepositModulecreateActor = async () => {
     try {
       const depositModule = await window.ic.infinityWallet.createActor({
-      canisterId: depositModuleAddress,
-      interfaceFactory: depositIdlFactory,
-      host:undefined, 
-    })
+        canisterId: depositModuleAddress,
+        interfaceFactory: depositIdlFactory,
+        host: undefined,
+      });
 
-    setDepositModule(depositModule)
+      setDepositModule(depositModule);
+    } catch (e) {
+      console.log("Error creating actor:", e);
+    }
+  };
+  function adjustDecimals(amount: bigint) {
+    const decimals = BigInt(Math.pow(10, 8));
 
-    } catch(e){
-      console.log("Error creating actor:",e)
-    };
-
+    return Number((amount * decimals) / decimals) / 100000000;
   }
-function adjustDecimals(amount:bigint){
-    const decimals = BigInt(Math.pow(10,8))
-
-    return(Number(amount*decimals/decimals)/100000000)
-}
-  const handleGetDepositAddress = async() => {
-    if(depositModule!==null &&connectPrincipal!==null){
-      try{
+  const handleGetDepositAddress = async () => {
+    if (depositModule !== null && connectPrincipal !== null) {
+      try {
         setLoadingDepositAddress(true);
-      const address = await depositModule.getBtcDepositAddress(connectPrincipal)
-      setbtcDepositAddress(address)
-      }
-      catch(e){
-        
+        const address = await depositModule.getBtcDepositAddress(
+          connectPrincipal
+        );
+        setbtcDepositAddress(address);
+      } catch (e) {
         console.error("Error getting deposit address:", e);
         setbtcDepositAddress("Error getting address");
-      } finally{
+      } finally {
         setLoadingDepositAddress(false);
-
       }
     }
-  }
+  };
 
-  const handleUpdateBtcBalance = async() =>{
-    if(depositModule!==null && connectPrincipal!=null){
-      try{
+  const handleUpdateBtcBalance = async () => {
+    if (depositModule !== null && connectPrincipal != null) {
+      try {
         setLoadingDepositAddress(true);
-        const updateResult = await depositModule.updateBalance(connectPrincipal)
-        if("Err" in updateResult){
+        const updateResult = await depositModule.updateBalance(
+          connectPrincipal
+        );
+        if ("Err" in updateResult) {
           setbtcDepositAddress("Error updating balance ");
-          console.log(updateResult)
+          console.log(updateResult);
+        } else {
+          setbtcDepositAddress("Btc balance updated");
         }
-        else{
-        setbtcDepositAddress("Btc balance updated")
-        }
-      }
-      catch(e){
+      } catch (e) {
         console.error("Erro updating balance ", e);
         setbtcDepositAddress("Error updating balance ");
-      } finally{
+      } finally {
         setLoadingDepositAddress(false);
       }
     }
-  }
-  const VaultManagercreateActor = async() => {
+  };
+  const VaultManagercreateActor = async () => {
     try {
       const vaultManager = await window.ic.infinityWallet.createActor({
-      canisterId: vaultManagerAddress,
-      interfaceFactory: vaultManageridlFactory,
-      host:undefined, 
-    })
+        canisterId: vaultManagerAddress,
+        interfaceFactory: vaultManageridlFactory,
+        host: undefined,
+      });
 
-    setVaultManager(vaultManager)
+      setVaultManager(vaultManager);
+    } catch (e) {
+      console.log("Error creating actor:", e);
+    }
+  };
 
-    } catch(e){
-      console.log("Error creating actor:",e)
-    };
-  }
-
-  const padPrincipalWithZeros = (blob:Uint8Array)=> {
+  const padPrincipalWithZeros = (blob: Uint8Array) => {
     let newUin8Array = new Uint8Array(32);
     newUin8Array.set(blob);
     return newUin8Array;
-}
+  };
 
   const copyAddress = () => {
     if (connectedAddress) {
@@ -194,7 +200,7 @@ function adjustDecimals(amount:bigint){
     return true;
   };
 
-  //@major issue use is able to enter any text in address field 
+  //@major issue use is able to enter any text in address field
 
   const handleWithdraw = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -203,57 +209,60 @@ function adjustDecimals(amount:bigint){
       // Handle form submission logic here
       // You can make an API call or perform any other action
 
-      
-      if(vaultManager!==null){
+      if (vaultManager !== null) {
+        try {
+          const _vauldId = BigInt(parseInt(vaultID));
+          const parsedValue = parseFloat(amount);
+          const amountToWithdraw =
+            (BigInt(Math.pow(10, 8)) * BigInt(Math.round(parsedValue * 10))) /
+            BigInt(10);
+          const toAccount: Account = {
+            owner: Principal.fromText(address),
+            subaccount: [],
+          };
 
-        try{
-        const _vauldId = BigInt(parseInt(vaultID))
-        const parsedValue = parseFloat(amount)
-        const amountToWithdraw = BigInt(Math.pow(10, 8)) * BigInt(Math.round(parsedValue * 10)) / BigInt(10);
-        const toAccount:Account = {
-          owner:Principal.fromText(address),
-          subaccount:[]
+          console.log(
+            await vaultManager.withdrawCollateral(
+              _vauldId,
+              amountToWithdraw,
+              toAccount
+            )
+          );
+        } catch (e) {
+          console.log("Error occured:", e);
         }
-
-
-        console.log(await vaultManager.withdrawCollateral(_vauldId,amountToWithdraw,toAccount))
-      }
-      catch(e){
-        console.log("Error occured:",e)
-      }
       }
     }
   };
-
 
   const updateBalance = () => {
     //add animation for loading balance
   };
 
-    const handleVaultIDChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-      const inputValue = e.target.value;
+  const handleVaultIDChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const inputValue = e.target.value;
 
-      // Check if the input is a positive integer
-      if (/^[0-9]\d*$/.test(inputValue)) {
-        setvaultID(inputValue);
-      } else {
-        // If not a positive integer, you can display an error message or handle it in another way
-        // For now, we clear the input
-        setvaultID("");
-      }
-    };
+    // Check if the input is a positive integer
+    if (/^[0-9]\d*$/.test(inputValue)) {
+      setvaultID(inputValue);
+    } else {
+      // If not a positive integer, you can display an error message or handle it in another way
+      // For now, we clear the input
+      setvaultID("");
+    }
+  };
 
   return (
     <div className={styles.body}>
       <Head>
-        <title>SynthiFy - App</title>
+        <title>SynthiFy Finance - Manage Profile and Withdraw Assets</title>
         <meta
           name="description"
-          content="Unlock liquidity for ckbtc with SynthiFy - a decentralized protocol."
+          content="SynthiFy Finance allows you to unlock liquidity by borrowing against your ckbtc holdings. Access stablecoins instantly and maximize your crypto assets. Join the future of decentralized finance today!"
         />
         <meta
           name="keywords"
-          content="SynthiFy,SynthiFy App, Decentralized finance, Liquidity protocol, Crypto lending, Collateralized loans, Blockchain finance, Synth tokens, Stablecoin minting, Crypto borrowing, Crypto collateral, Instant liquidity, Asset-backed loans, Yield farming, Smart contracts, DeFi platform, Crypto assets, Cryptocurrency lending, Tokenized assets, Yield generation, Financial decentralization, Crypto-backed loans, Borrowing and lending, Cryptocurrency protocol, Decentralized liquidity pool, CKBTC collateral, SynthUSD stablecoin, Blockchain assets, Crypto investment, Digital currency, Peer-to-peer lending, Yield optimization, Blockchain lending, Crypto savings, DeFi ecosystem, Automated finance, Blockchain technology"
+          content="SynthiFy Finance, SynthiFy App, synthify, synthify app, synthify finance, synthify twitter, Decentralized finance platform, Crypto lending and borrowing, Collateralized loans, Synth tokens, Stablecoin minting, Instant liquidity, Yield farming, Smart contracts, Financial decentralization, Crypto-backed loans, Cryptocurrency protocol, Decentralized liquidity pool, SynthUSD stablecoin, Blockchain assets, Peer-to-peer lending, Yield optimization, DeFi ecosystem, Blockchain technology, Liquidity protocol, Asset-backed loans, Tokenized assets, Yield generation, Crypto investment, Digital currency, Yield farming strategies, DeFi governance, Crypto staking, Crypto portfolio management, Yield farming rewards, Crypto savings accounts, DeFi lending platforms, Yield farming liquidity, Crypto-backed stablecoins, Yield farming risks, Blockchain-based finance, DeFi tokenized assets, Yield farming projects, Automated finance, Crypto liquidity solutions, Liquidity mining, DeFi tokens, Tokenization of assets, Decentralized savings, Decentralized exchange, Synthetic assets, Crypto yield farming, Yield farming platforms, Crypto asset management, Crypto yield optimization, DeFi lending protocols, Crypto finance solutions, DeFi borrowing and lending, Blockchain investment strategies, Yield farming opportunities, DeFi portfolio diversification, DeFi governance tokens, Decentralized finance apps, Crypto investment vehicles, Decentralized lending platforms, Blockchain collateralization, Yield farming strategies and risks, Crypto loan collateral, DeFi liquidity providers, Crypto yield pools, Crypto trading and investment, Decentralized asset management, Cryptocurrency yield farming, Blockchain lending platforms, Crypto yield generation, Crypto portfolio optimization, DeFi asset-backed loans, Decentralized lending and borrowing, Stablecoin creation, Crypto asset diversification, Yield farming security, Blockchain-based savings, Crypto-backed loan collateral, Yield farming projects and rewards, SynthiFy Finance updates"
         />
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />

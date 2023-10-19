@@ -976,14 +976,17 @@ const Borrow = () => {
   return (
     <div>
       <Head>
-        <title>SynthiFy - Profile</title>
+        <title>
+          SynthiFy Finance - Unlock Liquidity: Borrow Against ckbtc |
+          Decentralized Crypto Lending
+        </title>
         <meta
           name="description"
-          content="Unlock liquidity for ckbtc with SynthiFy - a decentralized protocol."
+          content="SynthiFy Finance allows you to unlock liquidity by borrowing against your ckbtc holdings. Access stablecoins instantly and maximize your crypto assets. Join the future of decentralized finance today!"
         />
         <meta
           name="keywords"
-          content="SynthiFy,SynthiFy App, Decentralized finance, Liquidity protocol, Crypto lending, Collateralized loans, Blockchain finance, Synth tokens, Stablecoin minting, Crypto borrowing, Crypto collateral, Instant liquidity, Asset-backed loans, Yield farming, Smart contracts, DeFi platform, Crypto assets, Cryptocurrency lending, Tokenized assets, Yield generation, Financial decentralization, Crypto-backed loans, Borrowing and lending, Cryptocurrency protocol, Decentralized liquidity pool, CKBTC collateral, SynthUSD stablecoin, Blockchain assets, Crypto investment, Digital currency, Peer-to-peer lending, Yield optimization, Blockchain lending, Crypto savings, DeFi ecosystem, Automated finance, Blockchain technology"
+          content="SynthiFy Finance, SynthiFy App, synthify, synthify app, synthify finance, synthify twitter, Decentralized finance platform, Crypto lending and borrowing, Collateralized loans, Synth tokens, Stablecoin minting, Instant liquidity, Yield farming, Smart contracts, Financial decentralization, Crypto-backed loans, Cryptocurrency protocol, Decentralized liquidity pool, SynthUSD stablecoin, Blockchain assets, Peer-to-peer lending, Yield optimization, DeFi ecosystem, Blockchain technology, Liquidity protocol, Asset-backed loans, Tokenized assets, Yield generation, Crypto investment, Digital currency, Yield farming strategies, DeFi governance, Crypto staking, Crypto portfolio management, Yield farming rewards, Crypto savings accounts, DeFi lending platforms, Yield farming liquidity, Crypto-backed stablecoins, Yield farming risks, Blockchain-based finance, DeFi tokenized assets, Yield farming projects, Automated finance, Crypto liquidity solutions, Liquidity mining, DeFi tokens, Tokenization of assets, Decentralized savings, Decentralized exchange, Synthetic assets, Crypto yield farming, Yield farming platforms, Crypto asset management, Crypto yield optimization, DeFi lending protocols, Crypto finance solutions, DeFi borrowing and lending, Blockchain investment strategies, Yield farming opportunities, DeFi portfolio diversification, DeFi governance tokens, Decentralized finance apps, Crypto investment vehicles, Decentralized lending platforms, Blockchain collateralization, Yield farming strategies and risks, Crypto loan collateral, DeFi liquidity providers, Crypto yield pools, Crypto trading and investment, Decentralized asset management, Cryptocurrency yield farming, Blockchain lending platforms, Crypto yield generation, Crypto portfolio optimization, DeFi asset-backed loans, Decentralized lending and borrowing, Stablecoin creation, Crypto asset diversification, Yield farming security, Blockchain-based savings, Crypto-backed loan collateral, Yield farming projects and rewards, SynthiFy Finance updates"
         />
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
