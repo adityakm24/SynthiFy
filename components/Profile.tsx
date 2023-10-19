@@ -267,6 +267,21 @@ const Profile = () => {
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="icon" href="/icons/tabicon.jpg" />{" "}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta
+          name="twitter:title"
+          content="SynthiFy Finance - Unlock Liquidity with ckbtc Holdings"
+        />
+        <meta
+          name="twitter:description"
+          content="Unlock liquidity with SynthiFy Finance and maximize your crypto assets. Join the future of decentralized finance!"
+        />
+        <meta
+          name="twitter:image"
+          content="https://pbs.twimg.com/profile_images/1714692668796923904/n9qKs6od_400x400.jpg"
+        />
+        <meta name="twitter:site" content="@SynthiFyFinance" />
+        <meta name="twitter:creator" content="@SynthiFyFinance" />
       </Head>
       <div className={styles.blob}></div>
       {isConnected ? (
