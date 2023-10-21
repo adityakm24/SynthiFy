@@ -96,7 +96,6 @@ const Borrow = () => {
 
   //@todo: Change the use effect condition
   useEffect(() => {
-    console.log("inside use effect");
     const main = async () => {
       await checkAllowance();
     };
@@ -176,7 +175,6 @@ const Borrow = () => {
   const getuserIdVaults = async () => {
     if (vaultManager !== null && connectPrincipal !== null) {
       try {
-        console.log("inside getUserIdVaults");
         const vaultids = await vaultManager.getUserVaultIds(connectPrincipal);
         setCurrentVaultIds(vaultids);
       } catch (e) {
@@ -218,9 +216,7 @@ const Borrow = () => {
   };
 
   const checkAllowance = async () => {
-    console.log("inside ");
     if (synBaseAddress !== null && connectPrincipal !== null) {
-      console.log("heeeeere");
       const allowance_args: AllowanceArgs = {
         account: {
           owner: connectPrincipal,
@@ -333,7 +329,6 @@ const Borrow = () => {
   const handleRepayDebt = async () => {
     if (validateFields2()) {
       if (vaultManager !== null) {
-        console.log("inside vault manager address");
         try {
           const _vaultId = BigInt(parseInt(vaultID));
 
@@ -391,7 +386,6 @@ const Borrow = () => {
   const handleCreateVaultFunction = async (e) => {
     e.preventDefault();
     if (vaultManager !== null) {
-      console.log("inside handle create vault");
       try {
         const vaultId = await vaultManager.createVault([]);
         getuserIdVaults();
@@ -416,9 +410,6 @@ const Borrow = () => {
   };
 
   const handleVaultFunction = async () => {
-    //vault details
-
-    console.log("inside create vault", vaultID);
   };
 
   const getForm = () => {
@@ -988,7 +979,7 @@ const Borrow = () => {
           name="keywords"
           content="SynthiFy Finance, SynthiFy App, synthify, synthify app, synthify finance, synthify twitter, Decentralized finance platform, Crypto lending and borrowing, Collateralized loans, Synth tokens, Stablecoin minting, Instant liquidity, Yield farming, Smart contracts, Financial decentralization, Crypto-backed loans, Cryptocurrency protocol, Decentralized liquidity pool, SynthUSD stablecoin, Blockchain assets, Peer-to-peer lending, Yield optimization, DeFi ecosystem, Blockchain technology, Liquidity protocol, Asset-backed loans, Tokenized assets, Yield generation, Crypto investment, Digital currency, Yield farming strategies, DeFi governance, Crypto staking, Crypto portfolio management, Yield farming rewards, Crypto savings accounts, DeFi lending platforms, Yield farming liquidity, Crypto-backed stablecoins, Yield farming risks, Blockchain-based finance, DeFi tokenized assets, Yield farming projects, Automated finance, Crypto liquidity solutions, Liquidity mining, DeFi tokens, Tokenization of assets, Decentralized savings, Decentralized exchange, Synthetic assets, Crypto yield farming, Yield farming platforms, Crypto asset management, Crypto yield optimization, DeFi lending protocols, Crypto finance solutions, DeFi borrowing and lending, Blockchain investment strategies, Yield farming opportunities, DeFi portfolio diversification, DeFi governance tokens, Decentralized finance apps, Crypto investment vehicles, Decentralized lending platforms, Blockchain collateralization, Yield farming strategies and risks, Crypto loan collateral, DeFi liquidity providers, Crypto yield pools, Crypto trading and investment, Decentralized asset management, Cryptocurrency yield farming, Blockchain lending platforms, Crypto yield generation, Crypto portfolio optimization, DeFi asset-backed loans, Decentralized lending and borrowing, Stablecoin creation, Crypto asset diversification, Yield farming security, Blockchain-based savings, Crypto-backed loan collateral, Yield farming projects and rewards, SynthiFy Finance updates"
         />
-        <meta charset="utf-8" />
+        <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="icon" href="/icons/tabicon.jpg" />{" "}
         <meta name="twitter:card" content="summary_large_image" />
