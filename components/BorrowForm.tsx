@@ -409,8 +409,7 @@ const Borrow = () => {
     }
   };
 
-  const handleVaultFunction = async () => {
-  };
+  const handleVaultFunction = async () => {};
 
   const getForm = () => {
     switch (selectedOption) {
@@ -656,94 +655,38 @@ const Borrow = () => {
       case "Create Vault":
         //  setVaultID(0);
         return (
-          <form>
-            <div className={styles.input3Container}>
-              <div className={styles.inputGroup}>
-                <label htmlFor="ckBtc" className={styles.labelWithIcon}>
-                  Vault LTV Ratio
-                </label>
-                <div className={styles.TextRight}>
-                  <p>
-                    {currentVautDetails !== null &&
-                    currentVautDetails.vaultLtvRatio !== undefined
-                      ? `${Math.round(currentVautDetails.vaultLtvRatio * 100)}%`
-                      : `0%`}
-                  </p>
-                </div>
-              </div>
-
-              <div className={styles.inputGroup}>
-                <label htmlFor="ckBtc" className={styles.labelWithIcon}>
-                  Vault Current Collateral
-                </label>
-                <div className={styles.TextRight}>
-                  <p>
-                    {currentVautDetails !== null &&
-                    currentVautDetails.vaultCurrentCollateral !== undefined
-                      ? `${currentVautDetails.vaultCurrentCollateral} CKBTC`
-                      : 0}
-                  </p>
-                </div>
-              </div>
-
-              <div className={styles.inputGroup}>
-                <label htmlFor="ckBtc" className={styles.labelWithIcon}>
-                  Vault Current Collaterisation Ratio
-                </label>
-                <div className={styles.TextRight}>
-                  <p>
-                    {currentVautDetails !== null &&
-                    currentVautDetails.vaultLtvRatio !== undefined
-                      ? `${Math.round(
-                          (1 / currentVautDetails.vaultLtvRatio) * 100
-                        )}%`
-                      : `0%`}
-                  </p>
-                </div>
-              </div>
-              <div className={styles.inputGroup}>
-                <label htmlFor="ckBtc" className={styles.labelWithIcon}>
-                  Vault Debt
-                </label>
-                <div className={styles.TextRight}>
-                  <p>
-                    {actualUserDebt !== null
-                      ? `${actualUserDebt} CKBTC`
-                      : "Fetching"}
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div className={styles.input24Container}>
-              <div className={styles.createWalletContainer}>
-                <button
-                  className={styles.createWalletButton}
-                  onClick={handleCreateVaultFunction} //or use  onClick={handleCreateVaultFunction}
-                >
-                  Create Vault
-                </button>
-                {currentVaultIds.length > 0 && (
-                  <div
-                    style={{
-                      backgroundColor: "black",
-                      color: "white",
-                      border: "2px solid #0f0d3b",
-                      borderRadius: "5px",
-                      boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
-                      fontFamily: "Arial, sans-serif",
-                      display: "inline-block",
-                      padding: "5px",
-                      marginTop: "20px",
-                      width: "200px",
-                      maxHeight: "300px", // Set a max height
-                      overflowY: "auto", // Set overflowY to auto
-                      scrollbarWidth: "thin", // for Firefox
-                      scrollbarColor: "grey white", // for Firefox
-                      MsOverflowStyle: "none", // for Internet Explorer 11
-                    }}
+          <form className={styles.formCont}>
+            <div className={styles.leftbox}>
+              <div className={styles.input24Container}>
+                <div className={styles.createWalletContainer}>
+                  <button
+                    className={styles.createWalletButton}
+                    onClick={handleCreateVaultFunction} //or use  onClick={handleCreateVaultFunction}
                   >
-                    <style>
-                      {`
+                    Create Vault
+                  </button>
+                  {currentVaultIds.length > 0 && (
+                    <div
+                      style={{
+                        backgroundColor: "black",
+                        color: "white",
+                        border: "2px solid #0f0d3b",
+                        borderRadius: "5px",
+                        boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
+                        fontFamily: "Arial, sans-serif",
+                        display: "inline-block",
+                        padding: "5px",
+                        marginTop: "20px",
+                        width: "200px",
+                        maxHeight: "300px", // Set a max height
+                        overflowY: "auto", // Set overflowY to auto
+                        scrollbarWidth: "thin", // for Firefox
+                        scrollbarColor: "grey white", // for Firefox
+                        MsOverflowStyle: "none", // for Internet Explorer 11
+                      }}
+                    >
+                      <style>
+                        {`
         ::-webkit-scrollbar {
           width: 12px; // set scrollbar width
         }
@@ -758,51 +701,134 @@ const Borrow = () => {
           border: 3px solid white; // set thumb border color
         }
         `}
-                    </style>
-                    <p
-                      style={{
-                        fontSize: "18px",
-                        marginBottom: "10px",
-                        textAlign: "center",
-                      }}
-                    >
-                      Current Vault IDs:
-                    </p>
-                    <ul
-                      style={{
-                        listStyleType: "none",
-                        padding: "0",
-                        textAlign: "center",
-                      }}
-                    >
-                      {currentVaultIds.map((vaultId) => (
-                        <li
-                          key={vaultId.toString()}
-                          style={{
-                            fontSize: "16px",
-                            marginBottom: "5px",
-                            padding: "5px 10px",
-                            backgroundColor: "#fff",
-                            border: "1px solid #9793d9",
-                            borderRadius: "3px",
-                            transition: "background-color 0.3s, transform 0.3s",
-                            margin: "10px 5px",
-                            color: "black",
-                          }}
-                        >
-                          {vaultId.toString()}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
-                {backendData && (
-                  <p className={styles.backendData}>{backendData}</p>
-                )}
+                      </style>
+                      <p
+                        style={{
+                          fontSize: "18px",
+                          marginBottom: "10px",
+                          textAlign: "center",
+                        }}
+                      >
+                        Current Vault IDs:
+                      </p>
+                      <ul
+                        style={{
+                          listStyleType: "none",
+                          padding: "0",
+                          textAlign: "center",
+                        }}
+                      >
+                        {currentVaultIds.map((vaultId) => (
+                          <li
+                            key={vaultId.toString()}
+                            style={{
+                              fontSize: "16px",
+                              marginBottom: "5px",
+                              padding: "5px 10px",
+                              backgroundColor: "#fff",
+                              border: "1px solid #9793d9",
+                              borderRadius: "3px",
+                              transition:
+                                "background-color 0.3s, transform 0.3s",
+                              margin: "10px 5px",
+                              color: "black",
+                            }}
+                          >
+                            {vaultId.toString()}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+                  {backendData && (
+                    <p className={styles.backendData}>{backendData}</p>
+                  )}
+                </div>
               </div>
             </div>
-            <div className={styles.input25Container}>
-              <div className={styles.createWalletContainer}>
+            <div className={styles.rightboxes}>
+              <div>
+                <div className={styles.input29Container}>
+                  <div className={styles.inputGroup}>
+                    <label htmlFor="ckBtc" className={styles.labelWithIcon}>
+                      Vault LTV Ratio
+                    </label>
+                    <div className={styles.TextRight}>
+                      <p>
+                        {currentVautDetails !== null &&
+                        currentVautDetails.vaultLtvRatio !== undefined
+                          ? `${Math.round(
+                              currentVautDetails.vaultLtvRatio * 100
+                            )}%`
+                          : `0%`}
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className={styles.inputGroup}>
+                    <label htmlFor="ckBtc" className={styles.labelWithIcon}>
+                      Vault Current Collateral
+                    </label>
+                    <div className={styles.TextRight}>
+                      <p>
+                        {currentVautDetails !== null &&
+                        currentVautDetails.vaultCurrentCollateral !== undefined
+                          ? `${currentVautDetails.vaultCurrentCollateral} CKBTC`
+                          : 0}
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className={styles.inputGroup}>
+                    <label htmlFor="ckBtc" className={styles.labelWithIcon}>
+                      Vault Current Collaterisation Ratio
+                    </label>
+                    <div className={styles.TextRight}>
+                      <p>
+                        {currentVautDetails !== null &&
+                        currentVautDetails.vaultLtvRatio !== undefined
+                          ? `${Math.round(
+                              (1 / currentVautDetails.vaultLtvRatio) * 100
+                            )}%`
+                          : `0%`}
+                      </p>
+                    </div>
+                  </div>
+                  <div className={styles.inputGroup}>
+                    <label htmlFor="ckBtc" className={styles.labelWithIcon}>
+                      Vault Debt
+                    </label>
+                    <div className={styles.TextRight}>
+                      <p>
+                        {actualUserDebt !== null
+                          ? `${actualUserDebt} CKBTC`
+                          : "Fetching"}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <div className={styles.input31Container}>
+                  <label htmlFor="sUsd">
+                    <div className={styles.inputGroup}>
+                      Vault ID
+                      <input
+                        type="text"
+                        id="vaultID"
+                        name="vaultID"
+                        value={vaultID}
+                        onChange={handleVaultIDChange}
+                        placeholder="0"
+                      />
+                    </div>
+                  </label>
+                  <div className={styles.gasFee}>
+                    <p>Gas Fees: 10</p>
+                  </div>
+                </div>
+              </div>
+              <div>
                 <button
                   className={styles.VaultDetails}
                   onClick={handleGetVaultDetails}
@@ -811,27 +837,9 @@ const Borrow = () => {
                 </button>
               </div>
             </div>
-            <div className={styles.input31Container}>
-              <label htmlFor="sUsd">
-                <div className={styles.inputGroup}>
-                  Vault ID
-                  <input
-                    type="text"
-                    id="vaultID"
-                    name="vaultID"
-                    value={vaultID}
-                    onChange={handleVaultIDChange}
-                    placeholder="0"
-                  />
-                </div>
-              </label>
-              <div className={styles.gasFee}>
-                <p>Gass Fees: 10</p>
-              </div>
-            </div>
           </form>
         );
-
+      //asset.ckbtcAmount
       case "Repay Debt":
         //  setVaultID(0);
         return (

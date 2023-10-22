@@ -47,65 +47,103 @@
   margin-top: 20px;
    margin-bottom: 20px;
 }
-
-.input24Container {
-  border: 0px black;
-  border-style: solid;
-  width: 600px;
-  padding: 20px;
-  margin-top: 20px;
-}
-
-.input25Container {
-  border: 0px black;
-  border-style: solid;
-  width: 650px;
-  padding: 20px;
-  position: absolute;
-   float: right;
-   left:50%;
-   top:76%;
-}
-
 .input3Container {
   border: 2px black;
   border-style: solid;
-  width: 650px;
+  width: 850px;
   padding: 20px;
-   float: right;
+  float: right;
+}
+
+.createWalletContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.createWalletButton {
+  padding: 16px 24px; 
+  font-size: 18px;   
+  background-color: #000000; 
+  color: #fff;       
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.createWalletButton:hover {
+  background-color: #584574af; /* Change the hover background color */
+}
+.formCont {
+  display: flex;
+  height: 50vh; /* Set the height to 50% of the viewport height */
+}
+.leftbox {
+  flex: 1; /* Use 50% of the available width */
+  text-align: center;
+  line-height: 75px;
+  font-size: 30px;
+}
+
+.rightboxes {
+  display: flex;
+  flex-direction: column;
+  flex: 1; /* Use 50% of the available width */
+}
+
+.rightboxes > div {
+  margin: 10px;
+  flex: 1;
+
+}
+.input24Container {
+  border: 0px black;
+  border-style: solid;
+  width: 100%;
+  padding: 20px;
+  margin-top: 20px;
+}
+.input29Container {
+  border: 2px rgb(0, 0, 0);
+  border-style: solid;
+  width: 100%;
+  padding: 20px;
+  float: right;
 }
 .input31Container {
   border: 2px black;
   border-style: solid;
-  width: 650px;
   padding: 20px;
-   float: right;
-   margin-top: -12%;
-   position: absolute;
-   left:50%;
-   bottom:23%;
+  width: 100%;
 }
 @media (max-width: 1600px) {
   .input31Container {
     float: right;
-    width:40%;
+    width:100%;
   }
 }
 
 @media (max-width: 960px) {
   .input31Container {
     float: right;
-    width:40%;
+    width:100%;
   }}
 
 @media (max-width: 1600px) {
   .input1Container, .input2Container, .input3Container, .input24Container{
-  
-    width:40%;
+    width:30%;
   }
 
   .input3Container{
       width:50%;
+      left: 0;
+      transform: none;
+  }
+  .input29Container{
+      width:100%;
       left: 0;
       transform: none;
   }
@@ -239,6 +277,7 @@
 }
 
 
+/* Common styles for all screen sizes */
 .modalBackdrop {
   position: fixed;
   top: 0;
@@ -256,26 +295,66 @@
   border-radius: 8px;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
   padding: 20px;
-  width: 90%; 
-  height: 70%;
+  width: 90%;
+  max-height: 70vh; /* Set a maximum height for all screens */
+  overflow-y: auto; /* Enable vertical scrolling if content exceeds the height */
   z-index: 4;
-  align-items: center;
-  align-content: center;
   text-align: center;
-
 }
+
+/* Styling for WebKit browsers (Chrome, Safari) */
+.modalContent::-webkit-scrollbar {
+  width: 10px; /* Set the width of the scrollbar */
+}
+
+.modalContent::-webkit-scrollbar-thumb {
+  background: #888; /* Color of the thumb */
+  border-radius: 10px; /* Rounded corners of the thumb */
+}
+
+.modalContent::-webkit-scrollbar-thumb:hover {
+  background: #555; /* Color of the thumb on hover */
+}
+
+/* Styling for Firefox */
+.modalContent {
+  scrollbar-width: thin;
+  scrollbar-color: #888 #fff; /* Color of the thumb and track */
+}
+
+/* Media query for laptops or larger screens */
+@media (min-width: 1024px) {
+  .modalContent {
+    max-height: 80vh; /* Increase the maximum height for laptops */
+  }
+}
+
 
 .modalNavbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 .modalTitle {
   font-size: 1.5rem;
   font-weight: bold;
 }
+
+/* Media query for laptops or larger screens */
+@media (min-width: 1024px) {
+  .modalContent {
+    max-height: 80vh; /* Increase the maximum height for laptops */
+  }
+}
+
+
+.modalTitle {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
 
 @keyframes bounce {
   0%, 20%, 50%, 80%, 100% {
@@ -299,17 +378,6 @@
   align-self: flex-start;
   text-align-last: center;
   animation: bounce 5s infinite;
-    cursor: pointer;
-
-  
-}
-.modalDropdown {
-  position: relative;
-  flex-grow: 1;
-  margin-left: 20px;
-  align-self: flex-start;
-  text-align-last: center;
-  animation: bounce 5s infinite;
   cursor: pointer;
   padding-right: 20px; 
 }
@@ -317,10 +385,8 @@
     padding-left: 10px; 
 }
 
-
-
 .modalDropdown select {
-  padding: 12px 20px;
+  padding: 12px 10px;
   margin: 8px 0 25px 0; /* Increased bottom margin to make space for the arrow */
   box-sizing: border-box;
   border: 2px solid #000;
@@ -397,30 +463,6 @@
 .tableList td {
 
   background-color: rgba(255, 255, 255, 0.167);
-}
-
-
-.createWalletContainer {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-}
-
-.createWalletButton {
-  padding: 16px 24px; 
-  font-size: 18px;   
-  background-color: #000000; 
-  color: #fff;       
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.createWalletButton:hover {
-  background-color: #584574af; /* Change the hover background color */
 }
 
 
