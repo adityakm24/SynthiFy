@@ -32,25 +32,52 @@
   height: 100vh; 
 }
 
+.formCont1 {
+  display: flex;
+}
+
+.leftboxes1 {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.leftboxes1 > div {
+  margin: 10px;
+  padding: 20px;
+}
+
+.rightbox1 {
+  margin: 10px;
+  padding: 20px;
+  flex: 1;
+}
+
+.bottomdiv {
+  margin: 10px;
+  padding: 20px;
+  font-size: 30px;
+  width: 100%; /* Make it span the entire width */
+}
+
+
 .input1Container {
   border: 2px black;
   border-style: solid;
-  width: 600px;
-  padding: 20px;  
+  padding: 20px;
+  width: 100%; 
 }
 
 .input2Container {
   border: 2px black;
   border-style: solid;
-  width: 600px;
   padding: 20px;
-  margin-top: 20px;
-   margin-bottom: 20px;
+  width: 100%; /* Add width property here */
 }
 .input3Container {
   border: 2px black;
   border-style: solid;
-  width: 850px;
+  width: 100%;
   padding: 20px;
   float: right;
 }
@@ -82,16 +109,15 @@
   height: 50vh; /* Set the height to 50% of the viewport height */
 }
 .leftbox {
-  flex: 1; /* Use 50% of the available width */
+  flex: 1; 
   text-align: center;
-  line-height: 75px;
-  font-size: 30px;
+  margin-left: 20px;
 }
 
 .rightboxes {
   display: flex;
   flex-direction: column;
-  flex: 1; /* Use 50% of the available width */
+  flex: 1; 
 }
 
 .rightboxes > div {
@@ -119,13 +145,6 @@
   padding: 20px;
   width: 100%;
 }
-@media (max-width: 1600px) {
-  .input31Container {
-    float: right;
-    width:100%;
-  }
-}
-
 @media (max-width: 960px) {
   .input31Container {
     float: right;
@@ -133,30 +152,31 @@
   }}
 
 @media (max-width: 1600px) {
-  .input1Container, .input2Container, .input3Container, .input24Container{
-    width:30%;
+  .input1Container, .input2Container, .input24Container{
+    width: auto;
+  }
+  .input3Container {
+    width: 90%; 
   }
 
-  .input3Container{
-      width:50%;
-      left: 0;
-      transform: none;
-  }
   .input29Container{
       width:100%;
       left: 0;
       transform: none;
   }
+    .input31Container {
+    float: right;
+    width:100%;
+  }
 }
 
 @media (max-width: 960px) {
   .input1Container, .input2Container, .input3Container, .input24Container{
-  
-    width:35%;
+    width: auto;
   }
 
   .input3Container{
-      width:50%;
+      width:90%;
       left: 0;
       transform: none;
   }
@@ -277,7 +297,6 @@
 }
 
 
-/* Common styles for all screen sizes */
 .modalBackdrop {
   position: fixed;
   top: 0;
@@ -287,6 +306,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 3;
   background-color: rgba(0, 0, 0, 0.7);
 }
 
@@ -296,36 +316,40 @@
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
   padding: 20px;
   width: 90%;
-  max-height: 70vh; /* Set a maximum height for all screens */
-  overflow-y: auto; /* Enable vertical scrolling if content exceeds the height */
+  height: 100%;
+  max-height: 60vh; 
+  overflow-y: auto; 
   z-index: 4;
   text-align: center;
 }
 
 /* Styling for WebKit browsers (Chrome, Safari) */
 .modalContent::-webkit-scrollbar {
-  width: 10px; /* Set the width of the scrollbar */
+  width: 12px; 
 }
 
 .modalContent::-webkit-scrollbar-thumb {
-  background: #888; /* Color of the thumb */
-  border-radius: 10px; /* Rounded corners of the thumb */
+  background: #888; 
+  border-radius: 8px; 
 }
 
 .modalContent::-webkit-scrollbar-thumb:hover {
-  background: #555; /* Color of the thumb on hover */
+  background: #555; 
+}
+.modalContent::-webkit-scrollbar-track {
+  border-radius: 20px; 
 }
 
-/* Styling for Firefox */
 .modalContent {
   scrollbar-width: thin;
-  scrollbar-color: #888 #fff; /* Color of the thumb and track */
+  scrollbar-color: #888 #fff; 
 }
 
 /* Media query for laptops or larger screens */
 @media (min-width: 1024px) {
   .modalContent {
-    max-height: 80vh; /* Increase the maximum height for laptops */
+    max-height: 60vh;
+     height: 100%;
   }
 }
 
