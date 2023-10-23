@@ -317,7 +317,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 200;  /* Adjusted z-index value */  
+  z-index: 2000;
   background-color: rgba(0, 0, 0, 0.7);
 }
 
@@ -328,10 +328,10 @@
   padding: 20px;
   width: 90%;
   height: 100%;
-  max-height: 60vh; 
+   max-height: 70vh;
   overflow-y: auto;
   overflow-x: hidden; 
-  z-index: 4;
+  z-index: 1800;
   text-align: center;
 }
 
@@ -360,7 +360,7 @@
 /* Media query for laptops or larger screens */
 @media (min-width: 1024px) {
   .modalContent {
-    max-height: 60vh;
+    max-height: 70vh;
      height: 100%;
   }
 }
@@ -381,7 +381,7 @@
 /* Media query for laptops or larger screens */
 @media (min-width: 1024px) {
   .modalContent {
-    max-height: 80vh; /* Increase the maximum height for laptops */
+    max-height: 70vh; /* Increase the maximum height for laptops */
   }
 }
 
@@ -453,7 +453,7 @@
 
 .closeIcon {
   font-size: 1.5rem;
-  color: #ccc;
+  color:rgb(43, 43, 43);
 }
 
 
@@ -464,9 +464,7 @@
   height: 50vh; 
   padding: 0 50px;
   position: relative;
-  z-index: 1;
-  
-  
+  z-index: 0;
 }
 
 .tableList {
@@ -494,12 +492,11 @@
   padding-bottom: 12px;
   text-align: left;
   color: rgb(255, 255, 255);
-  z-index: 999;
-
+  z-index: 10;
 }
 
 .tableList td {
-
+  z-index: 10;
   background-color: rgba(255, 255, 255, 0.167);
 }
 

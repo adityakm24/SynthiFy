@@ -142,6 +142,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 1500;
 }
 
 .modalContent {
@@ -150,7 +151,7 @@
   padding: 20px;
    border-radius: 20px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.262);
-  z-index: 20000;
+  z-index: 1500;
 }
 
 .modalHeader {
@@ -159,17 +160,20 @@
   align-items: center;
   padding: 20px;
   margin-bottom: 15px;
+
 }
 
 .modalActions {
   display: flex;
   justify-content: space-between;
+   z-index: 99;
 }
 
 
 .modalContainer {
   position: relative;
    padding: 20px;
+   z-index: 99;
 }
 
 .closeIcon {
