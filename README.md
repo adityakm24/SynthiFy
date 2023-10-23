@@ -1,31 +1,48 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+
+# SynthiFy Finance
+
+SynthiFy Finance is an open-source platform enabling users to deposit Bitcoin as collateral to instantly borrow stablecoins, aiding in crypto asset management and liquidity access.
+
+## Features
+
+- Deposit Bitcoin and borrow stablecoins instantly.
+- Seamless crypto asset management.
+- Unlock liquidity effortlessly.
 
 ## Getting Started
-First, clone the github repo
 
-Next, run the development server:
+Clone the repository:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
+git clone https://github.com/adityakm24/SynthiFy.git
+cd SynthiFy
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Installation
 
-## Learn More
+```bash
+npm install
+```
 
-To learn more about Next.js, take a look at the following resources:
+## Usage
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+npm start
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## Contributing
 
-## Deploy on Vercel
+We welcome contributions from the community! Here are some good practices to ensure a smooth collaboration:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+1. **Fork the Repository:** Fork the project repository to your GitHub account.
+2. **Clone the Forked Repository:** Clone your fork locally on your machine.
+3. **Create a New Branch:** Always create a new branch for your changes.
+4. **Make Your Changes:** Work on your changes and commit them with meaningful commit messages.
+5. **Push to Your Fork:** Push your changes to your fork on GitHub.
+6. **Create a Pull Request:** Create a pull request from your fork to the original repository.
+7. **Code Review:** Wait for your changes to be reviewed. Address any feedback or suggestions.
+8. **Merge:** Once approved, your changes will be merged into the main branch.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## License
+
+This project is licensed under the AGPL License - see the [LICENSE](LICENSE) file for details.
