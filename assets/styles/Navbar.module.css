@@ -7,8 +7,10 @@
   align-items: center;
   border-radius: 10px;
   margin: 5px;
+  position: relative;  /* This creates a new stacking context */
   gap: 0.5rem; /* Adjusted gap */
-  flex-wrap: wrap; /* Allow the items to wrap onto the next line if necessary */  
+  flex-wrap: wrap; /* Allow the items to wrap onto the next line if necessary */ 
+  z-index: 100;  /* This ensures the navbar and its children are on top of other elements like the blob */ 
 }
 .navbarLogo {
   position: relative;
@@ -51,11 +53,11 @@
 .navbarLinks {
   display: flex; /* Make the links flex items */
   flex-wrap: wrap; /* Allow the items to wrap onto the next line if necessary */
-  gap: 1rem; /* Adjusted gap */}
+  gap: 5rem; /* Adjusted gap */}
 
 
 
-  @media (max-width: 673px) {
+  @media (max-width: 740px) {
     .navbar {
       flex-direction: column;  /* Stack items vertically */
     align-items: center;  /* Center align items horizontally */
