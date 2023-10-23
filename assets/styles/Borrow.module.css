@@ -317,7 +317,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 3;
+  z-index: 200;  /* Adjusted z-index value */  
   background-color: rgba(0, 0, 0, 0.7);
 }
 
@@ -464,7 +464,7 @@
   height: 50vh; 
   padding: 0 50px;
   position: relative;
-  z-index: 100;
+  z-index: 10;
   
   
 }
