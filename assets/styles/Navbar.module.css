@@ -7,6 +7,8 @@
   align-items: center;
   border-radius: 10px;
   margin: 5px;
+  gap: 0.5rem; /* Adjusted gap */
+  flex-wrap: wrap; /* Allow the items to wrap onto the next line if necessary */  
 }
 .navbarLogo {
   position: relative;
@@ -48,8 +50,43 @@
 
 .navbarLinks {
   display: flex; /* Make the links flex items */
-  gap: 100px; /* Adjust the gap between links as needed */
+  flex-wrap: wrap; /* Allow the items to wrap onto the next line if necessary */
+  gap: 1rem; /* Adjusted gap */}
+
+
+
+  @media (max-width: 673px) {
+    .navbar {
+      flex-direction: column;  /* Stack items vertically */
+    align-items: center;  /* Center align items horizontally */
+    justify-content: center; 
+        padding: 0.5rem; /* Adjusted padding */
+    }
+    
+    .navbarLinks {
+      width: 100%;  /* Full width to allow centering */
+    justify-content: center;  /* Center align links */
+    margin-bottom: 0.5rem;
+        gap: 0.5rem; /* Adjusted gap */
+    }
+
+    .navbarLink, .connectButton {
+        font-size: 0.8rem; /* Reduced font size */
+        padding: 0.5rem; /* Adjusted padding */
+
+    }
+
+    .select-container, .select-element {
+        font-size: 0.8rem; /* Reduced font size */
+    }
+    .select-container, .connectButton {
+      margin-top: 0.5rem;  /* Optional: Add some space above the select container and connect button */
+    }
 }
+
+
+
+
 
 .navbarLink {
   color: white;
