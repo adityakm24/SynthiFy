@@ -2,13 +2,13 @@
   background-color: aliceblue;
   background: linear-gradient(200deg, #0bc94a 0%, #752bec 100%);
   height: 300px;
-  width: 300px;
+  width: 500px;
   aspect-ratio: 1;
   position: absolute;
-  left:-5%;
-  top: -10%;
+  left:-10%;
+  top: -0%;
   border-radius: 50px;
-  filter: blur(100px);
+  filter: blur(120px);
   z-index: 0;
   overflow-x: hidden;
   animation: rotate 7s linear infinite;
@@ -296,6 +296,17 @@
 
 }
 
+@media (max-width: 750px) {
+  .borrowButton {
+    padding: 10px 20px;  /* Reduced padding */
+    font-size: 14px;  /* Reduced font size */
+    margin-left: 10%;  /* Adjust margin-left as needed */
+  }
+
+  .borrowButton:hover {
+    padding: 10px 20px;  /* Reduced padding */
+  }
+}
 
 .modalBackdrop {
   position: fixed;
@@ -452,6 +463,8 @@
   align-items: center;
   height: 50vh; 
   padding: 0 50px;
+  position: relative;
+  z-index: 100;
   
   
 }
