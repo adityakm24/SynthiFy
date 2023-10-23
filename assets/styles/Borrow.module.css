@@ -464,7 +464,7 @@
   height: 50vh; 
   padding: 0 50px;
   position: relative;
-  z-index: 10;
+  z-index: 1;
   
   
 }

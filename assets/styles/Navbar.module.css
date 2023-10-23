@@ -10,7 +10,7 @@
   position: relative;  /* This creates a new stacking context */
   gap: 0.5rem; /* Adjusted gap */
   flex-wrap: wrap; /* Allow the items to wrap onto the next line if necessary */ 
-  z-index: 10;  /* This ensures the navbar and its children are on top of other elements like the blob */ 
+  z-index: 1;  /* This ensures the navbar and its children are on top of other elements like the blob */ 
 }
 .navbarLogo {
   position: relative;
@@ -150,7 +150,7 @@
   padding: 20px;
    border-radius: 20px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.262);
-  z-index: 1001;
+  z-index: 20000;
 }
 
 .modalHeader {
