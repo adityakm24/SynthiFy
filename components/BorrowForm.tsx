@@ -742,10 +742,10 @@ const Borrow = () => {
                               marginBottom: "5px",
                               padding: "5px 10px",
                               backgroundColor: "#fff",
-                              border: "1px solid #9793d9",
+                              border: "0px solid #9793d9",
                               borderRadius: "3px",
                               transition:
-                                "background-color 0.3s, transform 0.3s",
+                               "background-color 0.3s, transform 0.3s",
                               margin: "10px 5px",
                               color: "black",
                             }}
@@ -765,7 +765,7 @@ const Borrow = () => {
             <div className={styles.rightboxes}>
               <div>
                 <div className={styles.input29Container}>
-                  <div className={styles.inputGroup}>
+                  <div className={styles.inputGroup31}>
                     <label htmlFor="ckBtc" className={styles.labelWithIcon}>
                       Vault LTV Ratio
                     </label>
@@ -827,7 +827,7 @@ const Borrow = () => {
               <div>
                 <div className={styles.input31Container}>
                   <label htmlFor="sUsd">
-                    <div className={styles.inputGroup}>
+                    <div className={styles.inputGroup31}>
                       Vault ID
                       <input
                         type="text"
@@ -1098,10 +1098,10 @@ const Borrow = () => {
                       value={selectedOption}
                       onChange={handleOptionChange}
                     >
-                      <option>Borrow</option>
-                      <option>Add Collateral</option>
-                      <option>Create Vault</option>
-                      <option>Repay Debt</option>
+                      <option className={styles.options}>Borrow</option>
+                      <option className={styles.options}>Add Collateral</option>
+                      <option className={styles.options}>Create Vault</option>
+                      <option className={styles.options}>Repay Debt</option>
                     </select>
                     <span className={styles.arrow}>▼</span>
                   </div>

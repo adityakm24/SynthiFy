@@ -60,26 +60,97 @@
   width: 100%; /* Make it span the entire width */
 }
 
+.inputGroup {
+  flex: 4;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: white;
+  background-color: rgb(19,19,19);
+}
 
+.inputGroup input {
+  width: 70%;
+  text-align: right;
+  border: 0px solid #555;
+  background-color: rgb(27,27,27);
+  color: #ffffff;
+  font-size: 25px;
+  border-radius: 8px;
+}
+.inputGroup input:focus {
+    border: 0px solid #555;
+    border: 0px;
+    outline: none;
+ }
+
+ .inputGroup31 {
+  flex: 4;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: white;
+  background-color: #121212;
+}
+
+.inputGroup31 input {
+  width: 70%;
+  text-align: right;
+  border: 0px solid #555;
+  background-color: rgb(27,27,27);
+  color: #ffffff;
+  font-size: 25px;
+  border-radius: 8px;
+}
+.inputGroup31 input:focus {
+    border: 0px solid #555;
+    border: 0px;
+    outline: none;
+ }
 .input1Container {
-  border: 2px black;
+  border: 2px #2B242B;
+  border-style: solid;
+  border-radius: 20px;
+  padding: 30px;
+  width: 100%; 
+  background-color: rgb(19,19,19);
+  box-shadow:  0 0px 10px 0 #3a283a; 
+  font-weight: 500;
+}
+
+
+.input2Container {
+  border: 2px #2B242B;
   border-style: solid;
   padding: 20px;
   width: 100%; 
-}
-
-.input2Container {
-  border: 2px black;
-  border-style: solid;
-  padding: 20px;
-  width: 100%; /* Add width property here */
+  border-radius: 20px;
+  background-color: rgb(19,19,19);
+  box-shadow:  0 0px 10px 0 #3a283a; 
+  font-weight: 500;
 }
 .input3Container {
-  border: 2px black;
+  border: 2px #2B242B;
   border-style: solid;
+  color: white;
   width: 100%;
   padding: 20px;
   float: right;
+  border-radius: 20px;
+  background-color: rgb(19,19,19);
+  box-shadow:  0 0px 10px 0 #3a283a; 
+  font-weight: 500;
+}
+
+.input2Container input::-webkit-outer-spin-button,
+.input2Container input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+.input2Container input[type=number] {
+  -moz-appearance: textfield;
 }
 
 .createWalletContainer {
@@ -93,8 +164,8 @@
 .createWalletButton {
   padding: 16px 24px; 
   font-size: 18px;   
-  background-color: #000000; 
-  color: #fff;       
+  background-color: #ffffff; 
+  color: #000000;       
   border: none;
   border-radius: 8px;
   cursor: pointer;
@@ -102,7 +173,7 @@
 }
 
 .createWalletButton:hover {
-  background-color: #584574af; /* Change the hover background color */
+  background-color: #ffffffd3; /* Change the hover background color */
 }
 .formCont {
   display: flex;
@@ -126,24 +197,27 @@
 
 }
 .input24Container {
-  border: 0px black;
+  border:  0px #2B242B;
   border-style: solid;
   width: 100%;
   padding: 20px;
   margin-top: 20px;
+  font-weight: 500;
 }
 .input29Container {
-  border: 2px rgb(0, 0, 0);
+  border:  0px #2B242B;
   border-style: solid;
   width: 100%;
   padding: 20px;
   float: right;
+  font-weight: 500;
 }
 .input31Container {
-  border: 2px black;
+  border: 0px #2B242B;
   border-style: solid;
   padding: 20px;
   width: 100%;
+font-weight: 500;
 }
 @media (max-width: 960px) {
   .input31Container {
@@ -197,22 +271,6 @@
   margin-right: 10px;
 }
 
-.inputGroup {
-  flex: 4;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background-color: rgb(255, 255, 255);
-}
-
-.inputGroup input {
-  width: 70%;
-  border-color: rgba(0, 0, 0, 0);
-  text-align: right;
-  color: #4f4f4f;
-  font-size: 25px;
-}
-
 
 .pillGroup {
   display: flex;
@@ -241,8 +299,9 @@
 
 .TextRight {
   text-align: right;
-  color: #000000;
+  color: #ffffff;
   font-size: 15px;
+  font-weight: 500;
 }
 
 .labelWithIcon {
@@ -322,13 +381,15 @@
 }
 
 .modalContent {
-  background: white;
+  background: #121212;
   border-radius: 8px;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0px 10px 0 #3a283a; 
+  border: 2px #2B242B;
+  border-style: solid;
   padding: 20px;
   width: 90%;
   height: 100%;
-   max-height: 70vh;
+  max-height: 70vh;
   overflow-y: auto;
   overflow-x: hidden; 
   z-index: 1800;
@@ -361,7 +422,9 @@
 @media (min-width: 1024px) {
   .modalContent {
     max-height: 70vh;
-     height: 100%;
+    height: 100%;
+  border: 2px #2B242B;
+  border-style: solid;
   }
 }
 
@@ -419,30 +482,28 @@
 }
 .arrow {
     padding-left: 10px; 
+    color: white;
 }
 
 .modalDropdown select {
   padding: 12px 10px;
   margin: 8px 0 25px 0; /* Increased bottom margin to make space for the arrow */
   box-sizing: border-box;
-  border: 2px solid #000;
+  border: 2px double #ca92fb53;
   border-radius: 8px;
   appearance: none;
-  background-color: #fff;
-  font-size: 16px;
-  color: #000;
+  background-color: rgb(26,32,42);
+  color: #ffffff;
   cursor: pointer;
 }
 
 
 .modalDropdown:hover select {
-  border-color: #808080;
+    background-color: rgb(37, 50, 73);
 }
 
-.modalDropdown select:focus {
+.modalDropdown option:focus {
   outline: none;
-  border-color: #000;
-  box-shadow: 0 0 10px 1px rgba(0,0,0,0.1);
 }
 
 
@@ -453,7 +514,7 @@
 
 .closeIcon {
   font-size: 1.5rem;
-  color:rgb(43, 43, 43);
+  color:rgb(255, 255, 255);
 }
 
 
@@ -511,22 +572,30 @@
 .Calculate {
   width: 15%;
   font-size: 17px;
+  font-weight: 500;
   padding: 10px;
   border-radius: 10px;
-  background-color: rgb(0, 0, 0);
-  color: rgb(255, 255, 255);
-  border: 2px solid black;
+background-image: linear-gradient(
+  75deg,
+  hsl(189deg 98% 50%) 0%,
+  hsl(191deg 94% 61%) 11%,
+  hsl(192deg 93% 66%) 22%,
+  hsl(192deg 91% 70%) 34%,
+  hsl(192deg 90% 73%) 45%,
+  hsl(191deg 88% 76%) 56%,
+  hsl(191deg 87% 79%) 68%,
+  hsl(191deg 85% 82%) 79%,
+  hsl(190deg 84% 84%) 90%,
+  hsl(190deg 82% 87%) 100%
+);
+  color: rgb(0, 0, 0);
+  border: 0px solid #19b1cc00;
   box-shadow: #000000;
 }
 
 .Calculate:hover {
-  width: 15%;
-  font-size: 17px;
-  padding: 10px;
-  border-radius: 10px;
-  background-color: rgb(39, 39, 39);
-  color: rgb(255, 255, 255);
-  border: 2px solid black;
+  border: 0px solid #19b1cc00;
+    box-shadow:  0 0px 20px 0 #3a283a; 
 }
 
 .Vault {
@@ -534,8 +603,8 @@
   padding: 10px;
   border-radius: 10px;
   font-size: 17px;
-  background-color: rgb(255, 255, 255);
-  color: rgb(0, 0, 0);
+  background-color: rgba(255, 255, 255, 0);
+  color: white;
   border: 0px solid black;
   font-weight: 700;
 }
@@ -565,11 +634,15 @@
 .VaultDetails {
   padding: 16px 24px;
   font-size: 18px;
-  background-color: #000000;
-  color: #fff;
+  background-color: #ffffff;
+  color: #000000;
   border: none;
   border-radius: 8px;
   cursor: pointer;
+  transition: background-color 0.3s;
+}
+.VaultDetails:hover {
+  background-color: #ffffffd3;
   transition: background-color 0.3s;
 }
 
