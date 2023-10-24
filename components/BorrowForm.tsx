@@ -896,7 +896,6 @@ const Borrow = () => {
                       </div>
                     </label>
                     <div className={styles.gasFee}>
-                      <p>Gas fees</p>
                     </div>
                   </div>
                 </div>
