@@ -13,7 +13,7 @@ import { _SERVICE as vaultmanager_SERVICE } from "../vaultmanager(ts).did";
 import { Account } from "@/synbase(t).did";
 import Head from "next/head";
 
-const Profile = () => {
+const Withdraw = () => {
   const [connectedAddress, setConnectedAddress] = useState<string | null>(null);
   const [isConnected, setIsConnected] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -458,4 +458,4 @@ const Profile = () => {
   );
 };
 
-export default Profile;
+export default Withdraw;
