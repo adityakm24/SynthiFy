@@ -2,6 +2,7 @@
 
 import React from "react";
 import Prfl from "../components/Withdraw";
+import Navbar from "../components/Navbar";
 
 const Profile = () => {
   return (
