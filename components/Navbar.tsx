@@ -91,18 +91,27 @@ const MyApp = () => {
 
   return (
     <nav className={styles.navbar}>
-  <div className={styles.navbarLogo}>
-    <img src="/icons/logo.png" alt="Logo" className={styles.logoImage} />
-  </div>
-  <div className={styles.navbarLinks}>
-    <Link href="/" className={`${styles.navbarLink} ${router.pathname === "/" ? styles.activeLink : ""}`}>
-      Borrow
-    </Link>
-    <Link href="/profile" className={`${styles.navbarLink} ${router.pathname === "/profile" ? styles.activeLink : ""}`}>
-      Profile
-    </Link>
-  </div>
-
+      <div className={styles.navbarLogo}>
+        <img src="/icons/logo.png" alt="Logo" className={styles.logoImage} />
+      </div>
+      <div className={styles.navbarLinks}>
+        <Link
+          href="/app"
+          className={`${styles.navbarLink} ${
+            router.pathname === "/app" ? styles.activeLink : ""
+          }`}
+        >
+          Borrow
+        </Link>
+        <Link
+          href="/profile"
+          className={`${styles.navbarLink} ${
+            router.pathname === "/profile" ? styles.activeLink : ""
+          }`}
+        >
+          Profile
+        </Link>
+      </div>
 
       {isConnected ? (
         <div className={styles.dropdownContainer}>
@@ -115,7 +124,7 @@ const MyApp = () => {
               >
                 {assets.map((asset, index) => (
                   <option key={index} value={asset.name}>
-                    {asset.name} {asset.balance/100000000}
+                    {asset.name} {asset.balance / 100000000}
                   </option>
                 ))}
               </select>

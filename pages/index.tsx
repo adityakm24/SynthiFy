@@ -1,14 +1,16 @@
-import React from "react";
-import BorrowForm from "../components/BorrowForm";
-import Navbar from "../components/Navbar";
+// pages/index.js
+import { useEffect } from 'react';
+import { useRouter } from 'next/router';
 
-const Borrow = () => {
-  return (
-    <div>
-      <Navbar />
-      <BorrowForm />
-    </div>
-  );
-};
+function Home() {
+  const router = useRouter();
 
-export default Borrow;
+  useEffect(() => {
+    // Redirect to the landing page
+    router.push('/index.html');
+  }, []);
+
+  return null;
+}
+
+export default Home;

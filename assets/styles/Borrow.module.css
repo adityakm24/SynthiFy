@@ -5,14 +5,13 @@
   width: 500px;
   aspect-ratio: 1;
   position: absolute;
-  left:-10%;
+  left: -10%;
   top: -0%;
   border-radius: 50px;
   filter: blur(120px);
   z-index: 0;
   overflow-x: hidden;
   animation: rotate 7s linear infinite;
-  
 }
 @keyframes rotate {
   0% {
@@ -23,13 +22,12 @@
   }
 }
 
-
 .centeredContainer {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh; 
+  height: 100vh;
 }
 
 .formCont1 {
@@ -66,25 +64,25 @@
   align-items: center;
   justify-content: space-between;
   color: white;
-  background-color: rgb(19,19,19);
+  background-color: rgb(19, 19, 19);
 }
 
 .inputGroup input {
   width: 70%;
   text-align: right;
   border: 0px solid #555;
-  background-color: rgb(27,27,27);
+  background-color: rgb(27, 27, 27);
   color: #ffffff;
   font-size: 25px;
   border-radius: 8px;
 }
 .inputGroup input:focus {
-    border: 0px solid #555;
-    border: 0px;
-    outline: none;
- }
+  border: 0px solid #555;
+  border: 0px;
+  outline: none;
+}
 
- .inputGroup31 {
+.inputGroup31 {
   flex: 4;
   display: flex;
   align-items: center;
@@ -97,48 +95,47 @@
   width: 70%;
   text-align: right;
   border: 0px solid #555;
-  background-color: rgb(27,27,27);
+  background-color: rgb(27, 27, 27);
   color: #ffffff;
   font-size: 25px;
   border-radius: 8px;
 }
 .inputGroup31 input:focus {
-    border: 0px solid #555;
-    border: 0px;
-    outline: none;
- }
+  border: 0px solid #555;
+  border: 0px;
+  outline: none;
+}
 .input1Container {
-  border: 2px #2B242B;
+  border: 2px #2b242b;
   border-style: solid;
   border-radius: 20px;
   padding: 30px;
-  width: 100%; 
-  background-color: rgb(19,19,19);
-  box-shadow:  0 0px 10px 0 #3a283a; 
+  width: 100%;
+  background-color: rgb(19, 19, 19);
+  box-shadow: 0 0px 10px 0 #3a283a;
   font-weight: 500;
 }
 
-
 .input2Container {
-  border: 2px #2B242B;
+  border: 2px #2b242b;
   border-style: solid;
   padding: 20px;
-  width: 100%; 
+  width: 100%;
   border-radius: 20px;
-  background-color: rgb(19,19,19);
-  box-shadow:  0 0px 10px 0 #3a283a; 
+  background-color: rgb(19, 19, 19);
+  box-shadow: 0 0px 10px 0 #3a283a;
   font-weight: 500;
 }
 .input3Container {
-  border: 2px #2B242B;
+  border: 2px #2b242b;
   border-style: solid;
   color: white;
   width: 100%;
   padding: 20px;
   float: right;
   border-radius: 20px;
-  background-color: rgb(19,19,19);
-  box-shadow:  0 0px 10px 0 #3a283a; 
+  background-color: rgb(19, 19, 19);
+  box-shadow: 0 0px 10px 0 #3a283a;
   font-weight: 500;
 }
 
@@ -149,7 +146,7 @@
 }
 
 /* Firefox */
-.input2Container input[type=number] {
+.input2Container input[type="number"] {
   -moz-appearance: textfield;
 }
 
@@ -162,10 +159,12 @@
 }
 
 .createWalletButton {
-  padding: 16px 24px; 
-  font-size: 18px;   
-  background-color: #ffffff; 
-  color: #000000;       
+  padding: 10px;
+  font-size: 17px;
+  background: linear-gradient(135deg, #ec98fbe1, rgba(187, 135, 250, 0.638));
+  color: rgb(255, 255, 255);
+  border: 0px solid #19b1cc00;
+  box-shadow: 0 0px 30px 0 #663566;
   border: none;
   border-radius: 8px;
   cursor: pointer;
@@ -173,14 +172,16 @@
 }
 
 .createWalletButton:hover {
-  background-color: #ffffffd3; /* Change the hover background color */
+  border: 0px solid #19b1cc00;
+  box-shadow: 0 0px 40px 0 #7b3f7b;
+  transition: 0.3s;
 }
 .formCont {
   display: flex;
   height: 50vh; /* Set the height to 50% of the viewport height */
 }
 .leftbox {
-  flex: 1; 
+  flex: 1;
   text-align: center;
   margin-left: 20px;
 }
@@ -188,16 +189,15 @@
 .rightboxes {
   display: flex;
   flex-direction: column;
-  flex: 1; 
+  flex: 1;
 }
 
 .rightboxes > div {
   margin: 10px;
   flex: 1;
-
 }
 .input24Container {
-  border:  0px #2B242B;
+  border: 0px #2b242b;
   border-style: solid;
   width: 100%;
   padding: 20px;
@@ -205,7 +205,7 @@
   font-weight: 500;
 }
 .input29Container {
-  border:  0px #2B242B;
+  border: 0px #2b242b;
   border-style: solid;
   width: 100%;
   padding: 20px;
@@ -213,48 +213,53 @@
   font-weight: 500;
 }
 .input31Container {
-  border: 0px #2B242B;
+  border: 0px #2b242b;
   border-style: solid;
   padding: 20px;
   width: 100%;
-font-weight: 500;
+  font-weight: 500;
 }
 @media (max-width: 960px) {
   .input31Container {
     float: right;
-    width:100%;
-  }}
+    width: 100%;
+  }
+}
 
 @media (max-width: 1600px) {
-  .input1Container, .input2Container, .input24Container{
+  .input1Container,
+  .input2Container,
+  .input24Container {
     width: auto;
   }
   .input3Container {
-    width: 90%; 
+    width: 90%;
   }
 
-  .input29Container{
-      width:100%;
-      left: 0;
-      transform: none;
+  .input29Container {
+    width: 100%;
+    left: 0;
+    transform: none;
   }
-    .input31Container {
+  .input31Container {
     float: right;
-    width:100%;
+    width: 100%;
   }
 }
 
 @media (max-width: 960px) {
-  .input1Container, .input2Container, .input3Container, .input24Container{
+  .input1Container,
+  .input2Container,
+  .input3Container,
+  .input24Container {
     width: auto;
   }
 
-  .input3Container{
-      width:90%;
-      left: 0;
-      transform: none;
+  .input3Container {
+    width: 90%;
+    left: 0;
+    transform: none;
   }
- 
 }
 .subContainer {
   border: 2px black;
@@ -270,7 +275,6 @@ font-weight: 500;
   text-align: left;
   margin-right: 10px;
 }
-
 
 .pillGroup {
   display: flex;
@@ -310,22 +314,20 @@ font-weight: 500;
 }
 
 .iconContainer {
-  margin-right: 8px; 
+  margin-right: 8px;
 }
-
 
 .wallet-connect-container {
   text-align: center;
 }
-
 
 .button {
   border-radius: 20px;
 }
 
 .borrowButton {
-  background-color: rgba(255, 255, 255, 0); 
-  color: rgb(255, 255, 255); 
+  background-color: rgba(255, 255, 255, 0);
+  color: rgb(255, 255, 255);
   border: 2px solid #ffffff;
   border-radius: 10px;
   padding: 15px 32px;
@@ -340,8 +342,8 @@ font-weight: 500;
 
 .borrowButton:hover {
   transition: 0.2s;
-  background-color: rgb(255, 255, 255); 
-  color: rgb(0, 0, 0); 
+  background-color: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
   border: 2px solid #ffffff;
   border-radius: 10px;
   padding: 15px 32px;
@@ -352,18 +354,17 @@ font-weight: 500;
   margin: 4px 2px;
   cursor: pointer;
   margin-left: 25%;
-
 }
 
 @media (max-width: 750px) {
   .borrowButton {
-    padding: 10px 20px;  /* Reduced padding */
-    font-size: 14px;  /* Reduced font size */
-    margin-left: 10%;  /* Adjust margin-left as needed */
+    padding: 10px 20px; /* Reduced padding */
+    font-size: 14px; /* Reduced font size */
+    margin-left: 10%; /* Adjust margin-left as needed */
   }
 
   .borrowButton:hover {
-    padding: 10px 20px;  /* Reduced padding */
+    padding: 10px 20px; /* Reduced padding */
   }
 }
 
@@ -383,39 +384,39 @@ font-weight: 500;
 .modalContent {
   background: #121212;
   border-radius: 8px;
-  box-shadow: 0 0px 10px 0 #3a283a; 
-  border: 2px #2B242B;
+  box-shadow: 0 0px 10px 0 #3a283a;
+  border: 2px #2b242b;
   border-style: solid;
   padding: 20px;
   width: 90%;
   height: 100%;
   max-height: 70vh;
   overflow-y: auto;
-  overflow-x: hidden; 
+  overflow-x: hidden;
   z-index: 1800;
   text-align: center;
 }
 
 /* Styling for WebKit browsers (Chrome, Safari) */
 .modalContent::-webkit-scrollbar {
-  width: 12px; 
+  width: 12px;
 }
 
 .modalContent::-webkit-scrollbar-thumb {
-  background: #888; 
-  border-radius: 8px; 
+  background: #888;
+  border-radius: 8px;
 }
 
 .modalContent::-webkit-scrollbar-thumb:hover {
-  background: #555; 
+  background: #555;
 }
 .modalContent::-webkit-scrollbar-track {
-  border-radius: 20px; 
+  border-radius: 20px;
 }
 
 .modalContent {
   scrollbar-width: thin;
-  scrollbar-color: #888 #fff; 
+  scrollbar-color: #888 #fff;
 }
 
 /* Media query for laptops or larger screens */
@@ -423,11 +424,10 @@ font-weight: 500;
   .modalContent {
     max-height: 70vh;
     height: 100%;
-  border: 2px #2B242B;
-  border-style: solid;
+    border: 2px #2b242b;
+    border-style: solid;
   }
 }
-
 
 .modalNavbar {
   display: flex;
@@ -448,15 +448,17 @@ font-weight: 500;
   }
 }
 
-
 .modalTitle {
   font-size: 1.5rem;
   font-weight: bold;
 }
 
-
 @keyframes bounce {
-  0%, 20%, 50%, 80%, 100% {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
     transform: translateY(0);
   }
   20% {
@@ -478,11 +480,11 @@ font-weight: 500;
   text-align-last: center;
   animation: bounce 5s infinite;
   cursor: pointer;
-  padding-right: 20px; 
+  padding-right: 20px;
 }
 .arrow {
-    padding-left: 10px; 
-    color: white;
+  padding-left: 10px;
+  color: white;
 }
 
 .modalDropdown select {
@@ -492,21 +494,18 @@ font-weight: 500;
   border: 2px double #ca92fb53;
   border-radius: 8px;
   appearance: none;
-  background-color: rgb(26,32,42);
+  background-color: rgb(26, 32, 42);
   color: #ffffff;
   cursor: pointer;
 }
 
-
 .modalDropdown:hover select {
-    background-color: rgb(37, 50, 73);
+  background-color: rgb(37, 50, 73);
 }
 
 .modalDropdown option:focus {
   outline: none;
 }
-
-
 
 .closeIconContainer {
   cursor: pointer;
@@ -514,15 +513,14 @@ font-weight: 500;
 
 .closeIcon {
   font-size: 1.5rem;
-  color:rgb(255, 255, 255);
+  color: rgb(255, 255, 255);
 }
-
 
 .tableContainer {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 50vh; 
+  height: 50vh;
   padding: 0 50px;
   position: relative;
   z-index: 0;
@@ -531,7 +529,6 @@ font-weight: 500;
 .tableList {
   border-collapse: collapse;
   width: 100%;
-  
 }
 
 .tableList td,
@@ -539,13 +536,11 @@ font-weight: 500;
   border: 0px solid #ddd;
   color: white;
   padding: 8px;
-
 }
 
 .tableList tr:nth-child(even) {
   background-color: #000000;
   color: white;
-
 }
 
 .tableList th {
@@ -561,13 +556,15 @@ font-weight: 500;
   background-color: rgba(255, 255, 255, 0.167);
 }
 
-
 .Calculate:hover,
 .Calculate:active,
 .Calculate:focus,
 .Calculate:visited {
-  cursor: pointer; 
-  transition: background-color 0.3s, transform 0.2s; }
+  cursor: pointer;
+  transition:
+    background-color 0.3s,
+    transform 0.2s;
+}
 
 .Calculate {
   width: 15%;
@@ -575,27 +572,16 @@ font-weight: 500;
   font-weight: 500;
   padding: 10px;
   border-radius: 10px;
-background-image: linear-gradient(
-  75deg,
-  hsl(189deg 98% 50%) 0%,
-  hsl(191deg 94% 61%) 11%,
-  hsl(192deg 93% 66%) 22%,
-  hsl(192deg 91% 70%) 34%,
-  hsl(192deg 90% 73%) 45%,
-  hsl(191deg 88% 76%) 56%,
-  hsl(191deg 87% 79%) 68%,
-  hsl(191deg 85% 82%) 79%,
-  hsl(190deg 84% 84%) 90%,
-  hsl(190deg 82% 87%) 100%
-);
-  color: rgb(0, 0, 0);
+  background: linear-gradient(135deg, #ec98fbe1, rgba(187, 135, 250, 0.638));
+  color: rgb(255, 255, 255);
   border: 0px solid #19b1cc00;
-  box-shadow: #000000;
+  box-shadow: 0 0px 30px 0 #663566;
 }
 
 .Calculate:hover {
   border: 0px solid #19b1cc00;
-    box-shadow:  0 0px 20px 0 #3a283a; 
+  box-shadow: 0 0px 40px 0 #7b3f7b;
+  transition: 0.3s;
 }
 
 .Vault {
@@ -608,7 +594,6 @@ background-image: linear-gradient(
   border: 0px solid black;
   font-weight: 700;
 }
-
 
 .Vault:hover {
   width: 15%;
@@ -632,17 +617,19 @@ background-image: linear-gradient(
 }
 
 .VaultDetails {
-  padding: 16px 24px;
-  font-size: 18px;
-  background-color: #ffffff;
-  color: #000000;
+  padding: 10px;
+  font-size: 17px;
+  background: linear-gradient(135deg, #ec98fbe1, rgba(187, 135, 250, 0.638));
+  color: rgb(255, 255, 255);
+  border: 0px solid #19b1cc00;
+  box-shadow: 0 0px 30px 0 #663566;
   border: none;
   border-radius: 8px;
   cursor: pointer;
   transition: background-color 0.3s;
 }
 .VaultDetails:hover {
-  background-color: #ffffffd3;
-  transition: background-color 0.3s;
+  border: 0px solid #19b1cc00;
+  box-shadow: 0 0px 40px 0 #7b3f7b;
+  transition: 0.3s;
 }
-
