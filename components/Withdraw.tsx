@@ -1,6 +1,6 @@
 //@todo: reset btcDepositAddress on page reload or if its not default value
 
-import styles from "../assets/styles/Profile.module.css";
+import styles from "../assets/styles/Withdraw.module.css";
 import Link from "next/link";
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";

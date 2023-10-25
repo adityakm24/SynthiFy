@@ -104,12 +104,12 @@ const MyApp = () => {
           Borrow
         </Link>
         <Link
-          href="/profile"
+          href="/withdraw"
           className={`${styles.navbarLink} ${
-            router.pathname === "/profile" ? styles.activeLink : ""
+            router.pathname === "/withdraw" ? styles.activeLink : ""
           }`}
         >
-          Profile
+          Withdraw
         </Link>
       </div>
 
