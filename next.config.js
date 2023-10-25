@@ -1,27 +1,18 @@
-const path = require("path"); // Require the path module
+const path = require("path");
 
-/** @type {import('next').NextConfig} */
-const nextConfig = {
+module.exports = {
+  basePath: "", // Empty base path for hosting at the root
   reactStrictMode: true,
   webpack: (config) => {
     config.resolve.fallback = { fs: false, net: false, tls: false };
     return config;
   },
   typescript: {
-    // !! WARN !!
-    // Dangerously allow production builds to successfully complete even if
-    // your project has type errors.
-    // !! WARN !!
     ignoreBuildErrors: true,
   },
-  async rewrites() {
-    return [
-      {
-        source: "/",
-        destination: "/index.html", // Path to your custom index.html
-      },
-    ];
+  experimental: {
+    render: {
+      document: path.join(__dirname, "public/_app.html"), // Specify the custom HTML file path
+    },
   },
 };
-
-module.exports = nextConfig;
