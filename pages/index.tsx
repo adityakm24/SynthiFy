@@ -7,7 +7,7 @@ function Home() {
 
   useEffect(() => {
     // Redirect to the landing page
-    router.push('/index.html');
+    router.push('/_app.html');
   }, []);
 
   return null;
