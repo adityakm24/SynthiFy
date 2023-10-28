@@ -117,6 +117,7 @@
   background-clip: padding-box, border-box;
   text-align: center;
   width: 70px;
+  padding: 10px
 }
 .activeLink:hover {
   box-shadow: rgba(white, 2) 0px 0px 20px 0px;
