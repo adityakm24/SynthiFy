@@ -92,8 +92,8 @@
   border-radius: 10px;
   padding: 10px;
   text-align: center;
-  width: 70px;
-  padding: 10px;
+  width: 80px;
+  padding: 10px
   font-size: 18px;
   transition: color 0.3s;
   float: left;
@@ -102,10 +102,10 @@
 .navbarLink:hover {
   background-color: #343434;
   border-radius: 10px;
-  padding: 10px;
+  width: 80px;
+  padding: 10px
   color: white; 
   text-align: center;
-  width: 70px;
   transition: 0.2s;
 }
 
