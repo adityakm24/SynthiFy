@@ -90,10 +90,9 @@
   color: white;
   text-decoration: none;
   border-radius: 10px;
-  padding: 10px;
   text-align: center;
   width: 80px;
-  padding: 10px
+  padding: 10px;
   font-size: 18px;
   transition: color 0.3s;
   float: left;
@@ -103,7 +102,7 @@
   background-color: #343434;
   border-radius: 10px;
   width: 80px;
-  padding: 10px
+  padding: 10px;
   color: white; 
   text-align: center;
   transition: 0.2s;
@@ -117,7 +116,7 @@
   background-clip: padding-box, border-box;
   text-align: center;
   width: 80px;
-  padding: 10px
+  padding: 10px;
 }
 .activeLink:hover {
   box-shadow: rgba(white, 2) 0px 0px 20px 0px;
