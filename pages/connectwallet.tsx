@@ -5,7 +5,7 @@ import WalletConnected from "@/components/WalletConnected";
 const connectwallet = () => {
   return (
     <div>
-      <WalletConnected />
+      <ConnectWallet />
     </div>
   );
 };
