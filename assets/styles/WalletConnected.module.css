@@ -1,0 +1,68 @@
+/* WalletConnected.module.css */
+@import url('https://fonts.googleapis.com/css2?family=Zen+Dots&display=swap');
+
+.walletConnectedContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.center {
+  text-align: center;
+}
+
+.welcomeText {
+  color: rgba(255, 255, 255, 1);
+  font-size: 5vw; 
+  margin-top: 14px;
+  font-family: 'Zen Dots', sans-serif;
+}
+
+.successText {
+  color: rgba(161, 210, 157, 1);
+  font-size: 4vw; 
+  margin-top: 20px;
+  font-family: 'Zen Dots', sans-serif;
+}
+
+@media only screen and (min-width: 1200px) {
+  .welcomeText {
+    font-size: 48px;
+  }
+
+  .successText {
+    font-size: 38px; 
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .welcomeText {
+    font-size: 6vw; 
+  }
+
+  .successText {
+    font-size: 5vw; 
+  }
+}
+
+@media only screen and (min-width: 1600px) {
+  .welcomeText {
+    font-size: 52px;
+  }
+
+  .successText {
+    font-size: 42px;
+  }
+}
+
+@media only screen and (min-width: 1920px) {
+  .welcomeText {
+    font-size: 54px;
+  }
+
+  .successText {
+    font-size: 44px;
+  }
+}
