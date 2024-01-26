@@ -2,14 +2,14 @@
 
 import React from "react";
 import Prfl from "../components/Withdraw";
-import Navbar from "../components/Navbar";
-import ConnectWallet from "@/components/ConnectWallet";
+import Home from "@/components/Home";
+
 
 const Profile = () => {
   return (
     <div>
-      <Navbar />
-      <Prfl />
+      <Home/>
+      <Prfl/>
     </div>
   );
 };

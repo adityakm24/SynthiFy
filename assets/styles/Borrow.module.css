@@ -1,6 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Zen+Dots&display=swap');
+
 .blob {
-  background-color: aliceblue;
-  background: linear-gradient(200deg, #0bc94a 0%, #752bec 100%);
   height: 300px;
   width: 500px;
   aspect-ratio: 1;
@@ -55,7 +55,7 @@
   margin: 10px;
   padding: 20px;
   font-size: 30px;
-  width: 100%; /* Make it span the entire width */
+  width: 100%; 
 }
 
 .inputGroup {
@@ -326,7 +326,7 @@
 }
 
 .borrowButton {
-  background-color: rgba(255, 255, 255, 0);
+  background-color: transparent;
   color: rgb(255, 255, 255);
   border: 2px solid #ffffff;
   border-radius: 10px;
@@ -334,17 +334,18 @@
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 16px;
+  font-size: 15px;
   margin: 4px 2px;
   cursor: pointer;
   margin-left: 25%;
+  font-family: Zen dots;
 }
 
 .borrowButton:hover {
   transition: 0.2s;
-  background-color: rgb(255, 255, 255);
+  background-color: rgba(193, 83, 212, 1);
   color: rgb(0, 0, 0);
-  border: 2px solid #ffffff;
+  border: 2px solid rgba(150, 101, 192, 1);
   border-radius: 10px;
   padding: 15px 32px;
   text-align: center;
@@ -520,8 +521,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 50vh;
-  padding: 0 50px;
+  height: 30vh;
+  padding: 0 8px;
   position: relative;
   z-index: 0;
 }
@@ -529,6 +530,8 @@
 .tableList {
   border-collapse: collapse;
   width: 100%;
+
+  
 }
 
 .tableList td,
@@ -536,7 +539,9 @@
   border: 0px solid #ddd;
   color: white;
   padding: 8px;
+  font-family: Zen dots;
 }
+
 
 .tableList tr:nth-child(even) {
   background-color: #000000;
@@ -544,16 +549,26 @@
 }
 
 .tableList th {
-  padding-top: 12px;
+  padding-top: 1px;
   padding-bottom: 12px;
   text-align: left;
   color: rgb(255, 255, 255);
   z-index: 10;
+  font-family: Zen dots;
 }
 
 .tableList td {
   z-index: 10;
-  background-color: rgba(255, 255, 255, 0.167);
+  background-color: rgba(82, 63, 85, 1);
+  
+}
+.tableList td:first-child:first-child {
+  border-top-left-radius: 20px; 
+  border-bottom-left-radius: 20px; 
+}
+.tableList td:last-child:last-child {
+  border-bottom-right-radius: 20px;
+  border-top-right-radius: 20px; 
 }
 
 .Calculate:hover,

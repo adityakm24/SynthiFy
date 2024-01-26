@@ -1,11 +1,11 @@
 import React from "react";
 import BorrowForm from "../components/BorrowForm";
-import Navbar from "../components/Navbar";
+import Home from "@/components/Home";
 
 const Borrow = () => {
   return (
     <div>
-      <Navbar />
+      <Home/>
       <BorrowForm />
     </div>
   );
