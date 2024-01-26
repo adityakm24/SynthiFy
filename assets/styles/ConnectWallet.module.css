@@ -1,0 +1,71 @@
+@import url('https://fonts.googleapis.com/css2?family=Zen+Dots&display=swap');
+
+.notConnectedContainer {
+    position: absolute;
+    width: 892px;
+    height: 116px;
+    top: 390px;
+    left:300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;    
+  }
+  
+  .notConnected {
+    color: rgba(209, 86, 70, 1);
+    font-family: 'Zen Dots', sans-serif;
+    font-size: 38px;
+    text-align: center;
+  }
+  .notConnected1{
+    color: rgba(255, 255, 255, 1) ;  
+    font-family:Zen Dots;
+    font-size: 20px;
+    font-weight: 400;
+  }
+  
+  .linkStyle {
+    color: rgba(232, 131, 139, 1); 
+    text-decoration: none; 
+    font-weight: bold; 
+  }
+  
+  .linkStyle:hover {
+    text-decoration:underline;
+  }
+
+  /* Media Queries for responsiveness */
+
+  @media only screen and (max-width: 1920px) {
+    .notConnectedContainer {
+      width: 65%;
+    }
+  }
+@media only screen and (max-width: 1600px) {
+    .notConnectedContainer {
+      width: 59%;
+    }
+  }
+
+  @media only screen and (max-width: 1366px) {
+    .notConnectedContainer {
+      width: 52%;
+    }
+  }
+
+  @media only screen and (max-width: 1200px) {
+    .notConnectedContainer {
+      width: 50%;
+    }
+  }
+  
+  @media only screen and (max-width: 768px) {
+    .notConnected {
+      font-size: 5vw;
+    }
+  
+    .notConnected1 {
+      font-size: 2.5vw;
+    }
+  }

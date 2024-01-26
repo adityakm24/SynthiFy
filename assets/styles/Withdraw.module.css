@@ -1,5 +1,6 @@
 /* WalletConnect.css */
 @import url('https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Zen+Dots&display=swap');
 
 .body {
   height: 80vh; /* 100% of the viewport height */
@@ -221,12 +222,37 @@
 .formButton2:hover {
   box-shadow: 0 0 10px #9cd9b0, 0 0 10px #b485ff; 
 }
-.notConnected {
-  height: 50vh; /* 100% of the viewport height */
-  margin: 0;
+
+.notConnectedContainer {
+  position: absolute;
+  width: 892px;
+  height: 116px;
+  top: 520px;
   display: flex;
-  flex-direction: column; /* Arrange children vertically */
-  justify-content: center; /* Horizontally center elements */
-  align-items: center; /* Vertically center elements */
-  color: white;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.notConnected {
+  color: rgba(209, 86, 70, 1);
+  font-family: 'Zen Dots', sans-serif;
+  font-size: 38px;
+  text-align: center;
+}
+.notConnected1{
+  color: rgba(255, 255, 255, 1) ;  
+  font-family:Zen Dots;
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.linkStyle {
+  color: rgba(232, 131, 139, 1); 
+  text-decoration: none; 
+  font-weight: bold; 
+}
+
+.linkStyle:hover {
+  text-decoration:underline;
 }

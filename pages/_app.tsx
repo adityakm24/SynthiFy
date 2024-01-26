@@ -1,6 +1,9 @@
 import "./styles/global.css";
 import Script from "next/script";
 import { Analytics } from "@vercel/analytics/react";
+import styles from "./styles/firstBackground.module.css";
+import styles2 from "./styles/secondBackground.module.css";
+import styles3 from "./styles/thirdBackground.module.css";
 
 function MyApp({ Component, pageProps }) {
   return (
@@ -20,7 +23,6 @@ function MyApp({ Component, pageProps }) {
           });
         `}
       </Script>
-
       <Component {...pageProps} />
       <Analytics />
     </>

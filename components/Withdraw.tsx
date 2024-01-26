@@ -444,11 +444,11 @@ const Withdraw = () => {
           </div>
         </div>
       ) : (
-        <div className={styles.notConnected}>
-          <h1>Wallet Not Connected</h1>
-          <p>
+        <div className={styles.notConnectedContainer} >
+          <p className={styles.notConnected}>This is embarrassing <br /> Your Wallet is Not Connected :(  </p>
+          <p className={styles.notConnected1}>
             Download and get started for free with{" "}
-            <Link href="https://wallet.bitfinity.network/" target="_blank">
+            <Link href="https://wallet.bitfinity.network/" className={styles.linkStyle} target="_blank">
               BitFinity Wallet
             </Link>{" "}
           </p>

@@ -1,0 +1,88 @@
+/* Navbar.module.css */
+@import url('https://fonts.googleapis.com/css2?family=Zen+Dots&display=swap');
+/* Common styles for all screen sizes */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: black;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    z-index: 1000;
+  }
+  
+  .center {
+    padding-left: 42%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .right {
+    display: flex;
+    align-items: center;
+  }
+  
+  .logo {
+    display: flex;
+    align-items: center;
+  }
+  
+  .logoImage {
+    width: 200px;
+    height: 75px;
+  }
+  
+  .connectButton {
+    background-color: transparent;
+    color: white;
+    border: 1px solid white;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 12px;
+    font-family: Zen dots;
+  }
+  
+  .connectButton:hover {
+    background-color: white;
+    color: black;
+  }
+  
+  /* Responsive styles */
+  @media only screen and (max-width: 1600px) {
+    .navbar {
+      padding: 15px;
+    }
+    
+    .logoImage {
+      width: 180px;
+      height: 60px;
+    }
+  }
+  
+  @media only screen and (max-width: 1440px) {
+    .navbar {
+      padding: 20px;
+    }
+  
+    .logoImage {
+      width: 200px;
+      height: 75px;
+    }
+  }
+  
+  @media only screen and (max-width: 1366px) {
+    .navbar {
+      padding: 10px;
+    }
+  
+    .logoImage {
+      width: 140px;
+      height: 45px;
+    }
+  }
+  
