@@ -2,9 +2,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Zen+Dots&display=swap');
 
+
 .body {
-  height: 80vh; /* 100% of the viewport height */
-  margin: 0;
+  margin-top:-50px;
   display: flex;
   justify-content: center; /* Horizontally center elements */
   align-items: center; /* Vertically center elements */
@@ -12,6 +12,7 @@
   background-image: radial-gradient(#69696959 1.2px, transparent 1px);
   background-size: 36px 36px;
   opacity: 0.8;
+  font-family: 'Zen Dots', sans-serif;
   animation: pulsate 20s infinite;
 }
 .blob {
@@ -169,7 +170,7 @@
   align-items: center;
   justify-content: center;
   margin-top: 40px;
-  font-family: 'Archivo Black', sans-serif !important;
+  font-family: 'Zen Dots', sans-serif;
   color: #fff;
 }
 
@@ -177,10 +178,15 @@
   width: 100%;
   padding: 12px;
   border: 1px solid #cccccc;
-  background-color: rgb(255, 255, 255);
-  color: black;
+  background-color: #68596A;
+  color: white;
   border-radius: 10px;
   margin-bottom: 10px;
+}
+.formInput::placeholder {
+  color: white; /* Set the placeholder color to white */
+  font-family:Zen Dots;
+
 }
 
 .formButton {
@@ -196,22 +202,28 @@
   font-size: 15px;
   margin: 20px auto 0 auto; /* 20px top margin, and auto for the right/left margin */
   justify-content: center;
+  font-family: 'Zen Dots', sans-serif;
   display: flex;
 }
 
 .formButton2{
-  background:#69696959;
-  color: #fff;
-  font-weight: bold;
+  background:#fff;
+  color: black;
   padding: 12px 26px;
   border: none;
   border-radius: 10px;
   cursor: pointer;
   font-size: 15px;
-  margin: auto;
+  margin: 0;
   justify-content: center;
   display: flex;
+  font-family: 'Zen Dots', sans-serif;
   box-shadow: 0 0 1px 0.5px rgba(255, 255, 255, 0.8); /* Added glowy white border */
+}
+.formButton2:hover {
+  background-color: rgba(193, 83, 212, 1); 
+  border: 2px solid rgba(193, 83, 212, 1);
+  color: #000000; 
 }
 
 
@@ -219,9 +231,7 @@
   box-shadow: 0 0 7px #fff; 
 }
 
-.formButton2:hover {
-  box-shadow: 0 0 10px #9cd9b0, 0 0 10px #b485ff; 
-}
+
 
 .notConnectedContainer {
   position: absolute;
@@ -255,4 +265,11 @@
 
 .linkStyle:hover {
   text-decoration:underline;
+}
+.buttonContainer {
+  margin-top: 20px;
+  display: flex;
+  gap: 50px; /* Adjust the gap as needed for spacing between buttons */
+  justify-content: center;
+  align-items: center;
 }

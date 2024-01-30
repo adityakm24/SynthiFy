@@ -315,8 +315,7 @@ const Withdraw = () => {
         <div
           style={{
             width: "100%",
-            height: "100%",
-            margin: "auto",
+            margin: "0 auto 0 auto",
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
@@ -325,7 +324,7 @@ const Withdraw = () => {
           }}
         >
           <div className={styles.formContainer}>
-            <h1>Withdraw</h1>
+            <h1>Withdraw [ckBTC]</h1>
             <h4>
               Current Deposited Balance In Module:{" "}
               {currentUserBalance ?? "loading"} CKBTC
@@ -364,20 +363,9 @@ const Withdraw = () => {
             </form>
           </div>
 
-          <div
-            style={{
-              width: "100%",
-              height: "100%",
-              margin: "auto",
-              display: "grid",
-              placeItems: "center",
-              gridTemplateColumns: "1fr 1fr",
-              gap: "20px",
-              padding: "20px",
-            }}
-          >
+          <div className={styles.buttonContainer}>
             <button className={styles.formButton2} onClick={toggleModal0}>
-              Deposit CkBTC
+              Withdraw CkBTC
             </button>
 
             {isModalOpen0 && (
@@ -402,7 +390,7 @@ const Withdraw = () => {
             )}
 
             <button className={styles.formButton2} onClick={toggleModal1}>
-              Deposit BTC
+              Withdraw BTC
             </button>
             {isModalOpen1 && (
               <div className={styles.modalBackdrop}>
