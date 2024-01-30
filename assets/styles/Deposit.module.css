@@ -1,0 +1,275 @@
+/* WalletConnect.css */
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Zen+Dots&display=swap');
+
+
+.body {
+  margin-top:-50px;
+  display: flex;
+  justify-content: center; /* Horizontally center elements */
+  align-items: center; /* Vertically center elements */
+  color: white;
+  background-image: radial-gradient(#69696959 1.2px, transparent 1px);
+  background-size: 36px 36px;
+  opacity: 0.8;
+  font-family: 'Zen Dots', sans-serif;
+  animation: pulsate 20s infinite;
+}
+.blob {
+  background-color: aliceblue;
+  background: linear-gradient(200deg, #0bc94a 0%, #752bec 100%);
+  height: 300px;
+  width: 500px;
+  aspect-ratio: 1;
+  position: absolute;
+  left:-10%;
+  top: 0%;
+  border-radius: 50px;
+  filter: blur(100px);
+  z-index: -1;
+  overflow-x: hidden;
+  animation: rotate 7s linear infinite;
+}
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.button {
+  border-radius: 20px;
+}
+
+.dropdownContainer {
+  position: relative;
+  display: inline-block;
+}
+
+.modalBackdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modalContent {
+  background-color: #fff;
+  color: black;
+  padding: 20px;
+   border-radius: 20px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.262);
+}
+
+/* Add or modify this CSS in your styles file */
+
+.modalContainer {
+  position: relative;
+  padding: 20px;
+  /* Add other styles as needed */
+}
+
+.modalHeader {
+  display: flex;
+  flex-direction: column; 
+  padding: 20px;
+}
+
+.modalHeader p,
+.modalHeader h3 {
+  margin: 0; /* Remove default margin to control spacing manually */
+}
+
+
+.modalActions {
+  display: flex;
+  justify-content: space-between;
+  gap: 30px;
+}
+
+
+.closeIcon {
+  position: absolute;
+  color:rgb(43, 43, 43);
+  cursor: pointer;
+  font-size: 20px;
+  color: #7c7c7c;
+  z-index: 2;
+}
+
+.general0 {
+  padding: 10px;
+  font-size: 16px;
+  min-width: 400px;
+  border: none;
+   border-radius: 10px;
+  cursor: pointer;
+  width: 100%;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #cecece;
+  color: rgb(32, 32, 32);
+}
+
+.general {
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  width: 40%;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #ffffff;
+  color: rgb(0, 0, 0);
+  
+}
+
+.general2 {
+  padding: 10px;
+  font-size: 16px;
+  min-width: 300px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  width: 100%;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px double transparent;
+  background-image: linear-gradient(rgb(255, 255, 255), rgb(255, 255, 255)), radial-gradient(circle at left top, rgb(1, 110, 218), rgb(217, 0, 192));
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+    color: rgb(0, 0, 0);
+}
+.general2:hover {
+  box-shadow: 0 0 5px 2px #ca92fb; /* Add shadow on hover */
+}
+
+.copyButton i,
+.disconnectButton i {
+  margin-right: 5px;
+}
+
+.formContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 40px;
+  font-family: 'Zen Dots', sans-serif;
+  color: #fff;
+}
+
+.formInput {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #cccccc;
+  background-color: #68596A;
+  color: white;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+.formInput::placeholder {
+  color: white; /* Set the placeholder color to white */
+  font-family:Zen Dots;
+
+}
+
+.formButton {
+  border: 2px double transparent;
+  background-image: linear-gradient(rgb(13, 14, 33), rgb(13, 14, 33)), radial-gradient(circle at left top, rgb(1, 110, 218), rgb(217, 0, 192));
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  color: #fff;
+  font-weight: bold;
+  padding: 12px 26px; /* Adjusted padding */
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 15px;
+  margin: 20px auto 0 auto; /* 20px top margin, and auto for the right/left margin */
+  justify-content: center;
+  font-family: 'Zen Dots', sans-serif;
+  display: flex;
+}
+
+.formButton2{
+  background:#fff;
+  color: black;
+  padding: 12px 26px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 15px;
+  margin: 0;
+  justify-content: center;
+  display: flex;
+  font-family: 'Zen Dots', sans-serif;
+  box-shadow: 0 0 1px 0.5px rgba(255, 255, 255, 0.8); /* Added glowy white border */
+}
+.formButton2:hover {
+  background-color: rgba(193, 83, 212, 1); 
+  border: 2px solid rgba(193, 83, 212, 1);
+  color: #000000; 
+}
+
+
+.formButton:hover {
+  box-shadow: 0 0 7px #fff; 
+}
+
+
+
+.notConnectedContainer {
+  position: absolute;
+  width: 892px;
+  height: 116px;
+  top: 520px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.notConnected {
+  color: rgba(209, 86, 70, 1);
+  font-family: 'Zen Dots', sans-serif;
+  font-size: 38px;
+  text-align: center;
+}
+.notConnected1{
+  color: rgba(255, 255, 255, 1) ;  
+  font-family:Zen Dots;
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.linkStyle {
+  color: rgba(232, 131, 139, 1); 
+  text-decoration: none; 
+  font-weight: bold; 
+}
+
+.linkStyle:hover {
+  text-decoration:underline;
+}
+.buttonContainer {
+  margin-top: 20px;
+  display: flex;
+  gap: 50px; /* Adjust the gap as needed for spacing between buttons */
+  justify-content: center;
+  align-items: center;
+}
