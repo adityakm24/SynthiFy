@@ -15,7 +15,6 @@ const Home = () => {
   return (
     <div>
       <SyNavbar />
-      <h1>Welcome to Synthify</h1>
       <div className={buttonStyles.buttonsContainer}>
         <Link href="/app" as="/app">
           <button

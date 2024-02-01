@@ -33,12 +33,11 @@
     border: 2px solid rgba(193, 83, 212, 1);
     color: #000000; 
   }
-  @media only screen and (max-width: 1400px) {
+  @media only screen and (min-width: 1400px) {
     .buttonsContainer {
-      margin-top: 8vh;
+      margin-top: 17vh;
     }
   }
-
 
 @media only screen and (max-width: 768px) {
   .buttonsContainer {

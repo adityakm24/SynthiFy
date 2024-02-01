@@ -12,8 +12,8 @@ const SyNavbar = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [assets, setAssets] = useState([]); // State to store YHH
 
-  const [isModalOpen0, setIsModalOpen0] = useState(false); // State to store backdrops
-  const [isModalOpen1, setIsModalOpen1] = useState(false); // State to store backdrops
+  const [isModalOpen0, setIsModalOpen0] = useState(false); 
+  const [isModalOpen1, setIsModalOpen1] = useState(false); 
   const router = useRouter();
   const vaultManagerAddress = "isswh-liaaa-aaaal-qcdrq-cai";
 
@@ -84,6 +84,19 @@ const SyNavbar = () => {
     setIsModalOpen(!isModalOpen);
   };
 
+  const copyAddress = () => {
+    if (connectedAddress) {
+      navigator.clipboard
+        .writeText(connectedAddress)
+        .then(() => {
+          alert("Address copied to clipboard");
+        })
+        .catch((error) => {
+          console.error("Error copying address to clipboard:", error);
+        });
+    }
+  };
+
   return (
     <nav className={styles.navbar}>
       <div className={styles.center}>
@@ -101,6 +114,7 @@ const SyNavbar = () => {
         </button>
       </div>
     </nav>
+    
   );
 };
 

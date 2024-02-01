@@ -1,0 +1,30 @@
+.dropdownContainer {
+  display: flex;
+  justify-content: center;
+  margin-top: 5vh;
+}
+
+.dropdownButton {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.options {
+  position:absolute;
+  top: 20vh;
+  left: 77vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.options > div {
+  padding: 10px;
+  cursor: pointer;
+  border-bottom: 1px solid #ccc;
+}
+
+.options > div:hover {
+  background-color: #f5f5f5;
+}
