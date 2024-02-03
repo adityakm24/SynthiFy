@@ -1,0 +1,79 @@
+/* SyBorrowForm.module.css */
+.borrowFormContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .borrowForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+.formGroup input {
+    width: 52vh; 
+    padding: 10px;
+    border: 1px solid rgba(255, 255, 255, 1);
+    border-radius: 15px; 
+    background-color: rgba(104, 89, 106, 1);
+  }
+  .formGroup{
+    margin-bottom: 3vh;
+    border-radius: 18px;
+  }
+  .formGroup input::placeholder {
+    color: #999;
+    font-family: Zen dots;
+    font-size: medium;
+  }
+  .formGroup:nth-child(1) {
+    margin-top: 10vh;
+  }
+
+  .rectangleBox {
+    width: 55vh;
+    height: 25vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    border: 2px solid white;
+    border-radius: 15px;
+    margin-top: 1vh;
+    color: white;
+    font-family: Zen dots;
+    background-color: rgba(37, 37, 37, 1);
+  }
+  .table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .textCell {
+    padding: 15px;
+    text-align: left;
+  }
+  
+  .valuesCell {
+    padding: 15px;
+    text-align: right;
+  }
+
+  .button {
+    margin-top: 20px; 
+    padding: 10px 20px;
+    background-color: transparent; 
+    color: white; 
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: Zen dots;
+    border: 2px solid white;
+    border-radius: 15px;
+  }
+
+  .button:hover{
+    background-color: rgba(193, 83, 212, 1);
+    color: black;
+    border: 2px solid black;
+  }

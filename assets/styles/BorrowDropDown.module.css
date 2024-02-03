@@ -24,15 +24,15 @@
 .options {
   position:absolute;
   top: 35vh;
-  left: 79.2vh;
+  left: 55.2vh;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   background-color: transparent;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   font-family: Zen dots;
   align-items: center;
   justify-content: center;
-  gap:4px
+  gap:6px
 
 }
 
