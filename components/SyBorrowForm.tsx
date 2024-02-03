@@ -1,7 +1,9 @@
 import React from 'react';
 
-const BorrowForm = () => {
-  return <div>Borrow Form</div>;
+const SyBorrowForm = () => {
+  return <div>
+    <h1>Borrow Form</h1>
+    </div>;
 };
 
-export default BorrowForm
+export default SyBorrowForm

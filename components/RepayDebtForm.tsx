@@ -1,7 +1,9 @@
 import React from 'react';
 
 const RepayDebtForm  = () => {
-  return <div>Repay Debt Form</div>;
+  return <div>
+    <h1>Repay Debt Form</h1>
+    </div>;
 };
 
 
