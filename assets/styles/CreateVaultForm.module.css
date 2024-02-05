@@ -77,3 +77,72 @@
     color: black;
     border: 2px solid black;
   }
+  .formGroup select {
+    width: 52vh;
+    padding: 10px;
+    border: 1px solid rgba(255, 255, 255, 1);
+    border-radius: 15px;
+    background-color: rgba(104, 89, 106, 1);
+    color: white;
+    font-family: 'Zen dots';
+  }
+  
+  .formGroupSelect::placeholder {
+    color: #999;
+    font-family: 'Zen dots';
+    font-size: medium;
+  }
+  
+
+  @media screen and (max-height: 710px) {
+    .formGroup input {
+      width: 40vh;
+      font-size: smaller;
+    }
+  
+    .rectangleBox {
+      width: 45vh;
+      height: 20vh;
+      font-size: smaller;
+    }
+  
+    .button {
+      font-size: smaller;
+    }
+  
+    .formGroup input::placeholder {
+      font-size: 10px;
+    }
+  
+    .textCell,
+    .valuesCell {
+      font-size: 10px;
+      padding: 10px;
+    }
+  }
+  @media screen and (max-height: 550px) {
+    .formGroup input {
+      width: 40vh;
+      font-size: smaller;
+    }
+  
+    .rectangleBox {
+      width: 45vh;
+      height: 20vh;
+      font-size: smaller;
+    }
+  
+    .button {
+      font-size: smaller;
+    }
+  
+    .formGroup input::placeholder {
+      font-size: 8px;
+    }
+  
+    .textCell,
+    .valuesCell {
+      font-size: 8px;
+      padding: 7px;
+    }
+  }

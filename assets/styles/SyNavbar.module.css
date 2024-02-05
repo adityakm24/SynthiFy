@@ -77,7 +77,7 @@
   
   @media only screen and (max-width: 1366px) {
     .navbar {
-      padding: 10px;
+      padding: 13px;
     }
   
     .logoImage {
@@ -85,4 +85,28 @@
       height: 45px;
     }
   }
+
+  @media only screen and (max-width: 600px) {
   
+  
+    .logoImage {
+      width: 120px;
+      height: 35px;
+    }
+  
+  .connectButton {
+    background-color: transparent;
+    color: white;
+    border: 1px solid white;
+    padding: 8px 16px;
+    cursor: pointer;
+    border-radius: 12px;
+    font-family: Zen dots;
+    font-size: 10px;
+  }}
+  @media only screen and (max-width: 455px) {
+  
+
+  .connectButton {
+    margin-left: 8px;
+  }}

@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Zen+Dots&display=swap');
+
 .dropdownContainer {
     display: flex;
     justify-content: center;
@@ -6,50 +7,49 @@
 }
 
 .dropdownButton {
-  padding: 15px 20px;
-  border-radius: 20px;
-  cursor: pointer;
-  font-family: Zen dots;
-  background-color: transparent;
-  border: 2px solid white;
-  color: white;
-  font-size: 11px;
+    padding: 15px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-family: 'Zen Dots', sans-serif;
+    background-color: transparent;
+    border: 2px solid white;
+    color: white;
+    font-size: 11px;
 }
-.dropdownButton:hover{
-  background-color: rgba(193, 83, 212, 1); 
-  border: 2px solid rgba(193, 83, 212, 1);
-  color: #000000; 
+
+.dropdownButton:hover {
+    background-color: rgba(193, 83, 212, 1);
+    border: 2px solid rgba(193, 83, 212, 1);
+    color: #000000;
 }
 
 .options {
-  position:absolute;
-  top: 35vh;
-  left: 55.2vh;
-  display: flex;
-  flex-direction: row;
-  background-color: transparent;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  font-family: Zen dots;
-  align-items: center;
-  justify-content: center;
-  gap:6px
-
+    position: relative;
+    margin-top: 2vh;
+    margin-bottom: -5vh;
+    left: 50%;
+    transform: translate(-50%, 0);
+    display: flex;
+    flex-direction: row;
+    background-color: transparent;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    font-family: 'Zen Dots', sans-serif;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap; /* Allow options to wrap on smaller screens */
 }
 
 .options > div {
-  padding: 10px;
-  cursor: pointer;
-  border-bottom: 1px solid white;
-  border-top: 1px solid white;
-  border-left: 1px solid white;
-  border-right: 1px solid white;
-  border-radius: 7px;
-  color: white;
+    padding: 10px;
+    cursor: pointer;
+    border: 1px solid white;
+    border-radius: 7px;
+    color: white;
+    margin: 0 5px;
 }
 
-
 .options > div:hover {
-  background-color: rgba(193, 83, 212, 1); 
-  border: 2px solid rgba(193, 83, 212, 1);
-  color: #000000; 
+    background-color: rgba(193, 83, 212, 1);
+    border: 2px solid rgba(193, 83, 212, 1);
+    color: #000000;
 }
