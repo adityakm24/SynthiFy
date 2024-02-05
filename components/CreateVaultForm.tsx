@@ -1,7 +1,16 @@
 import React from 'react';
+import { useState } from 'react';
 import styles from '@/assets/styles/CreateVaultForm.module.css'
 
 const CreateVaultForm = () => {
+  const dummyVaultIds = ['Vault1', 'Vault2', 'Vault3'];
+
+  // State to manage selected Vault ID
+  const [selectedVaultId, setSelectedVaultId] = useState('');
+
+  const handleVaultIdChange = (event) => {
+    setSelectedVaultId(event.target.value);
+  };
   return (
     <div className={styles.borrowFormContainer}>
       <form className={styles.borrowForm}>

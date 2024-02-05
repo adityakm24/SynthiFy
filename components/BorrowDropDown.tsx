@@ -43,7 +43,8 @@ const BorrowDropDown = () => {
       <div className={styles.dropdownContainer}>
         <button className={styles.dropdownButton} onClick={toggleMenu}>
           {selectedOption !== 'Select an option' ? selectedOption : 'Select an option'} &#9660;
-        </button>
+        </button>      </div>
+
         {isOpen && (
           <div className={styles.options}>
             <div onClick={() => handleOptionClick('Borrow')}>Borrow</div>
@@ -52,7 +53,6 @@ const BorrowDropDown = () => {
             <div onClick={() => handleOptionClick('Repay Debt')}>Repay Debt</div>
           </div>
         )}
-      </div>
 
       <Suspense fallback={<div>Loading...</div>}>
         {selectedOption && (
