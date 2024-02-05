@@ -3,6 +3,8 @@
 
 SynthiFy Finance is an open-source platform enabling users to deposit Bitcoin as collateral to instantly borrow stablecoins, aiding in crypto asset management and liquidity access.
 
+New UI design figma file: https://www.figma.com/file/OYC0DMYf3h8i5eSlVknK4J/Untitled?type=design&node-id=124%3A3145&mode=design&t=zoVL6cqQX1yjOBzF-1
+
 ## Features
 
 - Deposit Bitcoin and borrow stablecoins instantly.
