@@ -52,7 +52,117 @@
     color: black;
   }
   
-  /* Responsive styles */
+
+  .dropdownContainer {
+    display: flex; 
+    align-items: center; 
+    border-radius: 10px;
+  }
+  
+  .modalBackdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1500;
+  }
+  
+  .modalContent {
+    background-color: rgba(37, 37, 37, 1);
+    color: white;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.262);
+    z-index: 1500;
+    font-family: Zen dots;
+    font-size: 15px;
+  }
+  
+  .modalHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    margin-bottom: 15px;
+  }
+  
+  .modalActions {
+    display: flex;
+    justify-content: space-between;
+     z-index: 99;
+  }
+  
+  .modalContainer {
+    position: relative;
+     padding: 20px;
+     z-index: 99;
+  }
+  
+  .closeIcon {
+    position: absolute;
+    color:rgb(43, 43, 43);
+    cursor: pointer;
+    font-size: 20px;
+    color: #7c7c7c;
+    z-index: 100;
+  }
+  
+  .copyButton,
+  .disconnectButton {
+    padding: 10px;
+    font-size: 15px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    width: 45%;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: Zen dots;
+  }
+  .copyButton {
+    background-color: #cecece;
+    color: rgb(32, 32, 32);
+  }
+  .disconnectButton {
+    background-color: red;
+    color: white;
+  }
+  .copyButton i,
+  .disconnectButton i {
+    margin-right: 5px;
+  }
+  
+  .dropdownContainer {
+    display: flex; 
+    align-items: center; 
+  }
+  .select-container {
+    flex-grow: 1; 
+    padding: 20px;
+  }
+  .select-element {
+    padding: 7px;
+    border-radius: 10px;
+    background-color: transparent;
+    cursor: pointer;
+    color: white;
+    transition: box-shadow 0.3s ease; 
+    font-family: Zen dots;
+    border: 1px solid white;
+  }
+  
+  .select-element:hover {
+    background-color: white;
+    color: black;
+  }
+
   @media only screen and (max-width: 1600px) {
     .navbar {
       padding: 15px;

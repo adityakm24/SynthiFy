@@ -4,10 +4,14 @@ import Image from 'next/image';
 import styles from '@/assets/styles/ConnectWallet.module.css';
 import SyNavbar from './SyNavbar';
 
-const ConnectWallet = () => {
+interface ConnectWalletProps {
+  connectWallet: () => Promise<void>;
+}
+
+const ConnectWallet: React.FC<ConnectWalletProps> = ({ connectWallet }) => {
   return (
     <div className={styles.notConnectedContainer}>
-        <SyNavbar/>
+      <SyNavbar/>
       <Image
         src="/Depression-bro 1.svg"
         alt="Your SVG Image"

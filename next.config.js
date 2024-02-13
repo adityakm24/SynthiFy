@@ -12,7 +12,7 @@ module.exports = {
   },
   experimental: {
     render: {
-      document: path.join(__dirname, "public/_app.html"), // Specify the custom HTML file path
+      document: path.join(__dirname, "public/index.html"), // Specify the custom HTML file path
     },
   },
 };

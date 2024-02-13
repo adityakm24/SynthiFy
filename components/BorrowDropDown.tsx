@@ -54,7 +54,7 @@ const BorrowDropDown = () => {
           </div>
         )}
 
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<div  className={styles.loading}>Loading...</div>}>
         {selectedOption && (
           <div>
             {renderComponent()}

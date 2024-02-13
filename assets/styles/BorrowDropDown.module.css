@@ -53,3 +53,12 @@
     border: 2px solid rgba(193, 83, 212, 1);
     color: #000000;
 }
+
+.loading{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-family: Zen dots;
+    z-index: 50vh;
+}

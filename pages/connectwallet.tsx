@@ -1,14 +1,15 @@
 import React from "react";
 import ConnectWallet from "@/components/ConnectWallet";
-import WalletConnected from "@/components/WalletConnected";
-import Home from "@/components/Home";
-import Borrow from "@/components/BorrowForm";
-import BorrowDropDown from '@/components/BorrowDropDown';
 
 const connectwallet = () => {
+
+  const somelogic = async () => {
+    console.log("Connecting wallet...");
+  };
+
   return (
     <div>
-      <BorrowDropDown/>
+      <ConnectWallet connectWallet={somelogic} />
     </div>
   );
 };

@@ -1,10 +1,17 @@
-// Navbar.tsx
 import Image from "next/image";
 import styles from "@/assets/styles/SyNavbar.module.css";
-import Link from "next/link";
 import { Principal } from "@dfinity/principal";
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
+import ConnectWallet from "./ConnectWallet";
+import WalletConnected from "./WalletConnected";
+
+// Declare global interface for 'ic' property on window object
+declare global {
+  interface Window {
+    ic: any;
+  }
+}
 
 const SyNavbar = () => {
   const [connectedAddress, setConnectedAddress] = useState(null);
@@ -12,8 +19,6 @@ const SyNavbar = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [assets, setAssets] = useState([]); // State to store YHH
 
-  const [isModalOpen0, setIsModalOpen0] = useState(false); 
-  const [isModalOpen1, setIsModalOpen1] = useState(false); 
   const router = useRouter();
   const vaultManagerAddress = "isswh-liaaa-aaaal-qcdrq-cai";
 
@@ -30,17 +35,17 @@ const SyNavbar = () => {
     depositModuleAddress,
   ];
 
+  // Check wallet connection on initialization
   useEffect(() => {
     const checkWalletConnection = async () => {
       try {
         const result = await window.ic.infinityWallet.isConnected();
-        const userAssets = await window.ic.infinityWallet.getUserAssets();
-        console.log(`User's list of tokens/assets`, userAssets);
         setIsConnected(result);
-        console.log("useAssets", userAssets);
-        setAssets(userAssets); // Set the assets in state
 
         if (result) {
+          const userAssets = await window.ic.infinityWallet.getUserAssets();
+          setAssets(userAssets);
+
           const publicKey = await window.ic.infinityWallet.getPrincipal();
           const address = publicKey.toText();
           setConnectedAddress(address);
@@ -53,7 +58,9 @@ const SyNavbar = () => {
 
     checkWalletConnection();
   }, []);
+  
 
+  // Connect wallet functionality
   const connectWallet = async () => {
     try {
       const publicKey = await window.ic.infinityWallet.requestConnect({
@@ -68,6 +75,7 @@ const SyNavbar = () => {
     }
   };
 
+  // Disconnect wallet functionality
   const disconnectWallet = async () => {
     try {
       await window.ic.infinityWallet.disconnect();
@@ -80,10 +88,12 @@ const SyNavbar = () => {
     }
   };
 
+  // Toggle modal functionality
   const toggleModal = () => {
     setIsModalOpen(!isModalOpen);
   };
 
+  // Copy address functionality
   const copyAddress = () => {
     if (connectedAddress) {
       navigator.clipboard
@@ -97,6 +107,7 @@ const SyNavbar = () => {
     }
   };
 
+
   return (
     <nav className={styles.navbar}>
       <div className={styles.center}>
@@ -108,11 +119,78 @@ const SyNavbar = () => {
           className={styles.logoImage}
         />
       </div>
-      <div className={styles.right}>
-        <button className={styles.connectButton} onClick={connectWallet}>
-          Connect Wallet
-        </button>
+      <div >
+        {isConnected ? (
+          <div className={styles.dropdownContainer}>
+            {assets ? (
+              <div className={styles["select-container"]}>
+                <select
+                  className={styles["select-element"]}
+                  name="assets"
+                  id="assets"
+                >
+                  {assets.map((asset, index) => (
+                    <option key={index} value={asset.name}>
+                      {asset.name} {asset.balance / 100000000}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            ) : (
+              <p>No assets owned</p>
+            )}
+
+            <button
+              className={styles.connectButton}
+              onClick={toggleModal}
+            >
+              {connectedAddress
+                ? `${connectedAddress.slice(0, 8)}... `
+                : ""}
+              {isModalOpen ? (
+                <i className="fa fa-caret-down"></i>
+              ) : (
+                <i className="fa fa-caret-down"></i>
+              )}
+            </button>
+            {isModalOpen && (
+  <div className={styles.modalBackdrop}>
+    <div className={styles.modalContent}>
+      <i
+        className={`fa fa-times-circle ${styles.closeIcon}`}
+        onClick={toggleModal}
+      ></i>
+      <div className={styles.modalContainer}>
+        <div className={styles.modalHeader}>
+          <h3>{connectedAddress}</h3>
+        </div>
+        <div className={styles.modalActions}>
+          <button className={styles.copyButton} onClick={copyAddress}>
+            <i className="fa fa-copy"></i> Copy Address
+          </button>
+          <button
+            className={styles.disconnectButton}
+            onClick={() => {
+              disconnectWallet();
+              toggleModal();
+            }}
+          >
+            <i className="fa fa-sign-out"></i> Disconnect Wallet
+          </button>
+        </div>
       </div>
+    </div>
+  </div>
+)}
+        </div>
+        ) :
+        (
+          <button className={styles.connectButton} onClick={connectWallet}>
+            Connect Wallet
+          </button>
+        )}
+      </div>
+      
     </nav>
     
   );
