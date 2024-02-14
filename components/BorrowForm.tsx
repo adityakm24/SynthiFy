@@ -146,31 +146,6 @@ const Borrow = () => {
     return true;
   };
 
-  const connectWallet = async () => {
-    try {
-      const publicKey = await window.ic.infinityWallet.requestConnect({
-        whitelist,
-      });
-      router.reload();
-      const address = publicKey.toText();
-      setConnectedAddress(address);
-      console.log(`The connected user's public key is:`, publicKey);
-    } catch (e) {
-      console.log("Error connecting wallet:", e);
-    }
-  };
-
-  const disconnectWallet = async () => {
-    try {
-      await window.ic.infinityWallet.disconnect();
-      router.reload();
-      setIsConnected(false);
-      setConnectedAddress(null);
-      console.log("Wallet disconnected");
-    } catch (e) {
-      console.log("Error disconnecting wallet:", e);
-    }
-  };
 
   const getuserIdVaults = async () => {
     if (vaultManager !== null && connectPrincipal !== null) {
@@ -198,8 +173,8 @@ const Borrow = () => {
     }
   };
 
-  const toggleModal = () => {
-    setIsModalOpen(!isModalOpen);
+  const onClickHandler = () => {
+    router.push('/borrowdropdown');
   };
 
   const VaultManagercreateActor = async () => {
@@ -1081,7 +1056,7 @@ const Borrow = () => {
                 <td>0.5%</td>
                 <td>80%</td>
                 <td>
-                  <button className={styles.borrowButton} onClick={toggleModal}>
+                  <button className={styles.borrowButton} onClick={onClickHandler}>
                     Manage Vault
                   </button>
                 </td>
@@ -1107,7 +1082,6 @@ const Borrow = () => {
                   <div className={styles.closeIconContainer}>
                     <i
                       className={`fa fa-times-circle ${styles.closeIcon}`}
-                      onClick={toggleModal}
                     ></i>
                   </div>
                 </div>

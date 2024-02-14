@@ -1,4 +1,4 @@
-/* SyBorrowForm.module.css */
+@import url('https://fonts.googleapis.com/css2?family=Zen+Dots&display=swap');
 .borrowFormContainer {
     display: flex;
     flex-direction: column;
@@ -24,7 +24,7 @@
   }
   .formGroup input::placeholder {
     color: #999;
-    font-family: Zen dots;
+    font-family: 'Zen Dots';
     font-size: medium;
   }
   .formGroup:nth-child(1) {
@@ -67,7 +67,7 @@
     color: white; 
     border-radius: 5px;
     cursor: pointer;
-    font-family: Zen dots;
+    font-family: 'Zen Dots';
     border: 2px solid white;
     border-radius: 15px;
   }

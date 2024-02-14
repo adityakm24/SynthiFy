@@ -17,14 +17,14 @@
   color: rgba(255, 255, 255, 1);
   font-size: 5vw; 
   margin-top: 14px;
-  font-family: 'Zen Dots', sans-serif;
+  font-family: 'Zen Dots';
 }
 
 .successText {
   color: rgba(161, 210, 157, 1);
   font-size: 4vw; 
   margin-top: 20px;
-  font-family: 'Zen Dots', sans-serif;
+  font-family: 'Zen Dots';
 }
 
 @media only screen and (min-width: 1200px) {

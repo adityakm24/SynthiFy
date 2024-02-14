@@ -3,8 +3,10 @@ import styles from "@/assets/styles/SyNavbar.module.css";
 import { Principal } from "@dfinity/principal";
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
+import useLocation  from "next/router"
 import ConnectWallet from "./ConnectWallet";
 import WalletConnected from "./WalletConnected";
+import App from '@/pages/app';
 
 // Declare global interface for 'ic' property on window object
 declare global {
@@ -17,7 +19,8 @@ const SyNavbar = () => {
   const [connectedAddress, setConnectedAddress] = useState(null);
   const [isConnected, setIsConnected] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [assets, setAssets] = useState([]); // State to store YHH
+  const [assets, setAssets] = useState([]); 
+
 
   const router = useRouter();
   const vaultManagerAddress = "isswh-liaaa-aaaal-qcdrq-cai";

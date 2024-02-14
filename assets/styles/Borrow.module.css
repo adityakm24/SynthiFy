@@ -145,10 +145,7 @@
   margin: 0;
 }
 
-/* Firefox */
-.input2Container input[type="number"] {
-  -moz-appearance: textfield;
-}
+
 
 .createWalletContainer {
   display: flex;
@@ -539,7 +536,7 @@
   border: 0px solid #ddd;
   color: white;
   padding: 8px;
-  font-family: Zen dots;
+  font-family: 'Zen Dots';
 }
 
 
@@ -554,7 +551,7 @@
   text-align: left;
   color: rgb(255, 255, 255);
   z-index: 10;
-  font-family: Zen dots;
+  font-family: 'Zen Dots';
 }
 
 .tableList td {

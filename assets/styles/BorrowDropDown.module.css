@@ -33,7 +33,7 @@
     flex-direction: row;
     background-color: transparent;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    font-family: 'Zen Dots', sans-serif;
+    font-family: 'Zen Dots';
     align-items: center;
     justify-content: center;
     flex-wrap: wrap; /* Allow options to wrap on smaller screens */
@@ -59,6 +59,6 @@
     justify-content: center;
     align-items: center;
     color: white;
-    font-family: Zen dots;
+    font-family: 'Zen Dots';
     z-index: 50vh;
 }

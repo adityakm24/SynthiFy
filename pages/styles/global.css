@@ -2,6 +2,8 @@
 
 @import "~font-awesome/css/font-awesome.css";
 @import url(https://db.onlinewebfonts.com/c/ead4092f880f75ff0883ced1856b2c37?family=SF+Pro+Rounded+Regular);
+@import url('https://fonts.googleapis.com/css2?family=Zen+Dots&display=swap');
+
 
 :root {
   --blue: #0E76FD;
@@ -12,7 +14,7 @@ html, body {
   margin: 0;
   padding: 0;
   overflow: hidden;
-  font-family: SFRounded,"SF Pro Rounded Regular", ui-rounded, "SF Pro Rounded", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-family: Zen dots,"Zen Dots",SFRounded,"SF Pro Rounded Regular", ui-rounded, "SF Pro Rounded", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow: hidden;

@@ -53,7 +53,7 @@ const Withdraw = () => {
         const userAssets = await window.ic.infinityWallet.getUserAssets();
         console.log(`User's list of tokens/assets`, assets);
         setIsConnected(result);
-        setAssets(userAssets); // Set the assets in state
+        setAssets(userAssets); 
 
         if (result) {
           const publicKey: Principal =
