@@ -16,10 +16,9 @@ import Head from "next/head";
 const Withdraw = () => {
   const [connectedAddress, setConnectedAddress] = useState<string | null>(null);
   const [isConnected, setIsConnected] = useState(false);
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const [isModalOpen0, setIsModalOpen0] = useState(false);
   const [isModalOpen1, setIsModalOpen1] = useState(false);
-  const [assets, setAssets] = useState([]); // State to store assets
+  const [assets, setAssets] = useState([]);
   const [connectPrincipal, setConnectedPrincipal] = useState<Principal | null>(
     null
   );
@@ -69,6 +68,9 @@ const Withdraw = () => {
           );
           await DepositModulecreateActor();
           await VaultManagercreateActor();
+        }
+        else{
+          router.push('/connectwallet')
         }
       } catch (e) {
         console.log("Error checking wallet connection:", e);
@@ -432,14 +434,7 @@ const Withdraw = () => {
           </div>
         </div>
       ) : (
-        <div className={styles.notConnectedContainer} >
-          <p className={styles.notConnected}>This is embarrassing <br /> Your Wallet is Not Connected :(  </p>
-          <p className={styles.notConnected1}>
-            Download and get started for free with{" "}
-            <Link href="https://wallet.bitfinity.network/" className={styles.linkStyle} target="_blank">
-              BitFinity Wallet
-            </Link>{" "}
-          </p>
+        <div>
         </div>
       )}
     </div>

@@ -32,8 +32,8 @@
   }
 
   .rectangleBox {
-    width: 55vh;
-    height: 25vh;
+    width: 60vh;
+    height: 29vh;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -73,6 +73,23 @@
   }
 
   .button:hover{
+    background-color: rgba(193, 83, 212, 1);
+    color: black;
+    border: 2px solid black;
+  }
+
+  .Vaultbutton{
+    margin-top: 20px; 
+    padding: 10px 20px;
+    background-color: transparent; 
+    color: white; 
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: 'Zen Dots';
+    border: 2px solid white;
+    border-radius: 15px;
+  }
+  .Vaultbutton:hover{
     background-color: rgba(193, 83, 212, 1);
     color: black;
     border: 2px solid black;

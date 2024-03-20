@@ -31,6 +31,16 @@
     margin-top: 10vh;
   }
 
+  .formGroup input[type=number]::-webkit-inner-spin-button,
+  .formGroup input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none; 
+  }
+
+  .formGroup select, 
+  .formGroup textarea{
+    color:wheat;
+  }
+
   .rectangleBox {
     width: 55vh;
     height: 25vh;
@@ -77,6 +87,7 @@
     color: black;
     border: 2px solid black;
   }
+
   @media screen and (max-height: 710px) {
     .formGroup input {
       width: 40vh;
